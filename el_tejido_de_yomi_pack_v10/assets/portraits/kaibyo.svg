@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#8b1a1a"/>
+      <stop offset="100%" stop-color="#222222"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" fill="#1a1209"/>
+  <circle cx="256" cy="256" r="214" fill="url(#g)" stroke="#c8a96b" stroke-width="10" filter="url(#shadow)"/>
+  <circle cx="256" cy="256" r="186" fill="none" stroke="rgba(245,234,216,0.15)" stroke-width="2"/>
+  <text x="256" y="208" text-anchor="middle" fill="rgba(245,234,216,0.20)" font-family="serif" font-size="110">猫</text>
+  <text x="256" y="300" text-anchor="middle" fill="#f5ead8" font-family="Georgia, serif" font-size="44" font-weight="bold">KAIBYŌ</text>
+  <text x="256" y="345" text-anchor="middle" fill="rgba(245,234,216,0.85)" font-family="Georgia, serif" font-size="22" letter-spacing="3">SOMBRA</text>
+  <text x="256" y="434" text-anchor="middle" fill="rgba(245,234,216,0.55)" font-family="Georgia, serif" font-size="17">El Tejido de Yomi</text>
+</svg>

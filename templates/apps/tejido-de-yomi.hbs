@@ -1,0 +1,21 @@
+
+<section class="ol-yomi-shell-inner">
+  <header class="ol-yomi-toolbar">
+    <div class="ol-yomi-titleblock">
+      <span class="ol-yomi-badge">Aventura integrada</span>
+      <h2>{{title}}</h2>
+      <p>Panel de dirección integrado en el sistema Ocho Lanzas.</p>
+    </div>
+    <div class="ol-yomi-actions">
+      {{#if isGM}}
+      <button type="button" data-action="seedWorld"><i class="fa-solid fa-wand-magic-sparkles"></i> Preparar world</button>
+      {{/if}}
+      <button type="button" data-action="reload"><i class="fa-solid fa-rotate-right"></i> Recargar</button>
+      <button type="button" data-action="resetState"><i class="fa-solid fa-broom"></i> Reiniciar estado</button>
+      <button type="button" data-action="openExternal"><i class="fa-solid fa-up-right-from-square"></i> Abrir fuera</button>
+    </div>
+  </header>
+  <div class="ol-yomi-frame-wrap">
+    <iframe class="ol-yomi-frame" src="{{htmlPath}}" title="{{title}}"></iframe>
+  </div>
+</section>

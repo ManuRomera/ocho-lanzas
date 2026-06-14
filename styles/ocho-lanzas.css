@@ -1,0 +1,3363 @@
+.ocho-lanzas.sheet .window-content {
+  padding: 10px;
+  overflow: auto;
+  background: url("../assets/parchment-tile.png") repeat;
+}
+
+/* Root paper */
+.ocho-lanzas.ol-root {
+  display: block;
+  width: 100%;
+  max-width: 920px;
+  min-width: 660px;
+  margin: 0 auto;
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.30);
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(0,0,0,0.18);
+}
+
+.ocho-lanzas .ol-sheet {
+  padding: 22px 22px 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* Inner paper layer */
+  background: rgba(255,255,255,0.12);
+  border-radius: 14px;
+  backdrop-filter: blur(0.5px);
+}
+
+/* Header (Nombre / Retrato / Idea) */
+.ocho-lanzas .ol-header {
+  display: grid;
+  grid-template-columns: 1fr 160px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+/* Left column now stacks Name + Roll button (requested) */
+.ocho-lanzas .ol-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ocho-lanzas .ol-topright {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Brush-stroke header blocks */
+.ocho-lanzas .ol-brush {
+  position: relative;
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: rgba(0,0,0,0.78);
+}
+
+.ocho-lanzas .ol-brush-label {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 4px;
+}
+
+.ocho-lanzas .ol-brush input[type="text"] {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+.ocho-lanzas .ol-name input[type="text"] { font-size: 20px; }
+.ocho-lanzas .ol-idea input[type="text"] { font-size: 16px; font-weight: 700; }
+
+/* Generic fields */
+.ocho-lanzas .ol-field input[type="text"],
+.ocho-lanzas input[type="number"],
+.ocho-lanzas textarea {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 6px 8px;
+  background: rgba(255,255,255,0.78);
+  outline: none;
+}
+
+.ocho-lanzas textarea { resize: vertical; min-height: 56px; }
+
+.ocho-lanzas .ol-smalllabel {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .2px;
+  color: rgba(35,20,10,0.85);
+  margin-bottom: 4px;
+}
+
+/* Portrait */
+.ocho-lanzas .ol-portrait {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.ocho-lanzas .ol-portrait img {
+  width: 140px;
+  height: 248px; /* 9:16 */
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0.20);
+  background: rgba(255,255,255,0.55);
+}
+
+/* Roll button inside header (under Name) */
+.ocho-lanzas .ol-rollbtn {
+  border: 1px solid rgba(0,0,0,0.16);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.86);
+  cursor: pointer;
+  font-weight: 1000;
+  font-size: 13px;
+  line-height: 1.1;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  min-height: 42px;
+}
+
+.ocho-lanzas .ol-rollbtn i { opacity: .85; }
+
+.ocho-lanzas .ol-madness { width: 100%; }
+
+/* Roll buttons */
+.ocho-lanzas .ol-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 8px 0 14px 0;
+}
+
+.ocho-lanzas .ol-actions button {
+  border: 1px solid rgba(0,0,0,0.16);
+  border-radius: 10px;
+  padding: 6px 8px;
+  background: rgba(255,255,255,0.86);
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 1.1;
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.ocho-lanzas .ol-actions button i { margin-right: 6px; }
+
+/* Middle panel: 4 boxes around the curse circle */
+.ocho-lanzas .ol-mid {
+  display: grid;
+  grid-template-columns: 1fr 240px 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "bonds curse events"
+    "equip curse haika";
+  gap: 14px 18px;
+}
+
+.ocho-lanzas .ol-bonds { grid-area: bonds; }
+.ocho-lanzas .ol-events { grid-area: events; }
+.ocho-lanzas .ol-equipment { grid-area: equip; }
+.ocho-lanzas .ol-haika { grid-area: haika; }
+.ocho-lanzas .ol-curse { grid-area: curse; }
+
+.ocho-lanzas .ol-box {
+  border-radius: 12px;
+  padding: 10px 10px 8px 10px;
+  background: rgba(255,255,255,0.45);
+  border: 2px solid rgba(40,25,15,0.25);
+  display: flex;
+  flex-direction: column;
+  min-height: 190px;
+}
+
+.ocho-lanzas .ol-box h3 {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  font-weight: 1000;
+  letter-spacing: .2px;
+  color: rgba(120, 15, 40, 0.92);
+}
+
+.ocho-lanzas .ol-scroll {
+  overflow: auto;
+  padding-right: 4px;
+  flex: 1 1 auto;
+}
+
+/* Two-column checkbox list */
+.ocho-lanzas .ol-checkgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px 10px;
+}
+
+.ocho-lanzas .ol-check {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  min-height: 18px;
+  font-size: 12px;
+  color: rgba(35,20,10,0.92);
+}
+
+.ocho-lanzas .ol-check input { margin: 0; }
+
+.ocho-lanzas .ol-hint {
+  font-size: 11px;
+  opacity: .75;
+  padding: 6px 2px;
+}
+
+/* Curse block (integrated: no frame) */
+.ocho-lanzas .ol-curse {
+  background: transparent;
+  border: none;
+  padding: 4px 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  gap: 8px;
+}
+
+.ocho-lanzas .ol-curse-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ocho-lanzas .ol-curse-head h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 1000;
+  letter-spacing: .2px;
+  color: rgba(120, 15, 40, 0.92);
+}
+
+.ocho-lanzas .ol-curse-controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ocho-lanzas .ol-curse-min {
+  font-size: 11px;
+  opacity: .82;
+  font-weight: 800;
+  margin-right: 2px;
+}
+
+.ocho-lanzas .ol-mini {
+  border: 1px solid rgba(0,0,0,0.18);
+  border-radius: 999px;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  background: rgba(255,255,255,0.78);
+  cursor: pointer;
+  font-weight: 1000;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ocho-lanzas .ol-curse-ring {
+  position: relative;
+  width: 190px;
+  height: 190px;
+  margin: 2px 0 2px;
+}
+
+.ocho-lanzas .ol-curse-ring .ol-pip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 2px solid rgba(60,40,20,0.62);
+  background: rgba(255,255,255,0.20);
+  transform: translate(-50%, -50%) rotate(calc(var(--i) * 60deg)) translate(0, -74px) rotate(calc(var(--i) * -60deg));
+  cursor: pointer;
+}
+
+.ocho-lanzas .ol-curse-ring .ol-pip.filled {
+  background: rgba(160, 0, 35, 0.78);
+  border-color: rgba(80, 0, 18, 0.85);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.18);
+}
+
+/* Pips that form the minimum curse floor (1 + nº Onmyoujis) */
+.ocho-lanzas .ol-curse-ring .ol-pip.permanent {
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.22), 0 0 0 4px rgba(80,0,18,0.18);
+}
+
+.ocho-lanzas .ol-curse-ring .ol-pip.permanent::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.55);
+}
+
+.ocho-lanzas .ol-curse-ring .ol-curse-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 1100;
+  font-size: 22px;
+  color: rgba(30,18,8,0.92);
+  background: rgba(255,255,255,0.40);
+  border: none;
+}
+
+.ocho-lanzas .ol-curse-notes {
+  width: 100%;
+  min-height: 58px;
+  font-size: 12px;
+  line-height: 1.22;
+  resize: none;
+  overflow: auto;
+  background: rgba(255,255,255,0.60);
+}
+
+/* Traits (three columns at bottom) */
+.ocho-lanzas .ol-traits {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+}
+
+.ocho-lanzas .ol-traits .ol-box { min-height: 240px; }
+
+/* Notes */
+.ocho-lanzas .ol-notes {
+  border-radius: 12px;
+  padding: 10px;
+  background: rgba(255,255,255,0.45);
+  border: 2px solid rgba(40,25,15,0.25);
+}
+
+.ocho-lanzas .ol-notes h3 {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  font-weight: 1000;
+  letter-spacing: .2px;
+  color: rgba(120, 15, 40, 0.92);
+}
+
+.ocho-lanzas .ol-notes textarea { min-height: 110px; }
+
+/* NPC mid wrapper */
+.ocho-lanzas .ol-npc-mid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* GM config button */
+.ocho-lanzas .ol-gmbar {
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.ocho-lanzas .ol-gmbar button {
+  border: 1px solid rgba(0,0,0,0.16);
+  border-radius: 12px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.88);
+  cursor: pointer;
+  font-weight: 900;
+}
+
+/* Chat roll card */
+.ol-roll-card {
+  border: 1px solid var(--color-border-light-primary);
+  border-radius: 10px;
+  padding: 8px;
+  background: rgba(255,255,255,0.92);
+}
+.ol-roll-card .ol-roll-title { font-weight: 800; margin-bottom: 6px; }
+.ol-roll-card table { width:100%; border-collapse: collapse; }
+.ol-roll-card td { padding: 3px 2px; }
+.ol-roll-card tr.cursed td { background: rgba(176, 0, 32, 0.12); border-radius: 6px; font-weight: 900; }
+
+/* Background texture scaling (avoid pixelation when window is resized) */
+.ocho-lanzas.sheet .window-content {
+  background-size: 512px 512px;
+}
+
+.ocho-lanzas .ol-madness-readonly {
+  margin-top: 8px;
+  font-weight: 800;
+  font-size: 13px;
+  color: rgba(0,0,0,0.70);
+  text-align: center;
+}
+.ocho-lanzas .ol-madness-readonly span {
+  display: inline-block;
+  min-width: 1.5em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.72);
+  border: 1px solid rgba(0,0,0,0.10);
+  margin-left: 6px;
+}
+
+
+/* Free text boxes (Vínculos, Equipo, Sucesos, Haika no Renga) */
+.ocho-lanzas textarea.ol-freetext {
+  width: 100%;
+  height: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  resize: none;
+  overflow: auto;
+  box-sizing: border-box;
+  font-size: 12px;
+  line-height: 1.25;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(20,10,5,0.18);
+  background: rgba(255,255,255,0.65);
+}
+
+/* Chat action button */
+.chat-message .ol-chat-action {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(20,10,5,0.22);
+  background: rgba(255,255,255,0.7);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.chat-message .ol-chat-action:disabled {
+  opacity: .55;
+  cursor: default;
+}
+
+
+/* =====================================================================
+   Manual look pass (Fase 1) - v0.2.18
+   Purely aesthetic: palette, paper texture, brush headers, section boxes,
+   lined writing areas, curse ring polish, and dialog/chat cards.
+   ===================================================================== */
+
+.ocho-lanzas {
+  --ol-paper-1: #f4e8dc;
+  --ol-paper-2: #ede1d6;
+  --ol-paper-3: #f6efe8;
+  --ol-ink: #090c0c;
+  --ol-ink-soft: rgba(9,12,12,0.78);
+  --ol-line: rgba(9,12,12,0.18);
+  --ol-line-soft: rgba(9,12,12,0.10);
+  --ol-red: #991914;
+  --ol-red-dark: #6f1411;
+  --ol-red-wash: rgba(229,135,123,0.18);
+
+  font-family: "Signika", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+/* Window parchment with subtle stains (tile stays to avoid pixelation) */
+.ocho-lanzas.sheet .window-content {
+  background:
+    radial-gradient(circle at 72% 34%, rgba(153,25,20,0.12), transparent 38%),
+    radial-gradient(circle at 32% 62%, rgba(229,135,123,0.12), transparent 42%),
+    url("../assets/parchment-tile.png") repeat;
+  background-size: auto, auto, 512px 512px;
+}
+
+/* Root paper: warmer + less "UI panel" */
+.ocho-lanzas.ol-root {
+  background:
+    linear-gradient(180deg, rgba(246,239,232,0.70), rgba(237,225,214,0.55));
+  border: 1px solid rgba(9,12,12,0.22);
+}
+
+/* --- Brush headers (Name / Idea) --- */
+.ocho-lanzas .ol-brush {
+  background: rgba(9,12,12,0.92);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  clip-path: polygon(2% 16%, 10% 8%, 30% 12%, 52% 6%, 76% 12%, 96% 10%, 98% 86%, 90% 94%, 70% 90%, 50% 96%, 24% 92%, 6% 96%, 2% 86%);
+}
+
+.ocho-lanzas .ol-brush::before {
+  content: "";
+  position: absolute;
+  inset: -18%;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(255,255,255,0.10), transparent 42%),
+    radial-gradient(circle at 82% 68%, rgba(255,255,255,0.07), transparent 48%);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.ocho-lanzas .ol-brush-label {
+  font-family: "Brush Script MT", "Segoe Script", "Comic Sans MS", cursive;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  color: rgba(255,255,255,0.96);
+  text-transform: none;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.35);
+}
+
+.ocho-lanzas .ol-brush input[type="text"] {
+  background: rgba(244,232,220,0.92);
+  color: var(--ol-ink);
+  border-radius: 8px;
+  padding: 7px 9px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+}
+
+/* Roll button: "ink stamp" */
+.ocho-lanzas .ol-rollbtn {
+  background: rgba(9,12,12,0.92);
+  color: rgba(255,255,255,0.94);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 3px 0 rgba(0,0,0,0.30);
+}
+.ocho-lanzas .ol-rollbtn:hover {
+  filter: brightness(1.05);
+}
+.ocho-lanzas .ol-rollbtn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.25);
+}
+
+/* Portrait with red "sun" behind */
+.ocho-lanzas .ol-portrait {
+  position: relative;
+}
+.ocho-lanzas .ol-portrait::before {
+  content: "";
+  position: absolute;
+  /* Larger sun so it bleeds beyond all four sides of the portrait, like the manual */
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -52%);
+  background:
+    radial-gradient(circle at 48% 46%, rgba(153,25,20,0.90), rgba(111,20,17,0.92) 56%, rgba(153,25,20,0.0) 57%);
+  opacity: 0.95;
+  pointer-events: none;
+  z-index: 0;
+}
+.ocho-lanzas .ol-portrait img {
+  position: relative;
+  z-index: 1;
+  border: 3px solid rgba(9,12,12,0.72);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.20);
+  border-radius: 10px;
+}
+
+/* --- Boxes: more "hand-drawn" look --- */
+.ocho-lanzas .ol-box {
+  background: rgba(244,232,220,0.55);
+  border: none;
+  padding: 12px 12px 10px 12px;
+  position: relative;
+}
+
+.ocho-lanzas .ol-box::before,
+.ocho-lanzas .ol-box::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.ocho-lanzas .ol-box::before {
+  border: 3px solid rgba(9,12,12,0.68);
+  transform: rotate(-0.10deg);
+}
+.ocho-lanzas .ol-box::after {
+  inset: 6px;
+  border: 1px solid rgba(9,12,12,0.22);
+  transform: rotate(0.10deg);
+}
+
+/* Section titles: red + dot */
+.ocho-lanzas .ol-box h3,
+.ocho-lanzas .ol-notes h3,
+.ocho-lanzas .ol-curse-head h3 {
+  color: var(--ol-red);
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+}
+
+.ocho-lanzas .ol-box h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.ocho-lanzas .ol-bonds h3::before,
+.ocho-lanzas .ol-equipment h3::before,
+.ocho-lanzas .ol-traits > .ol-box:nth-child(1) h3::before,
+.ocho-lanzas .ol-traits > .ol-box:nth-child(2) h3::before,
+.ocho-lanzas .ol-traits > .ol-box:nth-child(3) h3::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ol-red);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.20);
+  flex: 0 0 auto;
+}
+
+.ocho-lanzas .ol-events h3,
+.ocho-lanzas .ol-haika h3 {
+  justify-content: flex-end;
+  text-align: right;
+}
+.ocho-lanzas .ol-events h3::before,
+.ocho-lanzas .ol-haika h3::before {
+  content: none;
+}
+.ocho-lanzas .ol-events h3::after,
+.ocho-lanzas .ol-haika h3::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ol-red);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.20);
+  flex: 0 0 auto;
+}
+
+/* Lined writing areas inside mid boxes */
+.ocho-lanzas .ol-mid .ol-scroll {
+  padding: 8px 8px 6px 8px;
+  border-radius: 8px;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0px,
+      rgba(0,0,0,0) 20px,
+      rgba(9,12,12,0.10) 21px
+    );
+}
+
+.ocho-lanzas textarea.ol-freetext {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  border: none;
+  color: rgba(9,12,12,0.92);
+  line-height: 1.35;
+}
+
+/* Notes: also lined */
+.ocho-lanzas .ol-notes textarea {
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0px,
+      rgba(0,0,0,0) 20px,
+      rgba(9,12,12,0.10) 21px
+    ),
+    rgba(244,232,220,0.35);
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  color: rgba(9,12,12,0.92);
+}
+
+/* Traits: subtle red separators between columns */
+.ocho-lanzas .ol-traits > .ol-box {
+  min-height: 220px;
+}
+.ocho-lanzas .ol-traits > .ol-box:nth-child(2),
+.ocho-lanzas .ol-traits > .ol-box:nth-child(3) {
+  box-shadow: -6px 0 0 rgba(153,25,20,0.25);
+}
+
+/* Checkbox styling to feel "paper" */
+.ocho-lanzas .ol-check {
+  align-items: center;
+}
+.ocho-lanzas .ol-check input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 2px solid rgba(9,12,12,0.60);
+  background: rgba(244,232,220,0.60);
+  display: inline-block;
+  position: relative;
+}
+.ocho-lanzas .ol-check input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 0px;
+  width: 6px;
+  height: 10px;
+  border: solid rgba(9,12,12,0.85);
+  border-width: 0 2px 2px 0;
+  transform: rotate(40deg);
+}
+
+/* Curse ring polish: warmer + stamp-like filled pips */
+.ocho-lanzas .ol-curse-ring .ol-pip {
+  border-color: rgba(9,12,12,0.58);
+  background: rgba(244,232,220,0.40);
+}
+.ocho-lanzas .ol-curse-ring .ol-pip.filled {
+  background: rgba(153,25,20,0.78);
+  border-color: rgba(111,20,17,0.88);
+  box-shadow: 0 0 0 2px rgba(244,232,220,0.24);
+}
+
+/* Permanent pips: slash (closer to "tachado") */
+.ocho-lanzas .ol-curse-ring .ol-pip.permanent::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 50%;
+  height: 2px;
+  background: rgba(9,12,12,0.78);
+  transform: rotate(-35deg);
+}
+
+/* Center value: inked paper */
+.ocho-lanzas .ol-curse-ring .ol-curse-value {
+  background: rgba(244,232,220,0.70);
+  color: rgba(9,12,12,0.90);
+  border: 2px solid rgba(9,12,12,0.30);
+}
+
+/* --- Dialogs (roll/purify) --- */
+.ocho-lanzas.ol-roll-dialog,
+.ocho-lanzas.ol-purify-dialog {
+  background:
+    radial-gradient(circle at 72% 34%, rgba(153,25,20,0.10), transparent 38%),
+    url("../assets/parchment-tile.png") repeat;
+  background-size: auto, 512px 512px;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.ocho-lanzas.ol-roll-dialog label,
+.ocho-lanzas.ol-purify-dialog label {
+  color: rgba(9,12,12,0.80);
+  font-weight: 900;
+}
+
+.ocho-lanzas.ol-roll-dialog .ol-field input[type="text"],
+.ocho-lanzas.ol-purify-dialog .ol-field textarea {
+  background: rgba(244,232,220,0.85);
+  border: 1px solid rgba(9,12,12,0.20);
+}
+
+/* --- Chat cards: paper + red headers --- */
+.ol-roll-card,
+.ol-curse-card,
+.ol-purify-card {
+  border-radius: 10px;
+  padding: 10px;
+  background:
+    radial-gradient(circle at 70% 25%, rgba(153,25,20,0.10), transparent 40%),
+    rgba(244,232,220,0.75);
+  border: 2px solid rgba(9,12,12,0.30);
+}
+
+.ol-roll-card .ol-roll-title,
+.ol-curse-card .ol-curse-title,
+.ol-purify-card .ol-purify-title {
+  color: var(--ol-red);
+  font-weight: 1100;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+}
+
+/* =====================================================================
+   Compact layout pass - v0.2.21
+   Reduce overall footprint so the character sheet fits better on smaller
+   displays with less scrolling.
+   ===================================================================== */
+
+.ocho-lanzas.sheet.actor.character.ol-root {
+  max-width: 860px;
+  min-width: 600px;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-sheet {
+  padding: 16px 16px 14px 16px;
+  gap: 10px;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-header {
+  grid-template-columns: 1fr 140px 1fr;
+  gap: 14px;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-left,
+.ocho-lanzas.sheet.actor.character .ol-topright {
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-brush {
+  padding: 8px 10px;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-brush-label {
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-name input[type="text"] { font-size: 18px; }
+.ocho-lanzas.sheet.actor.character .ol-idea input[type="text"] { font-size: 14px; }
+
+.ocho-lanzas.sheet.actor.character .ol-smalllabel {
+  font-size: 10px;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-field input[type="text"],
+.ocho-lanzas.sheet.actor.character input[type="number"],
+.ocho-lanzas.sheet.actor.character textarea {
+  padding: 5px 7px;
+  border-radius: 9px;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-rollbtn {
+  padding: 8px 10px;
+  font-size: 12px;
+  min-height: 36px;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-portrait {
+  z-index: 1;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-portrait img {
+  width: 124px;
+  height: 220px;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-mid {
+  grid-template-columns: 1fr 220px 1fr;
+  gap: 12px 14px;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-box {
+  padding: 10px 10px 8px 10px;
+  min-height: 165px;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-box h3,
+.ocho-lanzas.sheet.actor.character .ol-curse-head h3,
+.ocho-lanzas.sheet.actor.character .ol-notes h3 {
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-check {
+  font-size: 11px;
+  min-height: 16px;
+}
+
+.ocho-lanzas.sheet.actor.character textarea.ol-freetext {
+  font-size: 11.5px;
+  line-height: 1.22;
+  padding: 7px;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-curse-ring {
+  width: 170px;
+  height: 170px;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-curse-ring .ol-pip {
+  width: 13px;
+  height: 13px;
+  transform: translate(-50%, -50%) rotate(calc(var(--i) * 60deg)) translate(0, -62px) rotate(calc(var(--i) * -60deg));
+}
+
+.ocho-lanzas.sheet.actor.character .ol-curse-ring .ol-curse-value {
+  width: 62px;
+  height: 62px;
+  font-size: 20px;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-traits {
+  gap: 12px;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-traits .ol-box {
+  min-height: 210px;
+}
+
+.ocho-lanzas.sheet.actor.character .ol-notes textarea {
+  min-height: 95px;
+}
+
+
+
+/* =====================================================================
+   NPC / Bakemono compact layout pass - v0.3.2
+   Prioritizes glanceability: less dead space, larger main notes area,
+   and auto-growing text boxes so the user scrolls the sheet, not tiny boxes.
+   ===================================================================== */
+
+.ocho-lanzas.sheet.actor.npc.ol-root {
+  max-width: 960px;
+  min-width: 680px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-sheet {
+  padding: 16px 18px 14px 18px;
+  gap: 12px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-actions {
+  display: none;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 170px;
+  gap: 16px;
+  align-items: start;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-main {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-summary-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 290px);
+  gap: 10px;
+  align-items: end;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-brush {
+  padding: 8px 10px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-brush-label {
+  margin-bottom: 3px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-name input[type="text"] {
+  font-size: 18px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-idea input[type="text"] {
+  font-size: 14px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-portraitcol {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  justify-items: center;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-portrait::before {
+  width: 250px;
+  height: 250px;
+  transform: translate(-50%, -51%);
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-portrait img {
+  width: 122px;
+  height: 214px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-madness-readonly {
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-rollbtn-full {
+  width: 100%;
+  justify-content: center;
+  padding: 8px 10px;
+  min-height: 38px;
+  font-size: 12px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(260px, 320px);
+  gap: 14px;
+  align-items: start;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-box-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-box-head h3 {
+  margin: 0;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-notesbox,
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox {
+  min-height: 0;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-notesbox {
+  padding-bottom: 12px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-notes-main,
+.ocho-lanzas.sheet.actor.npc .ol-npc-curse-notes {
+  resize: none;
+  overflow: hidden;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-notes-main {
+  min-height: 360px;
+  font-size: 13px;
+  line-height: 1.38;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox {
+  padding: 10px 10px 12px 10px;
+  background: rgba(244,232,220,0.48);
+  border: none;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox::before,
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox::after {
+  content: none;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox .ol-curse-head {
+  margin-bottom: 2px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox .ol-curse-head h3 {
+  margin: 0;
+  font-size: 13px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox .ol-curse-controls {
+  justify-content: flex-end;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox .ol-curse-ring {
+  width: 162px;
+  height: 162px;
+  margin: 0 auto 2px auto;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox .ol-pip {
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%) rotate(calc(var(--i) * 60deg)) translate(0, -58px) rotate(calc(var(--i) * -60deg));
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox .ol-curse-value {
+  width: 60px;
+  height: 60px;
+  font-size: 20px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-curse-notes {
+  min-height: 170px;
+  font-size: 12px;
+  line-height: 1.32;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-notes textarea,
+.ocho-lanzas.sheet.actor.npc .ol-curse-notes {
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0px,
+      rgba(0,0,0,0) 20px,
+      rgba(9,12,12,0.10) 21px
+    ),
+    rgba(244,232,220,0.35);
+}
+
+@media (max-width: 900px) {
+  .ocho-lanzas.sheet.actor.npc .ol-npc-header,
+  .ocho-lanzas.sheet.actor.npc .ol-npc-layout,
+  .ocho-lanzas.sheet.actor.npc .ol-npc-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ocho-lanzas.sheet.actor.npc .ol-npc-portraitcol {
+    grid-template-columns: 122px 1fr;
+    align-items: center;
+    justify-items: stretch;
+  }
+
+  .ocho-lanzas.sheet.actor.npc .ol-rollbtn-full {
+    align-self: center;
+  }
+
+  .ocho-lanzas.sheet.actor.npc .ol-npc-notes-main {
+    min-height: 280px;
+  }
+}
+
+
+/* =====================================================================
+   NPC / Bakemono sheet compact wide redesign - v0.3.3
+   ===================================================================== */
+.ocho-lanzas .ol-autogrow {
+  resize: none;
+  overflow: hidden;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-sheet.ol-npc-sheet-v3 {
+  gap: 14px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 18px;
+  align-items: start;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-topbar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-meta-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(240px, 0.9fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-side-top {
+  display: grid;
+  grid-template-columns: 138px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cardportrait {
+  align-items: stretch;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cardportrait img {
+  width: 138px;
+  height: 232px;
+  margin: 0 auto;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-quickstats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-madness-pill {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(20,10,5,0.14);
+  background: rgba(255,255,255,0.72);
+  text-align: left;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-madness-pill .ol-madness-label {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .2px;
+  color: rgba(60,34,18,0.86);
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-madness-pill .ol-madness-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(153,25,20,0.12);
+  border: 1px solid rgba(153,25,20,0.16);
+  color: rgba(60,18,10,0.95);
+  font-weight: 1000;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-rollbtn-full {
+  width: 100%;
+  min-height: 44px;
+  background: rgba(13,17,18,0.92);
+  color: #fff;
+  border-color: rgba(13,17,18,0.92);
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-rollbtn-full i {
+  color: rgba(255,255,255,0.85);
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-notesbox {
+  min-height: 540px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-notes-main {
+  min-height: 470px;
+  flex: 1 1 auto;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.58), rgba(255,255,255,0.50)),
+    repeating-linear-gradient(180deg, transparent 0 29px, rgba(60,34,18,0.08) 29px 30px);
+  line-height: 1.45;
+  font-size: 20px;
+  padding: 14px 14px 12px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox {
+  min-height: 0;
+  padding: 12px;
+  gap: 10px;
+  background: rgba(255,255,255,0.42);
+  border: 2px solid rgba(40,25,15,0.22);
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox .ol-curse-head {
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox .ol-curse-ring {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox .ol-pip {
+  transform: translate(-50%, -50%) rotate(calc(var(--i) * 60deg)) translate(0, -58px) rotate(calc(var(--i) * -60deg));
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox .ol-curse-value {
+  width: 58px;
+  height: 58px;
+  font-size: 20px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-curse-notes {
+  min-height: 190px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.48)),
+    repeating-linear-gradient(180deg, transparent 0 23px, rgba(60,34,18,0.07) 23px 24px);
+  line-height: 1.35;
+  font-size: 13px;
+  padding: 10px 12px;
+}
+
+@media (max-width: 980px) {
+  .ocho-lanzas.sheet.actor.npc .ol-npc-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .ocho-lanzas.sheet.actor.npc .ol-npc-side-top {
+    grid-template-columns: 120px minmax(0, 1fr);
+  }
+
+  .ocho-lanzas.sheet.actor.npc .ol-npc-notesbox {
+    min-height: 420px;
+  }
+
+  .ocho-lanzas.sheet.actor.npc .ol-npc-notes-main {
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 760px) {
+  .ocho-lanzas.sheet.actor.npc .ol-npc-meta-grid,
+  .ocho-lanzas.sheet.actor.npc .ol-npc-side-top,
+  .ocho-lanzas.sheet.actor.npc .ol-npc-cursebox .ol-curse-head {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+}
+
+/* =====================================================================
+   Themed roll / purify dialogs - v0.3.3
+   ===================================================================== */
+.application.dialog:has(.ocho-lanzas.ol-themed-dialog) .window-content {
+  background:
+    radial-gradient(circle at 78% 20%, rgba(153,25,20,0.16), transparent 34%),
+    radial-gradient(circle at 18% 72%, rgba(229,135,123,0.14), transparent 40%),
+    url("../assets/parchment-tile.png") repeat;
+  background-size: auto, auto, 512px 512px;
+  padding: 12px;
+}
+
+.application.dialog:has(.ocho-lanzas.ol-themed-dialog) footer,
+.application.dialog:has(.ocho-lanzas.ol-themed-dialog) .window-footer {
+  border-top: 1px solid rgba(20,10,5,0.14);
+  background: rgba(245,236,226,0.88);
+}
+
+.application.dialog:has(.ocho-lanzas.ol-themed-dialog) footer button,
+.application.dialog:has(.ocho-lanzas.ol-themed-dialog) .window-footer button {
+  border-radius: 12px;
+  border: 1px solid rgba(20,10,5,0.18);
+  background: rgba(255,255,255,0.86);
+  font-weight: 900;
+}
+
+.application.dialog:has(.ocho-lanzas.ol-themed-dialog) footer button.default,
+.application.dialog:has(.ocho-lanzas.ol-themed-dialog) .window-footer button.default {
+  background: rgba(13,17,18,0.94);
+  color: #fff;
+  border-color: rgba(13,17,18,0.94);
+}
+
+.ocho-lanzas.ol-themed-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: min(760px, 100%);
+}
+
+.ocho-lanzas .ol-dialog-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ocho-lanzas .ol-dialog-brush {
+  padding: 12px 14px;
+}
+
+.ocho-lanzas .ol-dialog-title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 1000;
+  letter-spacing: .2px;
+}
+
+.ocho-lanzas .ol-dialog-copy {
+  margin: 0;
+  padding: 0 4px;
+  font-size: 12px;
+  line-height: 1.35;
+  color: rgba(60,34,18,0.86);
+}
+
+.ocho-lanzas .ol-dialog-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 12px;
+}
+
+.ocho-lanzas .ol-dialog-box {
+  min-height: 0;
+  padding: 12px;
+  background: rgba(255,255,255,0.44);
+}
+
+.ocho-lanzas .ol-dialog-box-single {
+  min-width: min(700px, 100%);
+}
+
+.ocho-lanzas .ol-dialog-field input[type="text"] {
+  min-height: 42px;
+  font-size: 15px;
+  padding: 10px 12px;
+}
+
+.ocho-lanzas .ol-rolltype-pills {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.ocho-lanzas .ol-choice-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 132px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(20,10,5,0.16);
+  background: rgba(255,255,255,0.78);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.ocho-lanzas .ol-choice-pill input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.ocho-lanzas .ol-choice-pill:has(input:checked),
+.ocho-lanzas .ol-choice-pill.is-active {
+  background: rgba(13,17,18,0.94);
+  color: #fff;
+  border-color: rgba(13,17,18,0.94);
+}
+
+.ocho-lanzas .ol-dialog-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ocho-lanzas .ol-check-card {
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(20,10,5,0.14);
+  background: rgba(255,255,255,0.62);
+}
+
+.ocho-lanzas .ol-check-card input {
+  margin-top: 3px;
+}
+
+.ocho-lanzas .ol-check-card span {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ocho-lanzas .ol-check-card small {
+  font-size: 11px;
+  line-height: 1.32;
+  color: rgba(60,34,18,0.78);
+}
+
+.ocho-lanzas .ol-dialog-textarea {
+  min-height: 180px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.56), rgba(255,255,255,0.48)),
+    repeating-linear-gradient(180deg, transparent 0 27px, rgba(60,34,18,0.07) 27px 28px);
+}
+
+@media (max-width: 720px) {
+  .ocho-lanzas .ol-dialog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ocho-lanzas.ol-themed-dialog,
+  .ocho-lanzas .ol-dialog-box-single {
+    min-width: 0;
+  }
+}
+
+
+/* =====================================================================
+   NPC wide-sheet pass - v0.3.4
+   ===================================================================== */
+.ocho-lanzas.sheet.actor.npc .ol-npc-content,
+.ocho-lanzas.sheet.actor.npc .ol-npc-topbar,
+.ocho-lanzas.sheet.actor.npc .ol-npc-notesbox,
+.ocho-lanzas.sheet.actor.npc .ol-npc-notes-main {
+  width: 100%;
+  min-width: 0;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-shell {
+  grid-template-columns: minmax(0, 1.6fr) minmax(320px, .8fr);
+  gap: 16px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-content {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-self: stretch;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-topbar {
+  gap: 10px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-meta-grid {
+  grid-template-columns: minmax(0, 1.25fr) minmax(250px, 0.75fr);
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-notesbox {
+  min-height: 0;
+  align-self: stretch;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-notes-main {
+  min-height: 520px;
+  font-size: 18px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-sidebar {
+  gap: 12px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-side-top {
+  grid-template-columns: 124px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cardportrait img {
+  width: 124px;
+  height: 208px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-rollbtn-full {
+  min-height: 40px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox .ol-curse-ring {
+  width: 138px;
+  height: 138px;
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox .ol-pip {
+  transform: translate(-50%, -50%) rotate(calc(var(--i) * 60deg)) translate(0, -53px) rotate(calc(var(--i) * -60deg));
+}
+
+.ocho-lanzas.sheet.actor.npc .ol-npc-cursebox .ol-curse-value {
+  width: 54px;
+  height: 54px;
+  font-size: 18px;
+}
+
+@media (max-width: 980px) {
+  .ocho-lanzas.sheet.actor.npc .ol-npc-shell {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =====================================================================
+   Roll dialog redesign - v0.3.4
+   ===================================================================== */
+.application.dialog:has(.ocho-lanzas.ol-dialog-rollsheet) .window-content {
+  background:
+    radial-gradient(circle at 72% 26%, rgba(153,25,20,0.20), transparent 28%),
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)),
+    url("../assets/parchment-tile.png") repeat;
+  background-size: auto, auto, 512px 512px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet {
+  position: relative;
+  min-width: min(860px, 100%);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-paper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(20,10,5,0.18);
+  background: rgba(255,255,255,0.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.20);
+  padding: 18px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-paper::before {
+  content: "";
+  position: absolute;
+  right: -48px;
+  top: 24px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(153,25,20,0.28), rgba(153,25,20,0.16) 62%, transparent 70%);
+  pointer-events: none;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-sheethead {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-kicker {
+  font-size: 11px;
+  font-weight: 1000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(120,15,40,0.92);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-name {
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 1100;
+  color: rgba(15,14,14,0.96);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-copy {
+  max-width: 620px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-columns {
+  display: grid;
+  grid-template-columns: minmax(260px, .65fr) minmax(0, 1.35fr);
+  gap: 12px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-box {
+  background: rgba(255,255,255,0.48);
+  border-color: rgba(40,25,15,0.20);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-box-full {
+  min-height: 0;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-field input[type="text"] {
+  min-height: 50px;
+  font-size: 18px;
+  font-weight: 800;
+  background: rgba(255,255,255,0.84);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-rolltype-pills {
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-choice-pill {
+  min-width: 150px;
+  min-height: 46px;
+  font-size: 14px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-rulecallout {
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: rgba(13,17,18,0.90);
+  color: rgba(255,255,255,0.94);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-rulecallout strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-rulecallout p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.ocho-lanzas .ol-source-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 8px;
+}
+
+.ocho-lanzas .ol-source-choice {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+
+.ocho-lanzas .ol-source-choice input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.ocho-lanzas .ol-source-choice-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 74px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(20,10,5,0.14);
+  background: rgba(255,255,255,0.76);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+}
+
+.ocho-lanzas .ol-source-choice-body small {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: rgba(120,15,40,0.86);
+}
+
+.ocho-lanzas .ol-source-choice-body strong {
+  font-size: 14px;
+  line-height: 1.25;
+  color: rgba(15,14,14,0.95);
+}
+
+.ocho-lanzas .ol-source-choice:hover .ol-source-choice-body {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.ocho-lanzas .ol-source-choice:has(input:checked) .ol-source-choice-body {
+  border-color: rgba(13,17,18,0.92);
+  background: rgba(13,17,18,0.94);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.ocho-lanzas .ol-source-choice:has(input:checked) .ol-source-choice-body small,
+.ocho-lanzas .ol-source-choice:has(input:checked) .ol-source-choice-body strong {
+  color: #fff;
+}
+
+.ocho-lanzas .ol-source-choice-cursed .ol-source-choice-body small {
+  color: rgba(153,25,20,0.92);
+}
+
+.ocho-lanzas .ol-source-choice-cursed:has(input:checked) .ol-source-choice-body {
+  background: linear-gradient(180deg, rgba(94,12,12,0.96), rgba(59,7,7,0.96));
+  border-color: rgba(94,12,12,0.96);
+}
+
+.ocho-lanzas .ol-source-hint,
+.ocho-lanzas .ol-source-empty {
+  margin: 8px 2px 0;
+  font-size: 12px;
+  line-height: 1.35;
+  color: rgba(60,34,18,0.78);
+}
+
+.ocho-lanzas .ol-source-empty {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.55);
+}
+
+@media (max-width: 760px) {
+  .ocho-lanzas.ol-dialog-rollsheet {
+    min-width: 0;
+  }
+
+  .ocho-lanzas.ol-dialog-rollsheet .ol-dialog-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .ocho-lanzas.ol-dialog-rollsheet .ol-dialog-paper::before {
+    width: 170px;
+    height: 170px;
+    top: 40px;
+    right: -40px;
+  }
+}
+
+/* =====================================================================
+   Roll chat card redesign - v0.3.4
+   ===================================================================== */
+.chat-message .message-content .ol-roll-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  padding: 14px;
+  background:
+    radial-gradient(circle at 85% 12%, rgba(153,25,20,0.18), transparent 22%),
+    linear-gradient(180deg, rgba(255,255,255,0.86), rgba(255,255,255,0.74));
+  border: 2px solid rgba(40,25,15,0.24);
+}
+
+.chat-message .message-content .ol-roll-card::before {
+  content: "";
+  position: absolute;
+  right: -34px;
+  top: -26px;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(153,25,20,0.20), rgba(153,25,20,0.10) 58%, transparent 70%);
+  pointer-events: none;
+}
+
+.chat-message .message-content .ol-roll-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ol-roll-card .ol-roll-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+}
+
+.ol-roll-card .ol-roll-title {
+  font-size: 11px;
+  font-weight: 1000;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(120,15,40,0.92);
+}
+
+.ol-roll-card .ol-roll-subtitle {
+  margin-top: 4px;
+  font-size: 15px;
+  line-height: 1.35;
+  font-weight: 800;
+  color: rgba(15,14,14,0.95);
+}
+
+.ol-roll-card .ol-roll-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  min-width: 180px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(20,10,5,0.14);
+  background: rgba(255,255,255,0.82);
+}
+
+.ol-roll-card .ol-roll-summary-label {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  opacity: .72;
+}
+
+.ol-roll-card .ol-roll-summary-text {
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 1100;
+  text-align: right;
+}
+
+.ol-roll-card .ol-roll-summary-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(13,17,18,0.92);
+  color: #fff;
+  font-size: 19px;
+  font-weight: 1100;
+}
+
+.ol-roll-card.is-great .ol-roll-summary { background: rgba(239,250,236,0.92); }
+.ol-roll-card.is-great .ol-roll-summary-text { color: rgba(35,95,40,0.96); }
+.ol-roll-card.is-mixed .ol-roll-summary { background: rgba(255,247,230,0.95); }
+.ol-roll-card.is-mixed .ol-roll-summary-text { color: rgba(156,95,15,0.98); }
+.ol-roll-card.is-bad .ol-roll-summary { background: rgba(255,239,236,0.95); }
+.ol-roll-card.is-bad .ol-roll-summary-text { color: rgba(167,61,33,0.98); }
+.ol-roll-card.is-awful .ol-roll-summary { background: rgba(71,12,12,0.96); }
+.ol-roll-card.is-awful .ol-roll-summary-label,
+.ol-roll-card.is-awful .ol-roll-summary-text { color: #fff; }
+.ol-roll-card.is-awful .ol-roll-summary-value { background: rgba(255,255,255,0.16); }
+
+.ol-roll-card .ol-roll-sources-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.58);
+  border: 1px solid rgba(20,10,5,0.12);
+}
+
+.ol-roll-card .ol-roll-source-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ol-roll-card .ol-roll-source-title {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+  color: rgba(120,15,40,0.9);
+}
+
+.ol-roll-card .ol-roll-taglist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ol-roll-card .ol-roll-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  border: 1px solid rgba(20,10,5,0.12);
+  background: rgba(255,255,255,0.84);
+}
+
+.ol-roll-card .ol-roll-tag.is-cursed {
+  background: rgba(94,12,12,0.92);
+  border-color: rgba(94,12,12,0.92);
+  color: #fff;
+}
+
+.ol-roll-card .ol-roll-dicegrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(108px, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.ol-roll-card .ol-roll-die {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.80);
+  border: 1px solid rgba(20,10,5,0.12);
+}
+
+.ol-roll-card .ol-roll-die-label {
+  font-size: 11px;
+  font-weight: 900;
+  color: rgba(60,34,18,0.82);
+}
+
+.ol-roll-card .ol-roll-die-value {
+  font-size: 22px;
+  line-height: 1;
+  color: rgba(15,14,14,0.96);
+}
+
+.ol-roll-card .ol-roll-die.ol-die-white-bonus {
+  background: rgba(242,246,248,0.9);
+}
+
+.ol-roll-card .ol-roll-die.ol-die-cursed {
+  background: linear-gradient(180deg, rgba(94,12,12,0.95), rgba(59,7,7,0.95));
+  border-color: rgba(94,12,12,0.95);
+}
+
+.ol-roll-card .ol-roll-die.ol-die-cursed .ol-roll-die-label,
+.ol-roll-card .ol-roll-die.ol-die-cursed .ol-roll-die-value {
+  color: #fff;
+}
+
+.ol-roll-card .ol-roll-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.ol-roll-card .ol-roll-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.76);
+  border: 1px solid rgba(20,10,5,0.12);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.ol-roll-card .ol-roll-meta-item.is-cursed {
+  background: rgba(94,12,12,0.10);
+  color: rgba(94,12,12,0.96);
+}
+
+.ol-roll-card .ol-roll-cursecallout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(13,17,18,0.92);
+  color: #fff;
+}
+
+.ol-roll-card .ol-roll-cursecallout-title {
+  font-size: 11px;
+  font-weight: 1000;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+}
+
+.ol-roll-card .ol-roll-cursecallout-copy {
+  font-size: 12px;
+  opacity: .9;
+}
+
+.ol-roll-card .ol-roll-cursecallout .ol-chat-action {
+  flex: 0 0 auto;
+  background: rgba(255,255,255,0.96);
+  color: rgba(15,14,14,0.96);
+  border-color: rgba(255,255,255,0.96);
+}
+
+@media (max-width: 560px) {
+  .ol-roll-card .ol-roll-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .ol-roll-card .ol-roll-summary {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .ol-roll-card .ol-roll-cursecallout {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+
+/* =====================================================================
+   Roll dialog / chat polish - v0.3.5
+   ===================================================================== */
+.application.dialog:has(.ocho-lanzas.ol-dialog-rollsheet) .window-content {
+  padding: 8px;
+  background:
+    radial-gradient(circle at 74% 24%, rgba(153,25,20,0.18), transparent 28%),
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)),
+    url("../assets/parchment-tile.png") repeat;
+  background-size: auto, auto, 512px 512px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet {
+  min-width: min(760px, 100%);
+  color: var(--ol-ink-soft);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-paper {
+  padding: 16px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.16);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-paper::before {
+  right: 30px;
+  top: 18px;
+  width: 168px;
+  height: 168px;
+  opacity: .95;
+  background: radial-gradient(circle, rgba(153,25,20,0.24), rgba(153,25,20,0.13) 60%, transparent 70%);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-headrow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 124px;
+  gap: 14px;
+  align-items: start;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-brush {
+  min-height: 74px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-medallion {
+  width: 124px;
+  height: 124px;
+  justify-self: end;
+  border-radius: 16px;
+  border: 1px solid rgba(20,10,5,0.22);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.14);
+  background:
+    linear-gradient(180deg, rgba(22,16,14,0.96), rgba(48,9,9,0.98) 56%, rgba(18,14,14,0.96)),
+    radial-gradient(circle at 50% 50%, rgba(178,40,30,0.18), transparent 60%);
+  position: relative;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-medallion::before,
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-medallion::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  border-radius: 999px;
+  border: 2px solid rgba(219,184,104,0.9);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-medallion::before {
+  top: 12px;
+  bottom: 12px;
+  opacity: .92;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-medallion::after {
+  top: 22px;
+  bottom: 22px;
+  opacity: .45;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-kicker,
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-copy {
+  max-width: 610px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-name {
+  font-size: 26px;
+  line-height: 1.05;
+  font-weight: 1000;
+  color: rgba(255,255,255,0.98);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-copy {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(35,20,10,0.82);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-main {
+  gap: 10px;
+}
+
+.ocho-lanzas .ol-box-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.ocho-lanzas .ol-box-head h3 {
+  margin: 0;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-columns {
+  grid-template-columns: minmax(232px, .72fr) minmax(0, 1.28fr);
+  gap: 10px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-box {
+  min-height: 0;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.44);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-field input[type="text"] {
+  min-height: 40px;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.82);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-rolltype-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-choice-pill {
+  min-width: 124px;
+  min-height: 38px;
+  font-size: 13px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-rulecallout {
+  padding: 9px 11px;
+  border-radius: 10px;
+  background: rgba(13,17,18,0.92);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-rulecallout strong {
+  margin-bottom: 3px;
+  font-size: 10px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-rulecallout p {
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-source-list-compact {
+  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+  gap: 7px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-source-choice-body {
+  min-height: 58px;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-source-choice-body small {
+  font-size: 9px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-source-choice-body strong {
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-source-hint,
+.ocho-lanzas.ol-dialog-rollsheet .ol-source-empty {
+  margin-top: 7px;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet button,
+.ocho-lanzas.ol-dialog-rollsheet input,
+.ocho-lanzas.ol-dialog-rollsheet textarea,
+.ocho-lanzas.ol-dialog-rollsheet select {
+  font-family: "Signika", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.chat-message .message-content .ol-roll-card {
+  padding: 12px;
+}
+
+.ol-roll-card .ol-roll-hero {
+  gap: 10px;
+}
+
+.ol-roll-card .ol-roll-summary {
+  min-width: 156px;
+  padding: 9px 10px;
+}
+
+.ol-roll-card .ol-roll-summary-text {
+  font-size: 18px;
+}
+
+.ol-roll-card .ol-roll-summary-value {
+  min-width: 34px;
+  height: 34px;
+  font-size: 17px;
+}
+
+.ol-roll-card .ol-roll-sources-panel {
+  margin-top: 10px;
+  padding: 9px 10px;
+}
+
+.ol-roll-card .ol-roll-dicegrid {
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.ol-roll-card .ol-roll-die {
+  padding: 8px 10px;
+}
+
+.ol-roll-card .ol-roll-die-value {
+  font-size: 20px;
+}
+
+.ol-roll-card .ol-roll-meta {
+  margin-top: 10px;
+}
+
+.ol-roll-card .ol-roll-cursecallout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 10px 12px;
+}
+
+.ol-roll-card .ol-roll-cursecallout > div {
+  min-width: 0;
+}
+
+.ol-roll-card .ol-roll-cursecallout-title {
+  font-size: 10px;
+  margin-bottom: 3px;
+}
+
+.ol-roll-card .ol-roll-cursecallout-copy {
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.chat-message .ol-roll-card .ol-roll-cursecallout .ol-chat-action,
+.ol-roll-card .ol-roll-cursecallout .ol-chat-action {
+  width: auto !important;
+  min-width: 170px;
+  padding: 8px 12px;
+  white-space: nowrap;
+  align-self: center;
+}
+
+@media (max-width: 760px) {
+  .ocho-lanzas.ol-dialog-rollsheet .ol-dialog-headrow {
+    grid-template-columns: 1fr 98px;
+  }
+
+  .ocho-lanzas.ol-dialog-rollsheet .ol-dialog-medallion {
+    width: 98px;
+    height: 98px;
+  }
+
+  .ocho-lanzas.ol-dialog-rollsheet .ol-dialog-name {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 560px) {
+  .ocho-lanzas.ol-dialog-rollsheet .ol-dialog-headrow,
+  .ocho-lanzas.ol-dialog-rollsheet .ol-dialog-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .ocho-lanzas.ol-dialog-rollsheet .ol-dialog-medallion {
+    justify-self: start;
+    width: 88px;
+    height: 88px;
+  }
+
+  .chat-message .message-content .ol-roll-card {
+    padding: 10px;
+  }
+
+  .ol-roll-card .ol-roll-summary {
+    min-width: 0;
+  }
+
+  .ol-roll-card .ol-roll-cursecallout {
+    grid-template-columns: 1fr;
+  }
+
+  .chat-message .ol-roll-card .ol-roll-cursecallout .ol-chat-action,
+  .ol-roll-card .ol-roll-cursecallout .ol-chat-action {
+    width: 100% !important;
+    min-width: 0;
+    white-space: normal;
+  }
+}
+
+/* =====================================================================
+   Roll dialog / chat repolish - v0.3.6
+   ===================================================================== */
+.application.dialog:has(.ocho-lanzas.ol-dialog-rollsheet) .window-content {
+  padding: 0 !important;
+  background:
+    radial-gradient(circle at 72% 34%, rgba(153,25,20,0.12), transparent 38%),
+    radial-gradient(circle at 32% 62%, rgba(229,135,123,0.12), transparent 42%),
+    url("../assets/parchment-tile.png") repeat !important;
+  background-size: auto, auto, 512px 512px !important;
+}
+
+.application.dialog:has(.ocho-lanzas.ol-dialog-rollsheet) .window-header {
+  border-bottom: 1px solid rgba(219,184,104,0.22);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet,
+.ocho-lanzas.ol-dialog-rollsheet * {
+  box-sizing: border-box;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet {
+  min-width: min(700px, 100%);
+  color: var(--ol-ink);
+  font-family: "Signika", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-shell {
+  padding: 14px;
+  background:
+    linear-gradient(180deg, rgba(246,239,232,0.70), rgba(237,225,214,0.55));
+  border: 1px solid rgba(9,12,12,0.18);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 116px;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-header::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  top: -6px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(153,25,20,0.17), rgba(111,20,17,0.11) 58%, transparent 70%);
+  pointer-events: none;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-header-main,
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-emblem {
+  position: relative;
+  z-index: 1;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-brush {
+  min-height: 68px;
+  padding: 9px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-name {
+  margin-top: 4px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: rgba(244,232,220,0.92);
+  color: var(--ol-ink);
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-copy {
+  margin: 8px 0 0;
+  max-width: 58ch;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(30,18,10,0.84);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-emblem {
+  width: 116px;
+  height: 116px;
+  justify-self: end;
+  border-radius: 14px;
+  border: 3px solid rgba(24,16,12,0.78);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+  background:
+    linear-gradient(180deg, rgba(22,16,14,0.97), rgba(76,12,12,0.96) 52%, rgba(16,14,14,0.98));
+  position: relative;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-emblem::before,
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-emblem::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  border-radius: 999px;
+  border: 2px solid rgba(219,184,104,0.92);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-emblem::before {
+  top: 10px;
+  bottom: 10px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-emblem::after {
+  top: 20px;
+  bottom: 20px;
+  opacity: .46;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-panel {
+  min-height: 0;
+  padding: 12px;
+  background: rgba(244,232,220,0.55);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-panel .ol-box-head {
+  margin-bottom: 8px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-panel .ol-box-head h3 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px !important;
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: .9px;
+  color: var(--ol-red);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-panel .ol-box-head h3::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ol-red);
+  flex: 0 0 auto;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-intent input[type="text"] {
+  min-height: 38px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(9,12,12,0.28);
+  background: rgba(255,255,255,0.82);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-subgrid {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.9fr) minmax(0, 1.1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-subpanel {
+  min-width: 0;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-rolltype-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-choice-pill {
+  min-width: 112px;
+  min-height: 36px;
+  border-radius: 999px;
+  font-size: 13px !important;
+  font-weight: 900;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-rulecallout {
+  height: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(13,17,18,0.92);
+  color: rgba(255,255,255,0.94);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-rulecallout strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 10px;
+  line-height: 1.1;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-dialog-rulecallout p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.92);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-source-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-source-group {
+  min-width: 0;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-source-title {
+  margin-bottom: 7px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+  color: rgba(120,15,40,0.92);
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-source-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-source-choice {
+  margin: 0;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-source-choice-body {
+  min-height: 52px;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-source-choice-body small {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 9px;
+  line-height: 1.1;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-source-choice-body strong {
+  display: block;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.ocho-lanzas.ol-dialog-rollsheet .ol-source-hint,
+.ocho-lanzas.ol-dialog-rollsheet .ol-source-empty {
+  margin: 7px 0 0;
+  font-size: 11px;
+  line-height: 1.35;
+  color: rgba(30,18,10,0.8);
+}
+
+.application.dialog:has(.ocho-lanzas.ol-dialog-rollsheet) footer button,
+.application.dialog:has(.ocho-lanzas.ol-dialog-rollsheet) .window-footer button {
+  min-height: 40px;
+  border-radius: 10px;
+  background: rgba(9,12,12,0.92);
+  color: rgba(255,255,255,0.96);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 3px 0 rgba(0,0,0,0.28);
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.application.dialog:has(.ocho-lanzas.ol-dialog-rollsheet) footer button.default,
+.application.dialog:has(.ocho-lanzas.ol-dialog-rollsheet) .window-footer button.default {
+  background: rgba(9,12,12,0.96);
+}
+
+.chat-message .message-content .ol-roll-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  padding: 12px;
+  background:
+    radial-gradient(circle at 85% 12%, rgba(153,25,20,0.16), transparent 24%),
+    radial-gradient(circle at 20% 75%, rgba(229,135,123,0.10), transparent 28%),
+    linear-gradient(180deg, rgba(255,255,255,0.86), rgba(255,255,255,0.74));
+  border: 2px solid rgba(40,25,15,0.22);
+}
+
+.chat-message .message-content .ol-roll-card::before {
+  content: "";
+  position: absolute;
+  right: -42px;
+  top: -34px;
+  width: 156px;
+  height: 156px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(153,25,20,0.18), rgba(153,25,20,0.08) 58%, transparent 70%);
+  pointer-events: none;
+}
+
+.ol-roll-card .ol-roll-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.ol-roll-card .ol-roll-summary {
+  min-width: 168px;
+  align-items: flex-end;
+  padding: 9px 11px;
+}
+
+.ol-roll-card .ol-roll-summary-text {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.ol-roll-card .ol-roll-summary-value {
+  min-width: 36px;
+  height: 36px;
+  font-size: 18px;
+}
+
+.ol-roll-card .ol-roll-sources-panel {
+  margin-top: 10px;
+  padding: 9px 10px;
+}
+
+.ol-roll-card .ol-roll-dicegrid {
+  grid-template-columns: repeat(auto-fit, minmax(86px, 1fr));
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.ol-roll-card .ol-roll-die {
+  padding: 8px 10px;
+}
+
+.ol-roll-card .ol-roll-die-value {
+  font-size: 20px;
+}
+
+.ol-roll-card .ol-roll-meta {
+  margin-top: 10px;
+}
+
+.ol-roll-card .ol-roll-cursebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 9px 11px;
+  border-radius: 12px;
+  background: rgba(13,17,18,0.92);
+  color: #fff;
+}
+
+.ol-roll-card .ol-roll-cursebar-copy {
+  min-width: 0;
+}
+
+.ol-roll-card .ol-roll-cursecallout-title {
+  margin-bottom: 2px;
+  font-size: 10px;
+  font-weight: 1000;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+}
+
+.ol-roll-card .ol-roll-cursecallout-copy {
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.chat-message .ol-roll-card .ol-roll-cursebar .ol-chat-action,
+.ol-roll-card .ol-roll-cursebar .ol-chat-action {
+  flex: 0 0 auto;
+  width: auto !important;
+  min-width: 156px;
+  padding: 7px 11px;
+  white-space: nowrap;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.96);
+  color: rgba(15,14,14,0.96);
+  border-color: rgba(255,255,255,0.96);
+}
+
+@media (max-width: 760px) {
+  .ocho-lanzas.ol-dialog-rollsheet {
+    min-width: 100%;
+  }
+
+  .ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-header {
+    grid-template-columns: minmax(0, 1fr) 92px;
+  }
+
+  .ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-emblem {
+    width: 92px;
+    height: 92px;
+  }
+
+  .ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-layout,
+  .ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-subgrid,
+  .ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-source-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-header {
+    grid-template-columns: 1fr;
+  }
+
+  .ocho-lanzas.ol-dialog-rollsheet .ol-roll-dialog-emblem {
+    justify-self: start;
+  }
+
+  .ol-roll-card .ol-roll-hero,
+  .ol-roll-card .ol-roll-cursebar {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .chat-message .ol-roll-card .ol-roll-cursebar .ol-chat-action,
+  .ol-roll-card .ol-roll-cursebar .ol-chat-action {
+    min-width: 0;
+    width: 100% !important;
+  }
+}
+
+
+/* v0.3.13 - curse trigger in chat: button only, no tall black bar */
+.ol-roll-card .ol-roll-cursebar--buttononly {
+  justify-content: center;
+  padding: 10px 12px;
+}
+
+.chat-message .ol-roll-card .ol-roll-cursebar--buttononly .ol-chat-action,
+.ol-roll-card .ol-roll-cursebar--buttononly .ol-chat-action {
+  min-width: 0;
+  width: auto !important;
+  max-width: 100%;
+}
+
+/* =====================================================================
+   Ocho Lanzas Custom Themed Chat Cards (v6.0)
+   ===================================================================== */
+
+/* Base container overrides */
+.chat-message .message-content .ol-roll-card.ol-chat-paper {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(153, 25, 20, 0.08), transparent 30%),
+    url("../assets/parchment-tile.png") repeat !important;
+  border: 1.5px solid var(--ol-line) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08) !important;
+}
+
+.chat-message .message-content .ol-roll-card.ol-curse-card {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(153, 25, 20, 0.18), transparent 30%),
+    url("../assets/parchment-tile.png") repeat !important;
+  border: 1.5px solid rgba(153, 25, 20, 0.35) !important;
+  box-shadow: 0 4px 10px rgba(153, 25, 20, 0.12) !important;
+}
+
+.chat-message .message-content .ol-roll-card.ol-purify-card {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(20, 150, 180, 0.12), transparent 30%),
+    url("../assets/parchment-tile.png") repeat !important;
+  border: 1.5px solid rgba(20, 150, 180, 0.25) !important;
+  box-shadow: 0 4px 10px rgba(20, 150, 180, 0.08) !important;
+}
+
+/* Header brushstroke banners */
+.ol-roll-card .ol-roll-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.ol-roll-card .ol-roll-header-banner {
+  background: #090c0c;
+  color: #f6efe8;
+  padding: 8px 12px;
+  border-radius: 4px 12px 4px 10px / 8px 4px 8px 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+  border: 1px dashed rgba(244, 232, 220, 0.2);
+}
+
+.ol-roll-card.ol-curse-card .ol-roll-header-banner {
+  background: #6f1411;
+  border-color: rgba(244, 232, 220, 0.2);
+}
+
+.ol-roll-card.ol-purify-card .ol-roll-header-banner {
+  background: #146f6f;
+  border-color: rgba(244, 232, 220, 0.2);
+}
+
+.ol-roll-card .ol-roll-header-banner h4 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.ol-roll-card .ol-roll-header-banner .ol-roll-subtitle {
+  display: block;
+  font-size: 11px;
+  opacity: 0.85;
+  text-align: center;
+  margin-top: 2px;
+  font-style: italic;
+}
+
+/* Result display */
+.ol-roll-card .ol-roll-result-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--ol-line);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+}
+
+.ol-roll-card .ol-roll-result-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ol-roll-card .ol-roll-result-info .ol-result-label {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--ol-ink-soft);
+  letter-spacing: 0.5px;
+}
+
+.ol-roll-card .ol-roll-result-info .ol-result-text {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.ol-roll-card.is-great .ol-result-text { color: #1a5c24; }
+.ol-roll-card.is-mixed .ol-result-text { color: #9c5f0f; }
+.ol-roll-card.is-bad .ol-result-text { color: #991914; }
+.ol-roll-card.is-awful .ol-result-text { color: #6f1411; }
+
+.ol-roll-card .ol-roll-result-number {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #090c0c;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 900;
+  box-shadow: 0 0 0 3px rgba(9, 12, 12, 0.08);
+}
+
+.ol-roll-card.is-great .ol-roll-result-number { background: #1a5c24; box-shadow: 0 0 0 3px rgba(26, 92, 36, 0.15); }
+.ol-roll-card.is-mixed .ol-roll-result-number { background: #9c5f0f; box-shadow: 0 0 0 3px rgba(156, 95, 15, 0.15); }
+.ol-roll-card.is-bad .ol-roll-result-number { background: #991914; box-shadow: 0 0 0 3px rgba(153, 25, 20, 0.15); }
+.ol-roll-card.is-awful .ol-roll-result-number { background: #6f1411; box-shadow: 0 0 0 3px rgba(111, 20, 17, 0.15); }
+
+/* Dice visuals grid */
+.ol-roll-card .ol-roll-dicegrid-visual {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(76px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.ol-roll-card .ol-die-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--ol-paper-3);
+  border: 1.5px solid var(--ol-line);
+  border-radius: 8px;
+  padding: 8px 6px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.ol-roll-card .ol-die-visual.ol-die-white-bonus {
+  background: #fbf7f4;
+  border-color: rgba(9, 12, 12, 0.12);
+}
+
+.ol-roll-card .ol-die-visual.ol-die-cursed {
+  background: #6f1411;
+  border-color: #6f1411;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(111, 20, 17, 0.25);
+}
+
+.ol-roll-card .ol-die-visual-label {
+  font-size: 8.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--ol-ink-soft);
+  margin-bottom: 4px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.ol-roll-card .ol-die-visual.ol-die-cursed .ol-die-visual-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ol-roll-card .ol-die-visual-value {
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* Sources chips */
+.ol-roll-card .ol-sources-chip-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid var(--ol-line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+}
+
+.ol-roll-card .ol-sources-chip-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ol-roll-card .ol-sources-chip-title {
+  font-size: 8.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--ol-red);
+  letter-spacing: 0.5px;
+}
+
+.ol-roll-card .ol-sources-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.ol-roll-card .ol-chip {
+  font-size: 10px;
+  font-weight: bold;
+  background: var(--ol-paper-2);
+  border: 1px solid var(--ol-line);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: var(--ol-ink);
+}
+
+.ol-roll-card .ol-chip.is-cursed {
+  background: rgba(111, 20, 17, 0.1);
+  border-color: rgba(111, 20, 17, 0.2);
+  color: #6f1411;
+}
+
+/* Meta block */
+.ol-roll-card .ol-roll-meta-row {
+  display: flex;
+  justify-content: space-around;
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid var(--ol-line);
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin-bottom: 12px;
+}
+
+.ol-roll-card .ol-roll-meta-col {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+}
+
+.ol-roll-card .ol-roll-meta-col span {
+  font-weight: 800;
+  color: var(--ol-ink-soft);
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: 0.3px;
+}
+
+.ol-roll-card .ol-roll-meta-col strong {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.ol-roll-card .ol-roll-meta-col.is-cursed strong {
+  color: var(--ol-red);
+}
+
+/* Action button */
+.ol-roll-card .ol-roll-action-bar {
+  margin-top: 10px;
+}
+
+.ol-roll-card .ol-roll-action-bar button.ol-chat-action {
+  width: 100% !important;
+  background: #6f1411;
+  color: #fff;
+  border: 1px solid #6f1411;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-weight: 900;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(111, 20, 17, 0.2);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.ol-roll-card .ol-roll-action-bar button.ol-chat-action:hover {
+  background: #991914;
+  border-color: #991914;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(111, 20, 17, 0.3);
+}
+
+/* Curse Card specific */
+.ol-roll-card.ol-curse-card .ol-curse-visual-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 12px 0;
+}
+
+.ol-roll-card.ol-curse-card .ol-curse-die-visual {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  background: #6f1411;
+  color: #fff;
+  border: 2px solid #090c0c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 900;
+  box-shadow: 0 4px 8px rgba(111, 20, 17, 0.35);
+  transform: rotate(-3deg);
+}
+
+.ol-roll-card.ol-curse-card .ol-curse-arrow-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(153, 25, 20, 0.25);
+  border-radius: 8px;
+  padding: 8px 14px;
+}
+
+.ol-roll-card.ol-curse-card .ol-curse-arrow-label {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #6f1411;
+  letter-spacing: 0.3px;
+}
+
+.ol-roll-card.ol-curse-card .ol-curse-arrow-values {
+  font-size: 16px;
+  font-weight: 900;
+  color: #090c0c;
+}
+
+.ol-roll-card.ol-curse-card .ol-curse-arrow-values span.is-changed {
+  color: #991914;
+  font-size: 18px;
+}
+
+.ol-roll-card.ol-curse-card .ol-curse-result-text {
+  text-align: center;
+  font-weight: 900;
+  font-size: 12px;
+  margin: 8px 0;
+  color: #6f1411;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ol-roll-card.ol-curse-card .ol-bakemono-warning {
+  margin-top: 12px;
+  background: #6f1411;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-align: center;
+  border: 2px dashed #f6efe8;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  animation: ol-pulse 2s infinite ease-in-out;
+}
+
+.ol-roll-card.ol-curse-card .ol-bakemono-warning strong {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+@keyframes ol-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+/* Purify Card specific */
+.ol-roll-card.ol-purify-card .ol-purify-display-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 12px 0;
+}
+
+.ol-roll-card.ol-purify-card .ol-purify-seal {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #146f6f;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 4px 8px rgba(20, 150, 180, 0.25);
+}
+
+.ol-roll-card.ol-purify-card .ol-purify-arrow-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(20, 150, 180, 0.25);
+  border-radius: 8px;
+  padding: 8px 14px;
+}
+
+.ol-roll-card.ol-purify-card .ol-purify-arrow-label {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #146f6f;
+  letter-spacing: 0.3px;
+}
+
+.ol-roll-card.ol-purify-card .ol-purify-arrow-values {
+  font-size: 16px;
+  font-weight: 900;
+  color: #090c0c;
+}
+
+.ol-roll-card.ol-purify-card .ol-purify-arrow-values span.is-changed {
+  color: #146f6f;
+  font-size: 18px;
+}
+
+.ol-roll-card.ol-purify-card .ol-purify-consequence-box {
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(20, 150, 180, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.ol-roll-card.ol-purify-card .ol-purify-consequence-title {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #146f6f;
+  margin-bottom: 4px;
+  border-bottom: 1px solid rgba(20, 150, 180, 0.15);
+  padding-bottom: 2px;
+}
+
+.ol-roll-card.ol-purify-card .ol-purify-consequence-text {
+  font-style: italic;
+  font-size: 11.5px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  color: var(--ol-ink-soft);
+}
+

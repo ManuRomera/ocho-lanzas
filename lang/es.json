@@ -1,0 +1,226 @@
+{
+  "OCHO": {
+    "Fields": {
+      "Name": "Nombre",
+      "Concept": "Idea del personaje",
+      "Occupation": "Ocupación",
+      "Madness": "Locura",
+      "CurseMin": "Mínimo"
+    },
+    "Sections": {
+      "Bonds": "Vínculos",
+      "Events": "Sucesos",
+      "Equipment": "Equipo",
+      "Haika": "Haika no Renga",
+      "Curse": "Maldición",
+      "Background": "Trasfondo",
+      "Pride": "Orgullo",
+      "Onmyoujis": "Onmyoujis",
+      "Notes": "Notas"
+    },
+    "Actions": {
+      "RollAction": "Tirada",
+      "RollInvestigation": "Tirada (Investigación)",
+      "RollMadness": "Locura",
+      "ReduceMadness": "Reducir Locura",
+      "CurseReset": "Inicio de historia",
+      "ConfigureLists": "Configurar listas",
+      "Purify": "Purificarse"
+    },
+    "Roll": {
+      "Flavor": "¿Qué intentas?",
+      "TypeLabel": "Tipo",
+      "Type": {
+        "Action": "Acción",
+        "Risk": "Riesgo",
+        "Investigation": "Investigación",
+        "Curse": "Maldición"
+      },
+      "UseBonus": "Aplicar Trasfondo/Orgullo (+1 dado blanco)",
+      "UseCursed": "Añadir dado maldito (Maldición/Onmyouji)",
+      "Help": "Si el dado maldito es mayor o igual al mejor dado blanco, se hace Tirada de Maldición.",
+      "BonusDie": "Aplicar Trasfondo/Orgullo (+1 dado blanco)",
+      "BonusDieHint": "Marca esto si Trasfondo u Orgullo aplican (máx. 2 dados blancos).",
+      "CursedDieHint": "Añade 1d6 maldito si te expones a la Maldición o usas un Onmyouji.",
+      "WhiteDie": "Blanco",
+      "CursedDie": "Maldito",
+      "Submit": "Tirar",
+      "Cancel": "Cancelar",
+      "Human": "Humano",
+      "Occupation": "Ocupación",
+      "MadnessDie": "Locura",
+      "IntentLabel": "Intención",
+      "IntentPlaceholder": "Describe qué intentas hacer…",
+      "DialogRuleTitle": "Regla de riesgo",
+      "WhiteSourcesLabel": "Fuentes del dado blanco extra",
+      "WhiteSourcesHint": "Puedes marcar varias referencias narrativas, pero solo añaden 1 dado blanco extra en total.",
+      "NoWhiteSources": "Este personaje no tiene Trasfondos u Orgullos marcados en su hoja.",
+      "CursedSourcesLabel": "Fuentes del dado maldito",
+      "CursedSourcesHint": "Cualquier fuente marcada añade 1 dado maldito. En el chat se indicará exactamente qué has usado.",
+      "NoCursedSources": "Este personaje no tiene Onmyoujis marcados y no puede justificar un dado maldito desde la hoja.",
+      "CurseSource": "Maldición actual",
+      "BaseWhiteDie": "Blanco base",
+      "BonusWhiteDie": "Blanco extra",
+      "SourcesLabel": "Fuentes de la tirada",
+      "ChatCurseHint": "Si el maldito domina, el propio mensaje de chat mostrará el botón para tirar Maldición."
+    },
+    "Chat": {
+      "Main": "Resultado",
+      "BestWhite": "Mejor blanco",
+      "Cursed": "Maldito",
+      "CurseCheck": "Disparador de Maldición",
+      "CurseRoll": "Tirada de Maldición",
+      "CurseIncreases": "Maldición aumenta",
+      "CurseNoIncrease": "Maldición no aumenta",
+      "Bakemono": "¡Bakemono! La Maldición ha llegado a 6.",
+      "CurseReset": "Maldición reiniciada a {value}.",
+      "RollCurseButton": "Tirar Maldición (1d6 Maldito)",
+      "CurseAlreadyRolled": "Ya se ha tirado Maldición",
+      "CurseDeferredHint": "El dado maldito ha dominado. Resuelve ahora la tirada de Maldición desde este botón.",
+      "CurseFromRisk": "Maldición activada por Riesgo",
+      "CurseManual": "Tirada de Maldición",
+      "PurifyTitle": "Purificación",
+      "PurifyConsequence": "Consecuencia"
+    },
+    "Result": {
+      "SuccessTotal": "Éxito rotundo",
+      "SuccessComp": "Éxito con consecuencias",
+      "FailComp": "Fallo",
+      "FailTotal": "Fallo estrepitoso"
+    },
+    "Config": {
+      "Title": "Configurar listas seleccionables",
+      "Bonds": "Vínculos (una opción por línea)",
+      "Events": "Sucesos (una opción por línea)",
+      "Equipment": "Equipo (una opción por línea)",
+      "Haika": "Haika (una opción por línea)",
+      "Save": "Guardar",
+      "Close": "Cerrar"
+    },
+    "Items": {
+      "Add": "Añadir",
+      "Edit": "Editar",
+      "Delete": "Borrar"
+    },
+    "Purify": {
+      "Title": "Purificarse",
+      "Text": "Reducirás 1 marca de Maldición y debes aceptar una consecuencia inmediata.",
+      "ConsequenceLabel": "Consecuencia (obligatoria)",
+      "ConsequencePlaceholder": "Describe la consecuencia: dolor, trauma, pérdida, exposición, atraer atención…",
+      "Confirm": "Purificarme",
+      "Cancel": "Cancelar",
+      "ErrorTooLow": "Solo puedes purificarte con Maldición 4 o más.",
+      "ErrorOncePerScene": "Solo puedes purificarte una vez por escena.",
+      "ErrorConsequenceRequired": "Debes escribir una consecuencia para purificarte."
+    },
+    "Placeholder": {
+      "FreeText": "Escribe aquí…"
+    },
+    "Option": {
+      "Background": {
+        "Artista": "Artista",
+        "Comerciante": "Comerciante",
+        "Criminal": "Criminal",
+        "Erudito": "Erudito",
+        "Investigador": "Investigador",
+        "Jornalero": "Jornalero",
+        "Noble": "Noble",
+        "Médico": "Médico",
+        "Soldado": "Soldado",
+        "Timador": "Timador"
+      },
+      "Pride": {
+        "Amor": "Amor",
+        "Código": "Código",
+        "Extraño": "Extraño",
+        "Fe": "Fe",
+        "Lujo": "Lujo",
+        "Obligación": "Obligación",
+        "Pacto": "Pacto",
+        "Placer": "Placer",
+        "Sangre": "Sangre",
+        "Vicio": "Vicio"
+      },
+      "Onmyouji": {
+        "Alquimia natural": "Alquimia natural",
+        "Bendecir": "Bendecir",
+        "Clarividencia": "Clarividencia",
+        "Control climático": "Control climático",
+        "Espiritismo": "Espiritismo",
+        "Exorcizar": "Exorcizar",
+        "Gishiki": "Gishiki",
+        "Kotodama": "Kotodama",
+        "Mal de ojo": "Mal de ojo",
+        "Proyección astral": "Proyección astral"
+      }
+    },
+    "Tooltip": {
+      "Background": {
+        "Artista": "experto en habilidades de expresión.",
+        "Comerciante": "experto en habilidades sociales.",
+        "Criminal": "experto en habilidades de latrocinio.",
+        "Erudito": "experto en conocimientos.",
+        "Investigador": "experto en habilidades de investigación.",
+        "Jornalero": "experto en habilidades atléticas o físicas.",
+        "Noble": "experto en habilidades de liderazgo.",
+        "Médico": "experto en conocimientos científicos.",
+        "Soldado": "experto en habilidades de combate.",
+        "Timador": "experto en habilidades relacionadas con el juego."
+      },
+      "Pride": {
+        "Amor": "amas a alguien por encima de todo.",
+        "Código": "tienes un código de honor o una doctrina. La sigues siempre.",
+        "Extraño": "la búsqueda y entendimiento de lo sobrenatural rige tu vida.",
+        "Fe": "tu religión o espiritualidad es lo que te hace sentir vivo.",
+        "Lujo": "te niegas a vivir siempre en la pobreza.",
+        "Obligación": "posees una familia, trabajo o profesión que te hace sentir realizado.",
+        "Pacto": "tienes un trato con alguien o contigo mismo que no puedes romper.",
+        "Placer": "tu instinto es poder sentirte vivo cada día.",
+        "Sangre": "posees un vínculo familiar con alguien a quien proteges.",
+        "Vicio": "tienes una costumbre o adicción que te ayuda cuando lo necesitas."
+      },
+      "Onmyouji": {
+        "Alquimia natural": "convertir pequeños objetos en otras cosas, incluso devolver la vida a pequeños animales.",
+        "Bendecir": "proteger personas y lugares del mal.",
+        "Clarividencia": "ver a través de objetos, visiones o sueños escenas del futuro.",
+        "Control climático": "manipular en menor medida el clima de un lugar mediante los estados de ánimo.",
+        "Espiritismo": "ver, sentir o interactuar con las almas de los fallecidos.",
+        "Exorcizar": "expulsar maldiciones o espíritus de un lugar o persona.",
+        "Gishiki": "magia de rituales: amuletos, talismanes, ceremonias, etc.",
+        "Kotodama": "bendecir, maldecir o hacer magia a través de los nombres.",
+        "Mal de ojo": "maldecir a personas o lugares para que ocurra alguna desgracia en el futuro.",
+        "Proyección astral": "separar el alma del cuerpo para viajar o poder comunicarse en la distancia."
+      }
+    },
+    "Yomi": {
+      "Title": "El Tejido de Yomi",
+      "Open": "Abrir El Tejido de Yomi",
+      "ResetTitle": "Reiniciar estado local",
+      "ResetBody": "Esto borra el progreso guardado de la app HTML en este navegador.",
+      "ResetDone": "Estado local reiniciado.",
+      "Install": "Instalar El Tejido de Yomi",
+      "InstallHint": "Crea en el world todos los actores, objetos, diarios, tablas y macros de la aventura.",
+      "InstallTitle": "Instalar contenido de El Tejido de Yomi",
+      "InstallBody": "Se importará al world el contenido jugable de la aventura: actores, PNJ, bakemonos, objetos, diarios, tablas y macros. No borra tus documentos actuales.",
+      "InstallDone": "Contenido de El Tejido de Yomi instalado en el world.",
+      "OpenCompendiums": "Abrir compendios de El Tejido de Yomi",
+      "PromptTitle": "¿Instalar El Tejido de Yomi en este world?",
+      "PromptBody": "Este world todavía no tiene el contenido de la aventura. Puedes instalarlo con un clic desde los compendios del sistema.",
+      "PromptInstall": "Instalar ahora",
+      "PromptLater": "Más tarde",
+      "PromptNever": "No volver a mostrar"
+    }
+  },
+  "TYPES": {
+    "Actor": {
+      "character": "Personaje",
+      "npc": "PNJ"
+    },
+    "Item": {
+      "gear": "Objeto",
+      "weapon": "Arma",
+      "ritual": "Ritual",
+      "condition": "Estado"
+    }
+  }
+}

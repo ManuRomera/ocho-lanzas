@@ -1,0 +1,71 @@
+<article class="ol-roll-card ol-chat-paper {{classificationCss}}">
+  <header class="ol-roll-hero">
+    <div class="ol-roll-header-banner">
+      <h4>{{title}}</h4>
+      {{#if flavor}}<span class="ol-roll-subtitle">{{flavor}}</span>{{/if}}
+    </div>
+  </header>
+
+  <section class="ol-roll-result-display">
+    <div class="ol-roll-result-info">
+      <span class="ol-result-label">{{localize "OCHO.Chat.Main"}}</span>
+      <span class="ol-result-text">{{classification}}</span>
+    </div>
+    <div class="ol-roll-result-number">{{best}}</div>
+  </section>
+
+  {{#if hasSources}}
+    <section class="ol-sources-chip-panel">
+      {{#if selectedBonusSources.length}}
+        <div class="ol-sources-chip-group">
+          <span class="ol-sources-chip-title">{{localize "OCHO.Roll.WhiteSourcesLabel"}}</span>
+          <div class="ol-sources-chip-list">
+            {{#each selectedBonusSources as |source|}}
+              <span class="ol-chip">{{source}}</span>
+            {{/each}}
+          </div>
+        </div>
+      {{/if}}
+      {{#if selectedCursedSources.length}}
+        <div class="ol-sources-chip-group">
+          <span class="ol-sources-chip-title">{{localize "OCHO.Roll.CursedSourcesLabel"}}</span>
+          <div class="ol-sources-chip-list">
+            {{#each selectedCursedSources as |source|}}
+              <span class="ol-chip is-cursed">{{source}}</span>
+            {{/each}}
+          </div>
+        </div>
+      {{/if}}
+    </section>
+  {{/if}}
+
+  <section class="ol-roll-dicegrid-visual">
+    {{#each dice as |d|}}
+      <div class="ol-die-visual {{d.css}}">
+        <span class="ol-die-visual-label" title="{{d.label}}">{{d.label}}</span>
+        <strong class="ol-die-visual-value">{{d.result}}</strong>
+      </div>
+    {{/each}}
+  </section>
+
+  <section class="ol-roll-meta-row">
+    <div class="ol-roll-meta-col">
+      <span>{{localize "OCHO.Chat.BestWhite"}}</span>
+      <strong>{{bestWhite}}</strong>
+    </div>
+    {{#if cursedValue}}
+      <div class="ol-roll-meta-col is-cursed">
+        <span>{{localize "OCHO.Chat.Cursed"}}</span>
+        <strong>{{cursedValue}}</strong>
+      </div>
+    {{/if}}
+  </section>
+
+  {{#if curseTriggered}}
+    <section class="ol-roll-action-bar">
+      <button type="button" class="ol-chat-action" data-action="ol-roll-curse">
+        {{localize "OCHO.Chat.RollCurseButton"}}
+      </button>
+    </section>
+  {{/if}}
+</article>

@@ -1,0 +1,129 @@
+{
+  "id": "ocho-lanzas",
+  "title": "Ocho Lanzas (Unofficial)",
+  "description": "Sistema NO oficial para Foundry VTT para dirigir Ocho Lanzas. Sin contenido del manual. Incluye fichas, items y tiradas tipo Cthulhu Dark.",
+  "version": "0.4.1",
+  "manifest": "https://raw.githubusercontent.com/ManuRomera/ocho-lanzas/main/system.json",
+  "download": "https://github.com/ManuRomera/ocho-lanzas/archive/refs/heads/main.zip",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13.351"
+  },
+  "authors": [
+    {
+      "name": "Manu (user) + Assistant (generated)",
+      "url": ""
+    }
+  ],
+  "esmodules": [
+    "scripts/ocho-lanzas.mjs"
+  ],
+  "styles": [
+    "styles/ocho-lanzas.css",
+    "styles/tejido-de-yomi.css"
+  ],
+  "languages": [
+    {
+      "lang": "es",
+      "name": "Español",
+      "path": "lang/es.json"
+    },
+    {
+      "lang": "ca",
+      "name": "Català",
+      "path": "lang/ca.json"
+    }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "character": {},
+      "npc": {},
+      "bakemono": {}
+    },
+    "Item": {
+      "gear": {},
+      "weapon": {},
+      "ritual": {},
+      "condition": {}
+    }
+  },
+  "packs": [
+    {
+      "name": "tejido-yomi-actors",
+      "label": "El Tejido de Yomi · Actores",
+      "type": "Actor",
+      "path": "packs/tejido-yomi-actors.db",
+      "system": "ocho-lanzas",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "tejido-yomi-items",
+      "label": "El Tejido de Yomi · Objetos",
+      "type": "Item",
+      "path": "packs/tejido-yomi-items.db",
+      "system": "ocho-lanzas",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "tejido-yomi-journals",
+      "label": "El Tejido de Yomi · Diario",
+      "type": "JournalEntry",
+      "path": "packs/tejido-yomi-journals.db",
+      "system": "ocho-lanzas",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "tejido-yomi-tables",
+      "label": "El Tejido de Yomi · Tablas",
+      "type": "RollTable",
+      "path": "packs/tejido-yomi-tables.db",
+      "system": "ocho-lanzas",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "tejido-yomi-macros",
+      "label": "El Tejido de Yomi · Macros",
+      "type": "Macro",
+      "path": "packs/tejido-yomi-macros.db",
+      "system": "ocho-lanzas",
+      "ownership": {
+        "PLAYER": "NONE",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "tejido-yomi-scenes",
+      "label": "El Tejido de Yomi · Escenas",
+      "type": "Scene",
+      "path": "packs/tejido-yomi-scenes",
+      "system": "ocho-lanzas",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "tejido-yomi-playlists",
+      "label": "El Tejido de Yomi · Playlists",
+      "type": "Playlist",
+      "path": "packs/tejido-yomi-playlists",
+      "system": "ocho-lanzas",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    }
+  ]
+}

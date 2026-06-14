@@ -1,0 +1,226 @@
+{
+  "OCHO": {
+    "Fields": {
+      "Name": "Nom",
+      "Concept": "Idea del personatge",
+      "Occupation": "Ocupació",
+      "Madness": "Follia",
+      "CurseMin": "Mínim"
+    },
+    "Sections": {
+      "Bonds": "Vincles",
+      "Events": "Successos",
+      "Equipment": "Equip",
+      "Haika": "Haika no Renga",
+      "Curse": "Maledicció",
+      "Background": "Rerefons",
+      "Pride": "Orgull",
+      "Onmyoujis": "Onmyoujis",
+      "Notes": "Notes"
+    },
+    "Actions": {
+      "RollAction": "Tirada",
+      "RollInvestigation": "Tirada (Investigació)",
+      "RollMadness": "Follia",
+      "ReduceMadness": "Reduir la Follia",
+      "CurseReset": "Inici d'història",
+      "ConfigureLists": "Configurar llistes",
+      "Purify": "Purificar-se"
+    },
+    "Roll": {
+      "Flavor": "Què intentes?",
+      "TypeLabel": "Tipus",
+      "Type": {
+        "Action": "Acció",
+        "Risk": "Risc",
+        "Investigation": "Investigació",
+        "Curse": "Maledicció"
+      },
+      "UseBonus": "Aplicar Rerefons/Orgull (+1 dau blanc)",
+      "UseCursed": "Afegir dau maleït (Maledicció/Onmyouji)",
+      "Help": "Si el dau maleït és major o igual que el millor dau blanc, es pot fer una Tirada de Maledicció.",
+      "BonusDie": "Aplicar Rerefons/Orgull (+1 dau blanc)",
+      "BonusDieHint": "Marca això si el Rerefons o l'Orgull apliquen (màx. 2 daus blancs).",
+      "CursedDieHint": "Marca això si t'exposes a la Maledicció o uses un Onmyouji (1 dau maleït).",
+      "WhiteDie": "Blanc",
+      "CursedDie": "Maleït",
+      "Submit": "Tirar",
+      "Cancel": "Cancel·lar",
+      "Human": "Humanament possible (1 dau blanc)",
+      "Occupation": "Ocupació (+1 dau blanc)",
+      "MadnessDie": "Follia",
+      "IntentLabel": "Intenció",
+      "IntentPlaceholder": "Descriu què intentes fer…",
+      "DialogRuleTitle": "Regla de risc",
+      "WhiteSourcesLabel": "Fonts del dau blanc extra",
+      "WhiteSourcesHint": "Pots marcar diverses referències narratives, però només afegeixen 1 dau blanc extra en total.",
+      "NoWhiteSources": "Aquest personatge no té Rerefons o Orgulls marcats al full.",
+      "CursedSourcesLabel": "Fonts del dau maleït",
+      "CursedSourcesHint": "Qualsevol font marcada afegeix 1 dau maleït. Al xat s’indicarà exactament què has fet servir.",
+      "NoCursedSources": "Aquest personatge no té Onmyoujis marcats i no pot justificar un dau maleït des del full.",
+      "CurseSource": "Maledicció actual",
+      "BaseWhiteDie": "Blanc base",
+      "BonusWhiteDie": "Blanc extra",
+      "SourcesLabel": "Fonts de la tirada",
+      "ChatCurseHint": "Si el maleït domina, el mateix missatge de xat mostrarà el botó per tirar Maldició."
+    },
+    "Chat": {
+      "Main": "Resultat",
+      "BestWhite": "Millor blanc",
+      "Cursed": "Maleït",
+      "CurseCheck": "Comprovació de Maledicció",
+      "CurseRoll": "Tirada de Maledicció",
+      "CurseIncreases": "La Maledicció augmenta",
+      "CurseNoIncrease": "La Maledicció no augmenta",
+      "Bakemono": "Es converteix en bakemono",
+      "CurseReset": "Maledicció reiniciada",
+      "RollCurseButton": "Tirar Maledicció (1d6 maleït)",
+      "CurseAlreadyRolled": "Aquesta Maledicció ja s'ha tirat per aquest missatge.",
+      "CurseDeferredHint": "El dau maleït ha dominat. Resol ara la tirada de Maldició des d'aquest botó.",
+      "CurseFromRisk": "La tirada de Risc activa la Maledicció",
+      "CurseManual": "Maledicció ajustada manualment",
+      "PurifyTitle": "Purificar-se",
+      "PurifyConsequence": "Conseqüència"
+    },
+    "Result": {
+      "SuccessTotal": "Èxit total",
+      "SuccessComp": "Èxit amb complicacions",
+      "FailComp": "Fallo amb complicacions",
+      "FailTotal": "Fallo total"
+    },
+    "Config": {
+      "Title": "Configurar listas seleccionables",
+      "Bonds": "Vínculos (una opción por línea)",
+      "Events": "Sucesos (una opción por línea)",
+      "Equipment": "Equipo (una opción por línea)",
+      "Haika": "Haika (una opción por línea)",
+      "Save": "Guardar",
+      "Close": "Cerrar"
+    },
+    "Items": {
+      "Add": "Afegir",
+      "Edit": "Editar",
+      "Delete": "Esborrar"
+    },
+    "Purify": {
+      "Title": "Purificarse",
+      "Text": "Reducirás 1 marca de Maldición y debes aceptar una consecuencia inmediata.",
+      "ConsequenceLabel": "Consecuencia (obligatoria)",
+      "ConsequencePlaceholder": "Describe la consecuencia: dolor, trauma, pérdida, exposición, atraer atención…",
+      "Confirm": "Purificarme",
+      "Cancel": "Cancelar",
+      "ErrorTooLow": "Solo puedes purificarte con Maldición 4 o más.",
+      "ErrorOncePerScene": "Solo puedes purificarte una vez por escena.",
+      "ErrorConsequenceRequired": "Debes escribir una consecuencia para purificarte."
+    },
+    "Placeholder": {
+      "FreeText": "Escribe aquí…"
+    },
+    "Option": {
+      "Background": {
+        "Artista": "Artista",
+        "Comerciante": "Comerciant",
+        "Criminal": "Criminal",
+        "Erudito": "Erudit",
+        "Investigador": "Investigador",
+        "Jornalero": "Jornaler",
+        "Noble": "Noble",
+        "Médico": "Metge",
+        "Soldado": "Soldat",
+        "Timador": "Estafador"
+      },
+      "Pride": {
+        "Amor": "Amor",
+        "Código": "Codi",
+        "Extraño": "Estrany",
+        "Fe": "Fe",
+        "Lujo": "Luxe",
+        "Obligación": "Obligació",
+        "Pacto": "Pacte",
+        "Placer": "Plaer",
+        "Sangre": "Sang",
+        "Vicio": "Vici"
+      },
+      "Onmyouji": {
+        "Alquimia natural": "Alquímia natural",
+        "Bendecir": "Beneir",
+        "Clarividencia": "Clarividència",
+        "Control climático": "Control climàtic",
+        "Espiritismo": "Espiritisme",
+        "Exorcizar": "Exorcitzar",
+        "Gishiki": "Gishiki",
+        "Kotodama": "Kotodama",
+        "Mal de ojo": "Mal d'ull",
+        "Proyección astral": "Projecció astral"
+      }
+    },
+    "Tooltip": {
+      "Background": {
+        "Artista": "expert en habilitats d'expressió.",
+        "Comerciante": "expert en habilitats socials.",
+        "Criminal": "expert en habilitats de lladronici.",
+        "Erudito": "expert en coneixements.",
+        "Investigador": "expert en habilitats d'investigació.",
+        "Jornalero": "expert en habilitats atlètiques o físiques.",
+        "Noble": "expert en habilitats de lideratge.",
+        "Médico": "expert en coneixements científics.",
+        "Soldado": "expert en habilitats de combat.",
+        "Timador": "expert en habilitats relacionades amb el joc."
+      },
+      "Pride": {
+        "Amor": "estimes algú per damunt de tot.",
+        "Código": "tens un codi d'honor o una doctrina. La segueixes sempre.",
+        "Extraño": "la recerca i la comprensió del sobrenatural regeixen la teva vida.",
+        "Fe": "la teva religió o espiritualitat és el que et fa sentir viu.",
+        "Lujo": "et negues a viure sempre en la pobresa.",
+        "Obligación": "tens una família, feina o professió que et fa sentir realitzat.",
+        "Pacto": "tens un tracte amb algú o amb tu mateix que no pots trencar.",
+        "Placer": "el teu instint és poder sentir-te viu cada dia.",
+        "Sangre": "tens un vincle familiar amb algú a qui protegeixes.",
+        "Vicio": "tens un costum o addicció que t'ajuda quan ho necessites."
+      },
+      "Onmyouji": {
+        "Alquimia natural": "convertir petits objectes en altres coses, fins i tot tornar la vida a petits animals.",
+        "Bendecir": "protegir persones i llocs del mal.",
+        "Clarividencia": "veure a través d'objectes, visions o somnis escenes del futur.",
+        "Control climático": "manipular en menor mesura el clima d'un lloc mitjançant els estats d'ànim.",
+        "Espiritismo": "veure, sentir o interactuar amb les ànimes dels difunts.",
+        "Exorcizar": "expulsar malediccions o esperits d'un lloc o persona.",
+        "Gishiki": "màgia de rituals: amulets, talismans, cerimònies, etc.",
+        "Kotodama": "beneir, maleir o fer màgia a través dels noms.",
+        "Mal de ojo": "maleir persones o llocs perquè en el futur hi passi alguna desgràcia.",
+        "Proyección astral": "separar l'ànima del cos per viatjar o poder comunicar-se a distància."
+      }
+    },
+    "Yomi": {
+      "Title": "El Tejido de Yomi",
+      "Open": "Abrir El Tejido de Yomi",
+      "ResetTitle": "Reiniciar estado local",
+      "ResetBody": "Esto borra el progreso guardado de la app HTML en este navegador.",
+      "ResetDone": "Estado local reiniciado.",
+      "Install": "Instal·lar El Tejido de Yomi",
+      "InstallHint": "Crea al world tots els actors, objectes, diaris, taules i macros de l'aventura.",
+      "InstallTitle": "Instal·lar contingut d'El Tejido de Yomi",
+      "InstallBody": "S'importarà al world el contingut jugable de l'aventura: actors, PNJ, bakemonos, objectes, diaris, taules i macros. No esborra els teus documents actuals.",
+      "InstallDone": "Contingut d'El Tejido de Yomi instal·lat al world.",
+      "OpenCompendiums": "Obrir compendis d'El Tejido de Yomi",
+      "PromptTitle": "Vols instal·lar El Tejido de Yomi en aquest world?",
+      "PromptBody": "Aquest world encara no té el contingut de l'aventura. El pots instal·lar amb un clic des dels compendis del sistema.",
+      "PromptInstall": "Instal·lar ara",
+      "PromptLater": "Més tard",
+      "PromptNever": "No tornar a mostrar"
+    }
+  },
+  "TYPES": {
+    "Actor": {
+      "character": "Personatge",
+      "npc": "PNJ"
+    },
+    "Item": {
+      "gear": "Equipament",
+      "weapon": "Arma",
+      "ritual": "Ritual",
+      "condition": "Condició"
+    }
+  }
+}

@@ -1,0 +1,135 @@
+<form class="{{cssClass}} ocho-lanzas ol-root" autocomplete="off">
+  <section class="ol-sheet">
+
+    <header class="ol-header">
+      <!-- Left column: Name + Roll button (requested layout) -->
+      <div class="ol-left">
+        <div class="ol-brush ol-name">
+          <div class="ol-brush-label">{{localize "OCHO.Fields.Name"}}</div>
+          <input type="text" name="name" value="{{document.name}}" placeholder=" " />
+        </div>
+
+        <button type="button" class="ol-rollbtn" data-action="rollAction" title="{{localize 'OCHO.Actions.RollAction'}}">
+          <i class="fas fa-dice"></i>
+          <span>{{localize "OCHO.Actions.RollAction"}}</span>
+        </button>
+      </div>
+
+      <!-- Center: Portrait (no curse counter under the image) -->
+      <div class="ol-portrait">
+        <img class="profile-img" src="{{document.img}}" alt="{{document.name}}" data-edit="img" />
+      </div>
+
+      <!-- Right column: Concept + Occupation -->
+      <div class="ol-topright">
+        <div class="ol-brush ol-idea">
+          <div class="ol-brush-label">{{localize "OCHO.Fields.Concept"}}</div>
+          <input type="text" name="system.concept" value="{{system.concept}}" placeholder=" " />
+        </div>
+        <div class="ol-field ol-occupation">
+          <div class="ol-smalllabel">{{localize "OCHO.Fields.Occupation"}}</div>
+          <input type="text" name="system.occupation" value="{{system.occupation}}" placeholder=" " />
+        </div>
+      </div>
+    </header>
+
+    <section class="ol-mid">
+      <div class="ol-box ol-bonds">
+        <h3>{{localize "OCHO.Sections.Bonds"}}</h3>
+        <textarea name="system.bondsText" class="ol-freetext" placeholder="{{localize 'OCHO.Placeholder.FreeText'}}">{{system.bondsText}}</textarea>
+      </div>
+
+      <div class="ol-box ol-events">
+        <h3>{{localize "OCHO.Sections.Events"}}</h3>
+        <textarea name="system.eventsText" class="ol-freetext" placeholder="{{localize 'OCHO.Placeholder.FreeText'}}">{{system.eventsText}}</textarea>
+      </div>
+
+      <div class="ol-box ol-equipment">
+        <h3>{{localize "OCHO.Sections.Equipment"}}</h3>
+        <textarea name="system.equipmentText" class="ol-freetext" placeholder="{{localize 'OCHO.Placeholder.FreeText'}}">{{system.equipmentText}}</textarea>
+      </div>
+
+      <div class="ol-box ol-haika">
+        <h3>{{localize "OCHO.Sections.Haika"}}</h3>
+        <textarea name="system.haikaText" class="ol-freetext" placeholder="{{localize 'OCHO.Placeholder.FreeText'}}">{{system.haikaText}}</textarea>
+      </div>
+
+      <div class="ol-curse" aria-label="Maldición">
+        <div class="ol-curse-head">
+          <h3>{{localize "OCHO.Sections.Curse"}}</h3>
+          <div class="ol-curse-controls">
+            <span class="ol-curse-min">{{localize "OCHO.Fields.CurseMin"}}: {{curseMin}}</span>
+            <button type="button" class="ol-mini" data-action="curseDec" title="-1">−</button>
+            <button type="button" class="ol-mini" data-action="curseInc" title="+1">+</button>
+            <button type="button" class="ol-mini" data-action="purify" title="{{localize 'OCHO.Actions.Purify'}}" {{#unless canPurify}}disabled{{/unless}}>☯</button>
+          </div>
+        </div>
+
+        <div class="ol-curse-ring">
+          {{#each cursePips as |p|}}
+            <button
+              type="button"
+              class="ol-pip {{p.cls}}"
+              style="--i: {{p.i}};"
+              data-pip="{{p.n}}"
+              aria-label="{{p.n}}"
+              title="{{p.n}}"
+            ></button>
+          {{/each}}
+          <div class="ol-curse-value" title="{{system.curseCount}}/6">{{system.curseCount}}</div>
+        </div>
+
+        <textarea class="ol-curse-notes" name="system.curse" placeholder="Notas de maldición">{{system.curse}}</textarea>
+      </div>
+    </section>
+
+    <section class="ol-traits">
+      <div class="ol-box">
+        <h3>{{localize "OCHO.Sections.Background"}}</h3>
+        <div class="ol-scroll">
+          <div class="ol-checkgrid">
+                                    {{#each backgroundOptions as |opt|}}
+              <label class="ol-check">
+                <input type="checkbox" name="system.backgrounds" value="{{opt.value}}" {{olChecked ../system.backgrounds opt.value}} />
+                <span data-tooltip="{{localize opt.tooltipKey}}" title="{{localize opt.tooltipKey}}">{{localize opt.labelKey}}</span>
+              </label>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+
+      <div class="ol-box">
+        <h3>{{localize "OCHO.Sections.Pride"}}</h3>
+        <div class="ol-scroll">
+          <div class="ol-checkgrid">
+                                    {{#each prideOptions as |opt|}}
+              <label class="ol-check">
+                <input type="checkbox" name="system.prides" value="{{opt.value}}" {{olChecked ../system.prides opt.value}} />
+                <span data-tooltip="{{localize opt.tooltipKey}}" title="{{localize opt.tooltipKey}}">{{localize opt.labelKey}}</span>
+              </label>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+
+      <div class="ol-box">
+        <h3>{{localize "OCHO.Sections.Onmyoujis"}}</h3>
+        <div class="ol-scroll">
+          <div class="ol-checkgrid">
+                                    {{#each onmyoujiOptions as |opt|}}
+              <label class="ol-check">
+                <input type="checkbox" name="system.onmyoujis" value="{{opt.value}}" {{olChecked ../system.onmyoujis opt.value}} />
+                <span data-tooltip="{{localize opt.tooltipKey}}" title="{{localize opt.tooltipKey}}">{{localize opt.labelKey}}</span>
+              </label>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ol-notes">
+      <h3>{{localize "OCHO.Sections.Notes"}}</h3>
+      <textarea name="system.notes" placeholder="Notas">{{system.notes}}</textarea>
+    </section>
+</section>
+</form>

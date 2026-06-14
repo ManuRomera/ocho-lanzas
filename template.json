@@ -1,0 +1,13 @@
+{
+  "Actor": {
+    "character": {},
+    "npc": {},
+    "bakemono": {}
+  },
+  "Item": {
+    "gear": {},
+    "weapon": {},
+    "ritual": {},
+    "condition": {}
+  }
+}

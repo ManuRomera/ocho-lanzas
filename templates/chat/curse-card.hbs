@@ -1,0 +1,32 @@
+<article class="ol-roll-card ol-curse-card">
+  <header class="ol-roll-hero">
+    <div class="ol-roll-header-banner">
+      <h4>{{title}}</h4>
+      {{#if subtitle}}<span class="ol-roll-subtitle">{{subtitle}}</span>{{/if}}
+    </div>
+  </header>
+
+  <div class="ol-curse-visual-row">
+    <div class="ol-curse-die-visual" title="{{localize 'OCHO.Chat.Cursed'}}">{{die}}</div>
+    <div class="ol-curse-arrow-display">
+      <span class="ol-curse-arrow-label">{{localize "OCHO.Sections.Curse"}}</span>
+      <div class="ol-curse-arrow-values">
+        {{before}} → <span class="is-changed">{{after}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ol-curse-result-text">
+    {{#if increased}}
+      {{localize "OCHO.Chat.CurseIncreases"}}
+    {{else}}
+      {{localize "OCHO.Chat.CurseNoIncrease"}}
+    {{/if}}
+  </div>
+
+  {{#if bakemono}}
+    <div class="ol-bakemono-warning">
+      <strong>{{localize "OCHO.Chat.Bakemono"}}</strong>
+    </div>
+  {{/if}}
+</article>

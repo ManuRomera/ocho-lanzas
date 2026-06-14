@@ -1,0 +1,30 @@
+
+.ocho-lanzas .ol-yomi-shell-app .window-content,
+.ocho-lanzas .ol-yomi-shell-inner {
+  padding: 0;
+  background: linear-gradient(180deg, #f4ebda 0%, #ece0c8 100%);
+  color: #1a1209;
+}
+.ol-yomi-shell-inner {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.ol-yomi-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(139,26,26,0.18);
+  background: linear-gradient(180deg, rgba(245,234,216,0.98), rgba(232,217,188,0.96));
+}
+.ol-yomi-titleblock h2 { margin: 0; color: #8b1a1a; font-size: 1.35rem; }
+.ol-yomi-titleblock p { margin: 0.2rem 0 0; opacity: 0.78; }
+.ol-yomi-badge { display: inline-block; margin-bottom: 0.35rem; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(139,26,26,0.08); color: #8b1a1a; }
+.ol-yomi-actions { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+.ol-yomi-actions button, .ol-yomi-tool { border: 1px solid rgba(139,26,26,0.18); background: linear-gradient(180deg, #fff8ef, #f0e2c9); color: #1a1209; border-radius: 10px; padding: 0.55rem 0.85rem; cursor: pointer; font-weight: 600; }
+.ol-yomi-actions button:hover, .ol-yomi-tool:hover { border-color: rgba(139,26,26,0.55); color: #8b1a1a; }
+.ol-yomi-frame-wrap { flex: 1; min-height: 0; }
+.ol-yomi-frame { width: 100%; height: 100%; min-height: 70vh; border: 0; background: #1a1209; }
+.ol-yomi-tool { display: inline-flex; align-items: center; gap: 0.5rem; margin: 0.35rem 0; }

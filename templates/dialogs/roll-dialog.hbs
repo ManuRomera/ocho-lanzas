@@ -1,0 +1,401 @@
+<style>
+  /* Dialog container overrides */
+  .application.ol-roll-dialog-v60,
+  .application:has(.ol-roll-dialog-v60),
+  .application.dialog:has(.ol-roll-dialog-v60) {
+    border: none !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+    background: transparent !important;
+  }
+
+  .application.ol-roll-dialog-v60 .window-content,
+  .application:has(.ol-roll-dialog-v60) .window-content,
+  .application.dialog:has(.ol-roll-dialog-v60) .window-content {
+    padding: 12px !important;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(153, 25, 20, 0.12), transparent 30%),
+      radial-gradient(circle at 15% 85%, rgba(153, 25, 20, 0.08), transparent 35%),
+      url("systems/ocho-lanzas/assets/parchment-tile.png") repeat !important;
+    color: #090c0c !important;
+    font-family: "Signika", sans-serif !important;
+    border-radius: 12px !important;
+    border: 2px solid #090c0c !important;
+  }
+
+  .application.ol-roll-dialog-v60 footer,
+  .application.ol-roll-dialog-v60 .window-footer,
+  .application:has(.ol-roll-dialog-v60) footer,
+  .application:has(.ol-roll-dialog-v60) .window-footer,
+  .application.dialog:has(.ol-roll-dialog-v60) footer,
+  .application.dialog:has(.ol-roll-dialog-v60) .window-footer {
+    background: transparent !important;
+    border-top: none !important;
+    padding: 0 12px 12px !important;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .application.ol-roll-dialog-v60 footer button,
+  .application.ol-roll-dialog-v60 .window-footer button,
+  .application:has(.ol-roll-dialog-v60) footer button,
+  .application:has(.ol-roll-dialog-v60) .window-footer button,
+  .application.dialog:has(.ol-roll-dialog-v60) footer button,
+  .application.dialog:has(.ol-roll-dialog-v60) .window-footer button {
+    min-height: 38px !important;
+    min-width: 120px !important;
+    background: #090c0c !important;
+    color: #f6efe8 !important;
+    border-radius: 6px !important;
+    border: 2px solid #090c0c !important;
+    font-family: "Signika", sans-serif !important;
+    font-weight: 800 !important;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.15) !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .application.ol-roll-dialog-v60 footer button:hover,
+  .application.ol-roll-dialog-v60 .window-footer button:hover,
+  .application:has(.ol-roll-dialog-v60) footer button:hover,
+  .application:has(.ol-roll-dialog-v60) .window-footer button:hover,
+  .application.dialog:has(.ol-roll-dialog-v60) footer button:hover,
+  .application.dialog:has(.ol-roll-dialog-v60) .window-footer button:hover {
+    background: #991914 !important;
+    border-color: #991914 !important;
+    color: #fff !important;
+    transform: translateY(1px) !important;
+    box-shadow: 1px 1px 0 rgba(0,0,0,0.15) !important;
+    cursor: pointer !important;
+  }
+
+  /* Form content wrapper */
+  .ol-roll-dialog-v60 {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-sizing: border-box;
+    border: 3.5px solid #090c0c;
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; /* Hand-drawn look */
+    padding: 16px;
+    background: rgba(244, 232, 220, 0.15);
+  }
+  .ol-roll-dialog-v60 * {
+    box-sizing: border-box;
+  }
+
+  /* Header */
+  .ol-roll-dialog-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2px;
+  }
+  .ol-roll-dialog-banner {
+    width: 100%;
+    background: #090c0c;
+    color: #f6efe8;
+    padding: 12px 16px;
+    text-align: center;
+    clip-path: polygon(2% 16%, 10% 8%, 30% 12%, 52% 6%, 76% 12%, 96% 10%, 98% 86%, 90% 94%, 70% 90%, 50% 96%, 24% 92%, 6% 96%, 2% 86%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  }
+  .ol-roll-dialog-banner h2 {
+    margin: 0;
+    font-family: "Brush Script MT", "Segoe Script", "Comic Sans MS", cursive;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+  .ol-roll-dialog-actor {
+    display: block;
+    font-size: 13px;
+    opacity: 0.85;
+    margin-top: 1px;
+    font-style: italic;
+  }
+  .ol-roll-dialog-help {
+    margin: 6px 0 0 0;
+    font-size: 11.5px;
+    color: #991914;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  /* Intent section */
+  .ol-roll-dialog-intent {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: rgba(244, 232, 220, 0.35);
+    border: 2px solid #090c0c;
+    border-radius: 120px 8px 110px 6px/6px 110px 8px 120px;
+    padding: 10px 12px;
+  }
+  .ol-roll-dialog-intent label {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #090c0c;
+    border-bottom: 1.5px solid rgba(9, 12, 12, 0.18);
+    padding-bottom: 2px;
+    margin-bottom: 4px;
+  }
+  .ol-roll-dialog-intent input[type="text"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid rgba(9, 12, 12, 0.18);
+    border-radius: 4px;
+    background: #fbf7f4;
+    color: #090c0c;
+    font-family: inherit;
+    font-size: 13px;
+    transition: border-color 0.2s ease;
+  }
+  .ol-roll-dialog-intent input[type="text"]:focus {
+    border-color: #991914;
+    outline: none;
+  }
+
+  /* Hanko Stamp Pill Styles */
+  .ol-roll-dialog-types {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin: 6px 0;
+  }
+  .ol-hanko-pill {
+    position: relative;
+    cursor: pointer;
+  }
+  .ol-hanko-pill input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .ol-hanko-pill span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #991914;
+    background: rgba(244, 232, 220, 0.6);
+    color: #991914;
+    font-weight: 900;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 3px 6px rgba(153, 25, 20, 0.1);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+    font-family: "Brush Script MT", "Segoe Script", cursive;
+    transform: rotate(-3deg);
+  }
+  .ol-hanko-pill:nth-child(2) span {
+    transform: rotate(4deg);
+  }
+  .ol-hanko-pill input[type="radio"]:checked + span {
+    background: #991914;
+    color: #ede1d6;
+    border-color: #991914;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.35), 0 4px 8px rgba(153, 25, 20, 0.25);
+    transform: scale(1.06) rotate(0deg);
+  }
+  .ol-hanko-pill:hover span {
+    border-color: #6f1411;
+    color: #6f1411;
+    transform: translateY(-1px);
+  }
+
+  /* Two columns */
+  .ol-roll-dialog-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .ol-roll-dialog-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 250px;
+  }
+  
+  .ol-roll-dialog-col h3 {
+    margin: 0 0 4px 0 !important;
+    font-size: 13px !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    color: #991914 !important;
+    z-index: 10;
+  }
+  .ol-roll-dialog-col.is-cursed h3 {
+    color: #6f1411 !important;
+  }
+
+  .ol-source-cards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 170px;
+    overflow-y: auto;
+    padding: 4px;
+    z-index: 10;
+  }
+
+  /* Checkbox Source Cards (wobbly hand-drawn border) */
+  .ol-source-card {
+    position: relative;
+    cursor: pointer;
+    display: block;
+  }
+  .ol-source-card input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .ol-source-card-content {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 10px;
+    background: #f6efe8;
+    border: 2px solid #090c0c;
+    border-radius: 100px 5px 95px 5px/5px 95px 5px 100px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  .ol-source-card:hover .ol-source-card-content {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  }
+  .ol-source-card input[type="checkbox"]:checked + .ol-source-card-content {
+    background: #090c0c;
+    color: #fff;
+    border-color: #090c0c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  .ol-roll-dialog-col.is-cursed .ol-source-card-content {
+    border-color: #991914;
+    background: #fbf7f4;
+  }
+  .ol-roll-dialog-col.is-cursed .ol-source-card input[type="checkbox"]:checked + .ol-source-card-content {
+    background: #6f1411;
+    border-color: #6f1411;
+    color: #fff;
+  }
+
+  .ol-source-badge {
+    font-size: 8.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: #991914;
+    margin-bottom: 2px;
+  }
+  .ol-source-card input[type="checkbox"]:checked + .ol-source-card-content .ol-source-badge {
+    color: #e5877b;
+  }
+  .ol-source-label {
+    font-size: 11.5px;
+    font-weight: 900;
+  }
+
+  .ol-column-hint {
+    margin: 4px 0 0 0;
+    font-size: 10px;
+    color: rgba(9, 12, 12, 0.78);
+    font-style: italic;
+    line-height: 1.3;
+    z-index: 10;
+  }
+  .ol-column-empty {
+    margin: 12px 0;
+    font-size: 11px;
+    color: rgba(9, 12, 12, 0.78);
+    text-align: center;
+    font-style: italic;
+    z-index: 10;
+  }
+
+  @media (max-width: 600px) {
+    .ol-roll-dialog-columns {
+      grid-template-columns: 1fr;
+    }
+    .ol-roll-dialog-col {
+      min-height: auto;
+    }
+  }
+</style>
+
+<form class="ocho-lanzas ol-root ol-roll-dialog-v60" autocomplete="off">
+  <header class="ol-roll-dialog-header">
+    <div class="ol-roll-dialog-banner">
+      <h2>{{localize "OCHO.Actions.RollAction"}}</h2>
+      <span class="ol-roll-dialog-actor">{{actorName}}</span>
+    </div>
+    <p class="ol-roll-dialog-help"><em>{{localize "OCHO.Roll.Help"}}</em></p>
+  </header>
+
+  <section class="ol-roll-dialog-intent">
+    <label>{{localize "OCHO.Roll.IntentLabel"}}</label>
+    <input type="text" name="flavor" value="{{flavor}}" placeholder="{{localize 'OCHO.Roll.IntentPlaceholder'}}" />
+  </section>
+
+  <div class="ol-roll-dialog-types">
+    <label class="ol-hanko-pill">
+      <input type="radio" name="rollType" value="risk" {{#if (eq rollType "risk")}}checked{{/if}} />
+      <span>{{localize "OCHO.Roll.Type.Risk"}}</span>
+    </label>
+    <label class="ol-hanko-pill">
+      <input type="radio" name="rollType" value="curse" {{#if (eq rollType "curse")}}checked{{/if}} />
+      <span>{{localize "OCHO.Roll.Type.Curse"}}</span>
+    </label>
+  </div>
+
+  <div class="ol-roll-dialog-columns">
+    <div class="ol-roll-dialog-col ol-box">
+      <h3>{{localize "OCHO.Roll.WhiteSourcesLabel"}}</h3>
+      {{#if hasBonusSources}}
+        <div class="ol-source-cards-grid">
+          {{#each bonusSources as |source|}}
+            <label class="ol-source-card">
+              <input type="checkbox" name="bonusSources" value="{{source.label}}" />
+              <div class="ol-source-card-content">
+                <span class="ol-source-badge">{{source.badge}}</span>
+                <span class="ol-source-label">{{source.label}}</span>
+              </div>
+            </label>
+          {{/each}}
+        </div>
+        <p class="ol-column-hint">{{localize "OCHO.Roll.WhiteSourcesHint"}}</p>
+      {{else}}
+        <p class="ol-column-empty">{{localize "OCHO.Roll.NoWhiteSources"}}</p>
+      {{/if}}
+    </div>
+    
+    <div class="ol-roll-dialog-col ol-box is-cursed">
+      <h3>{{localize "OCHO.Roll.CursedSourcesLabel"}}</h3>
+      {{#if hasCursedSources}}
+        <div class="ol-source-cards-grid">
+          {{#each cursedSources as |source|}}
+            <label class="ol-source-card">
+              <input type="checkbox" name="cursedSources" value="{{source.label}}" />
+              <div class="ol-source-card-content">
+                <span class="ol-source-badge">{{source.badge}}</span>
+                <span class="ol-source-label">{{source.label}}</span>
+              </div>
+            </label>
+          {{/each}}
+        </div>
+        <p class="ol-column-hint">{{localize "OCHO.Roll.CursedSourcesHint"}}</p>
+      {{else}}
+        <p class="ol-column-empty">{{localize "OCHO.Roll.NoCursedSources"}}</p>
+      {{/if}}
+    </div>
+  </div>
+</form>

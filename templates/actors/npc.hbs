@@ -1,0 +1,81 @@
+<form class="{{cssClass}} ocho-lanzas ol-root" autocomplete="off">
+  <section class="ol-sheet ol-npc-sheet ol-npc-sheet-v3">
+    <div class="ol-npc-shell">
+      <section class="ol-npc-content">
+        <header class="ol-npc-topbar">
+          <div class="ol-brush ol-name">
+            <div class="ol-brush-label">{{localize "OCHO.Fields.Name"}}</div>
+            <input type="text" name="name" value="{{document.name}}" placeholder=" " />
+          </div>
+
+          <div class="ol-npc-meta-grid">
+            <div class="ol-brush ol-idea">
+              <div class="ol-brush-label">{{localize "OCHO.Fields.Concept"}}</div>
+              <input type="text" name="system.concept" value="{{system.concept}}" placeholder=" " />
+            </div>
+
+            <div class="ol-field ol-occupation">
+              <div class="ol-smalllabel">{{localize "OCHO.Fields.Occupation"}}</div>
+              <input type="text" name="system.occupation" value="{{system.occupation}}" placeholder=" " />
+            </div>
+          </div>
+        </header>
+
+        <section class="ol-box ol-notes ol-npc-notesbox">
+          <div class="ol-box-head">
+            <h3>{{localize "OCHO.Sections.Notes"}}</h3>
+          </div>
+          <textarea class="ol-autogrow ol-npc-notes-main" name="system.notes" placeholder="{{localize 'OCHO.Sections.Notes'}}">{{system.notes}}</textarea>
+        </section>
+      </section>
+
+      <aside class="ol-npc-sidebar">
+        <div class="ol-npc-side-top">
+          <div class="ol-portrait ol-portrait-compact ol-npc-cardportrait">
+            <img class="profile-img" src="{{document.img}}" alt="{{document.name}}" data-edit="img" />
+          </div>
+
+          <div class="ol-npc-quickstats">
+            <div class="ol-madness-readonly ol-madness-pill" title="{{localize 'OCHO.Sections.Curse'}}">
+              <span class="ol-madness-label">{{localize "OCHO.Sections.Curse"}}</span>
+              <span class="ol-madness-value">{{system.curseCount}}</span>
+            </div>
+
+            <button type="button" class="ol-rollbtn ol-rollbtn-full" data-action="rollAction" title="{{localize 'OCHO.Actions.RollAction'}}">
+              <i class="fas fa-dice"></i>
+              <span>{{localize "OCHO.Actions.RollAction"}}</span>
+            </button>
+          </div>
+        </div>
+
+        <section class="ol-box ol-curse ol-npc-cursebox" aria-label="{{localize 'OCHO.Sections.Curse'}}">
+          <div class="ol-curse-head">
+            <h3>{{localize "OCHO.Sections.Curse"}}</h3>
+            <div class="ol-curse-controls">
+              <span class="ol-curse-min">{{localize "OCHO.Fields.CurseMin"}}: {{curseMin}}</span>
+              <button type="button" class="ol-mini" data-action="curseDec" title="-1">−</button>
+              <button type="button" class="ol-mini" data-action="curseInc" title="+1">+</button>
+              <button type="button" class="ol-mini" data-action="curseReset" title="{{localize 'OCHO.Actions.CurseReset'}}">↺</button>
+            </div>
+          </div>
+
+          <div class="ol-curse-ring">
+            {{#each cursePips as |p|}}
+              <button
+                type="button"
+                class="ol-pip {{p.cls}}"
+                style="--i: {{p.i}};"
+                data-pip="{{p.n}}"
+                aria-label="{{p.n}}"
+                title="{{p.n}}"
+              ></button>
+            {{/each}}
+            <div class="ol-curse-value" title="{{system.curseCount}}/6">{{system.curseCount}}</div>
+          </div>
+
+          <textarea class="ol-autogrow ol-curse-notes ol-npc-curse-notes" name="system.curse" placeholder="{{localize 'OCHO.Sections.Curse'}}">{{system.curse}}</textarea>
+        </section>
+      </aside>
+    </div>
+  </section>
+</form>

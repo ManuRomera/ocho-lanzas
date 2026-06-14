@@ -1,0 +1,2940 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Tejido de Yomi — Ocho Lanzas</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Shippori+Mincho:wght@400;700&display=swap');
+
+  :root {
+    --ink: #1a1209;
+    --paper: #f5ead8;
+    --paper-dark: #e8d9bc;
+    --red: #8b1a1a;
+    --red-light: #c0392b;
+    --gold: #b8860b;
+    --gold-light: #d4a017;
+    --shadow: rgba(26,18,9,0.18);
+    --mist: rgba(245,234,216,0.85);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ink);
+    color: var(--ink);
+    font-family: 'Crimson Pro', 'Georgia', serif;
+    font-size: 17px;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  /* ── BACKGROUND TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(139,26,26,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(139,26,26,0.06) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── COVER ── */
+  #cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--ink);
+    padding: 3rem 2rem;
+  }
+
+  #cover::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(139,26,26,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(184,134,11,0.08) 0%, transparent 50%);
+  }
+
+  .cover-kanji {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(5rem, 15vw, 11rem);
+    color: rgba(139,26,26,0.15);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: 1rem;
+    user-select: none;
+  }
+
+  .cover-badge {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+
+  .cover-title {
+    font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    color: var(--paper);
+    text-align: center;
+    position: relative;
+    line-height: 1.2;
+    opacity: 0;
+    animation: fadeUp 1s 0.6s forwards;
+  }
+
+  .cover-title em {
+    color: var(--red-light);
+    font-style: normal;
+  }
+
+  .cover-subtitle {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.1rem;
+    color: rgba(245,234,216,0.6);
+    text-align: center;
+    margin-top: 1rem;
+    letter-spacing: 0.1em;
+    font-style: italic;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+
+  .cover-divider {
+    width: 200px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 2.5rem auto;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 1s 1.1s forwards;
+  }
+
+  .cover-meta {
+    display: flex; gap: 3rem;
+    text-align: center;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 1s 1.3s forwards;
+  }
+
+  .cover-meta-item span {
+    display: block;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .cover-meta-item strong {
+    color: var(--paper);
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .cover-enter {
+    margin-top: 3rem;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 1s 1.6s forwards;
+  }
+
+  .btn-enter {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.4em;
+    color: var(--paper);
+    background: transparent;
+    border: 1px solid rgba(245,234,216,0.3);
+    padding: 1rem 2.5rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+
+  .btn-enter:hover {
+    border-color: var(--red-light);
+    color: var(--red-light);
+    box-shadow: 0 0 30px rgba(192,57,43,0.2);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── MAIN APP ── */
+  #app {
+    display: none;
+    min-height: 100vh;
+    background: var(--paper);
+    position: relative;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    background: var(--ink);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--red);
+    display: flex;
+    align-items: stretch;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-logo {
+    font-family: 'Noto Serif JP', serif;
+    color: var(--gold);
+    font-size: 1.1rem;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid rgba(245,234,216,0.1);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .nav-btn {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: rgba(245,234,216,0.55);
+    background: none;
+    border: none;
+    padding: 1.1rem 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+  }
+
+  .nav-btn:hover { color: var(--paper); }
+  .nav-btn.active { color: var(--red-light); border-bottom-color: var(--red-light); }
+
+  /* ── SECTIONS ── */
+  .section { display: none; padding: 3rem 2rem; max-width: 900px; margin: 0 auto; }
+  .section.active { display: block; }
+
+  /* ── TYPOGRAPHY ── */
+  h1 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 2.4rem;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.6rem;
+    color: var(--red);
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(139,26,26,0.2);
+  }
+
+  h3 {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+    font-weight: 600;
+    margin: 1.5rem 0 0.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  p { margin-bottom: 1rem; }
+
+  .lead {
+    font-size: 1.15rem;
+    color: #3a2e1e;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  .kicker {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── DECORATIVE ── */
+  .torii {
+    text-align: center;
+    font-size: 2rem;
+    color: rgba(139,26,26,0.2);
+    margin: 2rem 0;
+    user-select: none;
+  }
+
+  .brush-line {
+    height: 3px;
+    background: linear-gradient(90deg, var(--red) 0%, rgba(139,26,26,0.2) 100%);
+    border: none;
+    margin: 2rem 0;
+    border-radius: 2px;
+  }
+
+  /* ── BOXES ── */
+  .box {
+    border-left: 3px solid var(--red);
+    background: rgba(139,26,26,0.04);
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .box.gold {
+    border-color: var(--gold);
+    background: rgba(184,134,11,0.06);
+  }
+
+  .box.dark {
+    background: var(--ink);
+    color: var(--paper);
+    border-left: 3px solid var(--red-light);
+    border-radius: 4px;
+  }
+
+  .box.dark h3 { color: var(--gold); }
+  .box.dark p { color: rgba(245,234,216,0.85); }
+
+  /* ── VOICE BOXES (GM narration) ── */
+  .gm-voice {
+    background: var(--ink);
+    color: var(--paper-dark);
+    padding: 1.5rem 2rem;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    position: relative;
+    border-left: 4px solid var(--red);
+  }
+
+  .gm-voice::before {
+    content: '🎭 VOZ DEL MÁSTER';
+    font-style: normal;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.8rem;
+  }
+
+  /* ── NPC BOXES ── */
+  .npc-card {
+    background: var(--paper-dark);
+    border: 1px solid rgba(26,18,9,0.15);
+    border-radius: 4px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .npc-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--gold);
+  }
+
+  .npc-card h3 {
+    margin-top: 0;
+    color: var(--red);
+  }
+
+  .npc-tag {
+    display: inline-block;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    background: var(--ink);
+    color: var(--gold);
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .npc-quote {
+    font-style: italic;
+    color: var(--red);
+    border-left: 2px solid var(--red);
+    padding-left: 0.8rem;
+    margin: 0.8rem 0;
+    font-size: 1.05rem;
+  }
+
+  /* ── CHARACTER SHEETS ── */
+  .char-sheet {
+    background: var(--paper-dark);
+    border: 2px solid rgba(26,18,9,0.2);
+    border-radius: 6px;
+    padding: 2rem;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .char-sheet::after {
+    content: attr(data-kanji);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 7rem;
+    color: rgba(139,26,26,0.06);
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .char-name {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.8rem;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+
+  .char-role {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .char-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 600px) { .char-grid { grid-template-columns: 1fr; } }
+
+  .char-stat {
+    background: var(--paper);
+    border: 1px solid rgba(26,18,9,0.12);
+    padding: 0.7rem 1rem;
+    border-radius: 4px;
+  }
+
+  .char-stat span {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .char-stat strong { font-size: 1.05rem; }
+
+  .locura-track {
+    display: flex;
+    gap: 0.4rem;
+    margin: 1rem 0;
+    align-items: center;
+  }
+
+  .locura-track span {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-right: 0.5rem;
+  }
+
+  .locura-pip {
+    width: 28px; height: 28px;
+    border: 2px solid var(--red);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: var(--red);
+    font-family: 'Crimson Pro', serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+
+  .locura-pip.filled {
+    background: var(--red);
+    color: white;
+  }
+
+  .locura-pip.last {
+    border-color: #4a0000;
+    background: #4a0000;
+    color: #ffaaaa;
+    box-shadow: 0 0 8px rgba(139,26,26,0.5);
+  }
+
+  /* ── ENEMY STAT BLOCK ── */
+  .enemy-block {
+    background: #1a1209;
+    color: var(--paper);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+  }
+
+  .enemy-header {
+    background: var(--red);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .enemy-header h3 {
+    color: white;
+    margin: 0;
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.3rem;
+  }
+
+  .enemy-header .enemy-tier {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+  }
+
+  .enemy-body {
+    padding: 1.2rem 1.5rem;
+  }
+
+  .enemy-body p { color: rgba(245,234,216,0.8); }
+
+  .enemy-traits {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin: 0.8rem 0;
+  }
+
+  .trait {
+    background: rgba(139,26,26,0.4);
+    border: 1px solid rgba(139,26,26,0.6);
+    color: #ffcccc;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+
+  .enemy-actions { margin-top: 1rem; }
+
+  .enemy-action {
+    border-top: 1px solid rgba(245,234,216,0.1);
+    padding: 0.6rem 0;
+  }
+
+  .enemy-action strong {
+    color: var(--gold-light);
+    display: block;
+    margin-bottom: 0.2rem;
+    font-size: 0.95rem;
+  }
+
+  .enemy-action p { color: rgba(245,234,216,0.75); font-size: 0.95rem; margin: 0; }
+
+  /* ── SCENE CARDS ── */
+  .scene {
+    border: 1px solid rgba(26,18,9,0.15);
+    border-radius: 6px;
+    margin: 2rem 0;
+    overflow: hidden;
+  }
+
+  .scene-header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .scene-header:hover { background: #2a1e0f; }
+
+  .scene-num {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 2rem;
+    color: var(--red-light);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 2.5rem;
+  }
+
+  .scene-header-text h3 {
+    color: var(--paper);
+    margin: 0;
+    font-size: 1.1rem;
+  }
+
+  .scene-header-text span {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .scene-arrow {
+    margin-left: auto;
+    color: var(--gold);
+    font-size: 0.8rem;
+    transition: transform 0.3s;
+  }
+
+  .scene.open .scene-arrow { transform: rotate(180deg); }
+
+  .scene-body {
+    display: none;
+    padding: 1.5rem;
+    background: var(--paper-dark);
+  }
+
+  .scene.open .scene-body { display: block; }
+
+  /* ── RULE BOX ── */
+  .rule-box {
+    background: #fff8ee;
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    padding: 1rem 1.3rem;
+    margin: 1rem 0;
+  }
+
+  .rule-box .rule-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── GM TOOLS ── */
+  .tracker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .tracker-card {
+    background: var(--paper-dark);
+    border: 1px solid rgba(26,18,9,0.15);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+  }
+
+  .tracker-card h4 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .tracker-pips {
+    display: flex;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+
+  .t-pip {
+    width: 26px; height: 26px;
+    border: 2px solid var(--red);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .t-pip.on { background: var(--red); }
+  .t-pip.on.last { background: #4a0000; border-color: #4a0000; box-shadow: 0 0 10px rgba(139,26,26,0.6); }
+
+  .tension-track {
+    background: var(--paper-dark);
+    border: 1px solid rgba(26,18,9,0.15);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+  }
+
+  .tension-bar {
+    height: 12px;
+    background: rgba(26,18,9,0.1);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 0.5rem 0;
+  }
+
+  .tension-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--red));
+    border-radius: 6px;
+    transition: width 0.5s;
+  }
+
+  .tension-btns {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .tension-btns button {
+    flex: 1;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    padding: 0.4rem;
+    border: 1px solid rgba(26,18,9,0.2);
+    background: var(--paper);
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.15s;
+  }
+
+  .tension-btns button:hover { background: var(--red); color: white; border-color: var(--red); }
+
+  .gm-notes {
+    width: 100%;
+    min-height: 120px;
+    background: var(--paper-dark);
+    border: 1px solid rgba(26,18,9,0.2);
+    border-radius: 4px;
+    padding: 0.8rem 1rem;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    resize: vertical;
+    outline: none;
+    line-height: 1.7;
+    margin: 0.5rem 0;
+  }
+
+  .gm-notes:focus { border-color: var(--red); }
+
+  /* ── CHECKLIST ── */
+  .checklist { list-style: none; }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    margin-bottom: 0.6rem;
+    cursor: pointer;
+    padding: 0.3rem 0;
+  }
+
+  .checklist li.done { opacity: 0.5; text-decoration: line-through; }
+
+  .check-box {
+    width: 18px; height: 18px;
+    border: 2px solid var(--red);
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+
+  .checklist li.done .check-box {
+    background: var(--red);
+    color: white;
+    font-size: 0.7rem;
+  }
+
+  /* ── ROLL TABLE ── */
+  .roll-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+
+  .roll-table th {
+    background: var(--ink);
+    color: var(--gold);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 0.7rem 1rem;
+    text-align: left;
+  }
+
+  .roll-table td {
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid rgba(26,18,9,0.1);
+    vertical-align: top;
+  }
+
+  .roll-table tr:nth-child(even) td { background: rgba(26,18,9,0.03); }
+
+  .dice {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.2rem;
+    color: var(--red);
+    font-weight: 700;
+  }
+
+  /* ── TIMER ── */
+  .timer-widget {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 6px;
+    padding: 1.5rem;
+    text-align: center;
+    margin: 1rem 0;
+  }
+
+  .timer-display {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 3.5rem;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+    margin: 0.5rem 0;
+  }
+
+  .timer-label {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: rgba(245,234,216,0.5);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .timer-btns {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .timer-btns button {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid rgba(245,234,216,0.2);
+    background: transparent;
+    color: var(--paper);
+    cursor: pointer;
+    border-radius: 3px;
+    text-transform: uppercase;
+    transition: all 0.15s;
+  }
+
+  .timer-btns button:hover { background: var(--red); border-color: var(--red); }
+  .timer-btns button.preset { font-size: 0.58rem; }
+
+  .tag-list { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0; }
+
+  .tag {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    background: rgba(139,26,26,0.08);
+    border: 1px solid rgba(139,26,26,0.2);
+    color: var(--red);
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+
+
+  /* ── MULTIMEDIA ── */
+  .media-frame {
+    margin: 1rem 0 1.5rem;
+    border: 1px solid rgba(26,18,9,0.12);
+    border-radius: 6px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.35);
+  }
+
+  .media-caption {
+    padding: 0.65rem 0.9rem;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(26,18,9,0.08);
+    background: rgba(26,18,9,0.03);
+  }
+
+  .media-slot {
+    position: relative;
+    min-height: 230px;
+    background: linear-gradient(180deg, rgba(26,18,9,0.05), rgba(26,18,9,0.12));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .media-slot img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 430px;
+    object-fit: contain;
+    object-position: center center;
+    margin: 0 auto;
+  }
+
+  .portrait-slot {
+    min-height: 320px;
+    height: 320px;
+    padding: 0.75rem;
+  }
+
+  .portrait-slot img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .media-placeholder {
+    padding: 1.4rem;
+    text-align: center;
+    color: #5e4d39;
+    max-width: 85%;
+  }
+
+  .media-placeholder strong {
+    display: block;
+    font-family: 'Shippori Mincho', serif;
+    color: var(--red);
+    font-size: 1.05rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .media-path {
+    display: inline-block;
+    margin-top: 0.65rem;
+    padding: 0.25rem 0.55rem;
+    border-radius: 3px;
+    background: rgba(26,18,9,0.08);
+    color: var(--ink);
+    font-family: monospace;
+    font-size: 0.78rem;
+    word-break: break-all;
+  }
+
+  .asset-audio-wrap {
+    padding: 0.85rem 0.95rem 1rem;
+    background: rgba(26,18,9,0.03);
+    border-top: 1px solid rgba(26,18,9,0.08);
+  }
+
+  .asset-audio-wrap audio {
+    width: 100%;
+  }
+
+  .media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .clue-web {
+    background: rgba(184,134,11,0.07);
+    border: 1px solid rgba(184,134,11,0.24);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    margin: 1.2rem 0;
+  }
+
+  .path-chip {
+    display: inline-block;
+    margin: 0.2rem 0.35rem 0.2rem 0;
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid rgba(139,26,26,0.2);
+    background: rgba(139,26,26,0.06);
+    color: var(--red);
+  }
+
+  .flow-table td small {
+    display: block;
+    color: #6a5843;
+    margin-top: 0.25rem;
+  }
+
+
+.fvtt-link, .fvtt-chip {
+  color: var(--red-light);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(192,57,43,0.45);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.fvtt-link:hover, .fvtt-chip:hover {
+  color: var(--gold-light);
+  border-bottom-color: var(--gold-light);
+}
+.fvtt-hub {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.7rem;
+  margin: 0 0 1.75rem;
+  padding: 1rem;
+  border: 1px solid rgba(139,26,26,0.18);
+  background: linear-gradient(180deg, rgba(232,217,188,0.8), rgba(245,234,216,0.65));
+  box-shadow: 0 10px 25px rgba(26,18,9,0.06);
+}
+.fvtt-hub h3 {
+  margin: 0 0 0.4rem;
+  grid-column: 1/-1;
+}
+.fvtt-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.7rem 0.85rem;
+  background: rgba(255,255,255,0.45);
+  border: 1px solid rgba(139,26,26,0.18);
+  border-radius: 999px;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.char-foundry-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.9rem 0 1.1rem;
+}
+.char-foundry-actions .fvtt-chip { font-size: 0.68rem; }
+
+
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--ink);
+    color: rgba(245,234,216,0.3);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    font-family: 'Noto Serif JP', serif;
+    letter-spacing: 0.15em;
+  }
+
+
+  .tool-map-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .tool-map-figure h3 {
+    margin: 0 0 0.55rem;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1rem;
+    color: var(--ink);
+  }
+
+  .tool-map-paths {
+    margin-top: 0.9rem;
+    padding: 0.85rem 1rem;
+    background: var(--paper-dark);
+    border: 1px dashed rgba(26,18,9,0.18);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .tool-map-paths code {
+    display: inline-block;
+    margin: 0.15rem 0.35rem 0.15rem 0;
+    padding: 0.12rem 0.4rem;
+    background: rgba(0,0,0,0.04);
+    border-radius: 4px;
+  }
+
+  @media (max-width: 1100px) {
+    .tool-map-grid { grid-template-columns: 1fr; }
+    .tool-map-gallery { grid-template-columns: 1fr; }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 700px) {
+    .section { padding: 2rem 1rem; }
+    .char-sheet { padding: 1.2rem; }
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    .nav, #cover, .timer-widget { display: none !important; }
+    #app { display: block !important; }
+    .section { display: block !important; page-break-before: always; }
+    .scene-body { display: block !important; }
+  }
+
+  .tool-map-panel {
+    background: linear-gradient(180deg, rgba(185,150,76,0.08), rgba(185,150,76,0.02));
+    border: 1px solid rgba(26,18,9,0.15);
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 1.2rem 1.2rem 1rem;
+    margin: 1.2rem 0 1.8rem;
+  }
+
+  .tool-map-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .tool-map-figure {
+    margin: 0;
+    background: var(--paper-dark);
+    border: 1px solid rgba(26,18,9,0.15);
+    border-radius: 8px;
+    padding: 0.8rem;
+  }
+
+  .tool-map-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    border: 1px solid rgba(26,18,9,0.12);
+    background: #f5eddc;
+  }
+
+  .tool-map-figure figcaption {
+    font-size: 0.85rem;
+    color: #5f5240;
+    margin-top: 0.7rem;
+    line-height: 1.5;
+  }
+
+  .tool-map-side {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .tool-note {
+    background: var(--paper-dark);
+    border: 1px solid rgba(26,18,9,0.15);
+    border-radius: 6px;
+    padding: 0.9rem 1rem;
+  }
+
+  .tool-note h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .tool-note ul {
+    margin-left: 1.1rem;
+  }
+
+  .tool-note code {
+    background: rgba(26,18,9,0.06);
+    padding: 0.08rem 0.35rem;
+    border-radius: 3px;
+    font-size: 0.85em;
+  }
+
+  .tool-kv {
+    display: grid;
+    gap: 0.35rem;
+    font-size: 0.95rem;
+  }
+
+  .tool-kv div strong {
+    color: var(--red);
+  }
+
+  @media (max-width: 980px) {
+    .tool-map-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<div id="cover">
+  <div class="cover-kanji">魂糸</div>
+  <span class="cover-badge">⛩ Ocho Lanzas · Aventura Completa · One-Shot ⛩</span>
+  <h1 class="cover-title">El <em>Tejido</em> de Yomi</h1>
+  <p class="cover-subtitle">Una aldea. Una tejedora. Una noche sin retorno.</p>
+  <div class="cover-divider"></div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <span>Jugadores</span>
+      <strong>2 – 4</strong>
+    </div>
+    <div class="cover-meta-item">
+      <span>Duración</span>
+      <strong>2 – 3 h</strong>
+    </div>
+    <div class="cover-meta-item">
+      <span>Dificultad</span>
+      <strong>Media</strong>
+    </div>
+    <div class="cover-meta-item">
+      <span>Sistema</span>
+      <strong>Cthulhu Dark</strong>
+    </div>
+  </div>
+  <div class="cover-enter">
+    <button class="btn-enter" onclick="enterApp()">✦ ABRIR AVENTURA ✦</button>
+  </div>
+</div>
+
+<!-- APLICACIÓN PRINCIPAL -->
+<div id="app">
+  <nav class="nav">
+    <span class="nav-logo">⛩ 八本の槍</span>
+    <button class="nav-btn active" onclick="showSection('intro')">Introducción</button>
+    <button class="nav-btn" onclick="showSection('reglas')">Reglas Rápidas</button>
+    <button class="nav-btn" onclick="showSection('personajes')">Personajes</button>
+    <button class="nav-btn" onclick="showSection('aventura')">Aventura</button>
+    <button class="nav-btn" onclick="showSection('enemigos')">Bakemonos</button>
+    <button class="nav-btn" onclick="showSection('npcs')">NPCs</button>
+    <button class="nav-btn" onclick="showSection('recursos')">Recursos</button>
+  </nav>
+
+  <!-- ════ INTRODUCCIÓN ════ -->
+  <div id="intro" class="section active">
+    <span class="kicker">⛩ Bienvenido a Ocho Lanzas</span>
+    <h1>El Tejido de Yomi</h1>
+    <p class="lead">Una aldea de montaña, una promesa funeraria y un telar que está abriendo una herida entre el mundo de los vivos y Yomi.</p>
+
+    <hr class="brush-line">
+
+    <h2>¿Qué es Ocho Lanzas?</h2>
+    <p><strong>Ocho Lanzas</strong> es un juego de rol de terror japonés ambientado en una versión fantástica del período Sengoku. Los personajes son agentes errantes de una organización clandestina que investiga la <strong>Maldición de Izanami</strong>, lucha contra bakemonos y trata de conservar su pureza frente a lo sobrenatural.</p>
+    <p>El juego usa una adaptación de <strong>Cthulhu Dark</strong> centrada en <strong>Trasfondo, Orgullo, Onmyouji y Maldición</strong>. La tensión nace menos del combate heroico y más de la investigación, el sacrificio y el precio espiritual de cada decisión.</p>
+    <p>El tono es de <strong>horror japonés clásico</strong>: silencios largos, lugares cargados de presencias, compasión trágica y un mal que primero corrompe, luego revela su forma y por último exige un precio.</p>
+
+    <div class="box gold">
+      <h3>Gancho de la aventura</h3>
+      <p>El grupo no llega a Shimokawa por casualidad. Hace pocos días murió <strong>Isamu</strong>, un compañero del mismo destacamento de Las Ocho Lanzas. Antes de morir les arrancó una promesa: <strong>llevar sus cenizas a su madre, Okiya</strong>, la tejedora de Shimokawa. Cuando el grupo se aproxima a la aldea, descubre que allí ya está ocurriendo algo antinatural.</p>
+      <p>Esto convierte la misión en algo más que una investigación: <strong>salvar a Okiya también significa cumplir la palabra dada a un camarada caído</strong>.</p>
+    </div>
+
+    <h2>Tono y estilo</h2>
+    <div class="box gold">
+      <h3>Consejos para la directora de juego</h3>
+      <p><strong>Silencio y detalle.</strong> Describe olores, temperatura, textura de la madera húmeda, el sonido del telar a horas imposibles. El horror debe filtrarse antes de irrumpir.</p>
+      <p><strong>Los NPCs importan.</strong> Jiro, Kenji y Okiya no son piezas funcionales: son personas atrapadas por algo que apenas comprenden. Si el grupo se implica con ellas, la historia gana peso.</p>
+      <p><strong>No fuerces el combate.</strong> El Tsuchigumo funciona mejor como presencia, tentación y ancla sobrenatural que como monstruo de pegarle hasta caer.</p>
+    </div>
+
+    <h2>Antes de empezar</h2>
+    <p>La aventura ya está preparada para jugar con personajes pregenerados, imágenes, música local y mapas de apoyo. Lee primero la sección <strong>Reglas Rápidas</strong>, entrega luego los personajes y arranca con el prólogo del santuario del camino.</p>
+
+    <div class="box dark">
+      <h3>Seguridad en mesa</h3>
+      <p>El tono del módulo funciona mejor si antes de empezar se acuerdan <strong>líneas y velos</strong> y se recuerda el uso de la <strong>Tarjeta X</strong>. Ocho Lanzas gana mucho cuando la tensión está controlada y la mesa se siente segura.</p>
+    </div>
+  </div>
+
+<!-- ════ REGLAS RÁPIDAS ════ -->
+  <div id="reglas" class="section">
+    <span class="kicker">⛩ Sistema de Juego</span>
+    <h1>Reglas Rápidas</h1>
+    <p class="lead">Resumen correcto de Ocho Lanzas para jugar esta aventura sin abrir el libro.</p>
+
+    <hr class="brush-line">
+
+    <h2>Crear un personaje</h2>
+    <div class="box gold">
+      <p>En Ocho Lanzas, un personaje se define con estas piezas:</p>
+      <p>
+      1. <strong>Nombre</strong><br>
+      2. <strong>Trasfondo</strong> (qué hacía antes de unirse a las Ocho Lanzas)<br>
+      3. <strong>Orgullo</strong> (la razón íntima por la que sigue adelante)<br>
+      4. <strong>Onmyouji</strong> opcional (capacidad sobrenatural)<br>
+      5. <strong>Maldición</strong>
+      </p>
+      <p>Los trasfondos son amplios y se adaptan a la ficción: artista, comerciante, criminal, erudito, investigador, jornalero, noble, médico, soldado o timador.</p>
+    </div>
+
+    <h2>Hacer algo arriesgado</h2>
+    <p>Cuando una acción es incierta y el fracaso importa, haz una <strong>tirada de Riesgo</strong> y toma el resultado más alto.</p>
+
+    <table class="roll-table">
+      <tr>
+        <th>Dado</th>
+        <th>Cuándo añadirlo</th>
+      </tr>
+      <tr>
+        <td><span class="dice">D</span> <strong>Blanco</strong></td>
+        <td>Si la acción es humanamente posible.</td>
+      </tr>
+      <tr>
+        <td><span class="dice">D</span> <strong>Blanco</strong></td>
+        <td>Si la acción encaja con tu <strong>Trasfondo</strong> o con tu <strong>Orgullo</strong>.</td>
+      </tr>
+      <tr>
+        <td><span class="dice">D</span> <strong>Maldito</strong></td>
+        <td>Si te expones a la <strong>Maldición</strong>, arriesgas cuerpo o mente para lograrlo, o usas un <strong>Onmyouji</strong>.</td>
+      </tr>
+    </table>
+
+    <div class="rule-box">
+      <span class="rule-title">⚠ Límite importante</span>
+      <p>Nunca tirarás más de <strong>dos dados blancos</strong>. El dado maldito no sustituye a los blancos: se suma cuando la situación o el personaje se abren a lo oscuro.</p>
+    </div>
+
+    <h3>Leer el resultado</h3>
+    <table class="roll-table">
+      <tr><th>Resultado más alto</th><th>Efecto</th></tr>
+      <tr><td><span class="dice">1</span></td><td>Fracaso claro o coste severo.</td></tr>
+      <tr><td><span class="dice">2–5</span></td><td>Éxito con coste, amenaza o complicación.</td></tr>
+      <tr><td><span class="dice">6</span></td><td>Éxito rotundo.</td></tr>
+    </table>
+
+    <div class="rule-box">
+      <span class="rule-title">⚠ Tirada de Maldición</span>
+      <p>Si en una tirada de Riesgo has incluido un <strong>dado Maldito</strong> y su resultado es <strong>igual o superior</strong> al más alto de los dados blancos, debes hacer una <strong>tirada de Maldición</strong>.</p>
+    </div>
+
+    <h2>La Maldición</h2>
+    <p>El contador de <strong>Maldición</strong> empieza en <strong>1</strong>. Representa cuánto se está erosionando la humanidad del personaje.</p>
+    <p>Cuando ve algo perturbador o se expone a la Maldición, tira un <strong>dado Maldito</strong>. Si el resultado es <strong>superior</strong> a tu valor actual de Maldición, tacha una casilla e interpreta cómo te afecta.</p>
+
+    <table class="roll-table">
+      <tr><th>Maldición</th><th>Estado</th></tr>
+      <tr><td>1–2</td><td>Aún mantienes el control.</td></tr>
+      <tr><td>3–4</td><td>Lo oscuro ya deja huella en ti.</td></tr>
+      <tr><td>5</td><td>Estás al borde de convertirte en otra cosa.</td></tr>
+      <tr><td>6</td><td>Te conviertes en <strong>bakemono</strong>.</td></tr>
+    </table>
+
+    <h2>Purificarse</h2>
+    <p>Cuando tienes <strong>4 o más marcas</strong> de Maldición, puedes <strong>purificarte</strong>: aceptas una consecuencia dura y eliminas una marca. No debería hacerse más de <strong>una vez por escena</strong>.</p>
+
+    <h2>Onmyoujis</h2>
+    <p>Los <strong>Onmyoujis</strong> son dones sobrenaturales opcionales. Algunos ejemplos útiles en esta aventura son <strong>Exorcizar</strong>, <strong>Gishiki</strong>, <strong>Espiritismo</strong> o <strong>Kotodama</strong>.</p>
+    <p>Cada Onmyouji reduce de forma permanente la resistencia espiritual del personaje: <strong>por cada Onmyouji, tacha una casilla del contador de Maldición desde el inicio</strong>. Si empiezas con uno, normalmente ya partes de facto en <strong>2</strong>.</p>
+
+    <h2>Amenazas y obstáculos</h2>
+    <div class="box">
+      <p><strong>Los bakemonos no deberían caer con una sola tirada.</strong> Primero se investigan, luego se comprenden, y solo entonces puede intentarse expulsarlos, sellarlos o cortar su ancla.</p>
+      <p>En esta aventura, el combate directo contra el Tsuchigumo no es la mejor salida. La clave es <strong>identificar el ancla</strong>, <strong>cerrar el puente</strong> y decidir <strong>qué precio está dispuesto a pagar el grupo</strong>.</p>
+    </div>
+  </div>
+<div id="personajes" class="section">
+    <span class="kicker">⛩ Personajes Pregenerados</span>
+    <h1>Los Agentes</h1>
+    <p class="lead">Tres miembros de Las Ocho Lanzas que compartieron destacamento con Isamu y juraron llevar sus cenizas a su madre, Okiya, en Shimokawa.</p>
+
+    <div class="box">
+      <p>Para <strong>2 jugadores</strong>: recomendado <strong>Ryū</strong> y <strong>Shizuku</strong>.<br>
+      Para <strong>3 jugadores</strong>: usa los tres personajes.<br>
+      Para <strong>4 jugadores</strong>: un cuarto personaje puede crearse con <strong>Trasfondo + Orgullo</strong> y un vínculo claro con Isamu o con la misión.</p>
+    </div>
+
+    <div class="box gold">
+      <h3>Motivación compartida</h3>
+      <p><strong>Isamu</strong> cayó en la última misión del destacamento. Antes de morir les hizo prometer que <strong>sus cenizas llegarían a manos de su madre</strong>. Esa madre es Okiya. Así que si ella se pierde, no solo cae una inocente: también se rompe una promesa sagrada entre camaradas.</p>
+    </div>
+
+    <hr class="brush-line"/>
+
+    <!-- PERSONAJE 1 -->
+    <div class="char-sheet" data-kanji="剣">
+      <div class="media-frame">
+        <div class="media-caption">Retrato del personaje</div>
+        <div class="media-slot portrait-slot">
+          <img src="../tejido-de-yomi/images/characters/kanemoto-ryu.png" alt="Kanemoto Ryū"
+               onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `&lt;div class=&quot;media-placeholder&quot;&gt;&lt;strong&gt;Imagen pendiente&lt;/strong&gt;&lt;div&gt;Coloca aquí el retrato de Kanemoto Ryū.&lt;/div&gt;&lt;div class=&quot;media-path&quot;&gt;../tejido-de-yomi/images/characters/kanemoto-ryu.png&lt;/div&gt;&lt;/div&gt;`);">
+        </div>
+      </div>
+
+      <span class="char-role">Ronin · El Espejo Roto</span>
+
+      <div class="char-grid">
+        <div class="char-stat"><span>Trasfondo</span><strong>Soldado</strong></div>
+        <div class="char-stat"><span>Orgullo</span><strong>Pacto · No romper una promesa hecha a un camarada caído</strong></div>
+        <div class="char-stat"><span>Onmyouji</span><strong>Ninguno</strong></div>
+        <div class="char-stat"><span>Edad</span><strong>37 años</strong></div>
+        <div class="char-stat"><span>Rasgo visible</span><strong>Cicatriz diagonal desde la ceja izquierda hasta la barbilla</strong></div>
+        <div class="char-stat"><span>Posesión especial</span><strong>Una katana sin vaina, atada con tela negra</strong></div>
+      </div>
+
+      <div class="locura-track">
+        <span>Maldición</span>
+        <div class="locura-pip filled" onclick="toggleLocura(this)">1</div>
+        <div class="locura-pip" onclick="toggleLocura(this)">2</div>
+        <div class="locura-pip" onclick="toggleLocura(this)">3</div>
+        <div class="locura-pip" onclick="toggleLocura(this)">4</div>
+        <div class="locura-pip" onclick="toggleLocura(this)">5</div>
+        <div class="locura-pip last" onclick="toggleLocura(this)">6</div>
+      </div>
+
+      <h3>¿Quién es?</h3>
+      <p>Ryū mató a su señor cuando comprendió que la Maldición ya lo había vaciado por dentro. Nadie le creyó. Las Ocho Lanzas sí. Desde entonces, vive con la convicción de que ver tarde una corrupción equivale a dejar morir a otros.</p>
+      <p>Habla poco, vigila mucho y cuando toma una decisión rara vez retrocede. Es el primero en ponerse entre el peligro y alguien que considera suyo.</p>
+
+      <h3>¿Qué puede hacer?</h3>
+      <p><strong>Trasfondo (Soldado):</strong> combate, proteger a compañeros, leer amenazas físicas, moverse con disciplina en terrenos difíciles, intimidar y resistir dolor o fatiga.</p>
+
+      <h3>Secreto</h3>
+      <div class="box">
+        <p>Ryū fue quien cerró los ojos de Isamu cuando murió. La urna la lleva él casi todo el viaje, aunque nunca habla de ello. Si Okiya le pregunta por el último momento de su hijo, no podrá responder con frialdad.</p>
+      </div>
+
+      <h3>Frases modelo</h3>
+      <div class="npc-quote">"El miedo no se discute. Se escucha."</div>
+      <div class="npc-quote">"Prometimos traerlo a casa. No voy a fallarle ahora."</div>
+
+      <h3>Vínculo con Isamu y con el grupo</h3>
+      <p>Isamu confiaba en él para aguantar la línea cuando todo se venía abajo. Ryū siente que debe proteger a Shizuku aunque ella no lo pida, y respeta a Mitsuru aunque le incomode lo mucho que el asceta entiende de lo invisible.</p>
+    </div>
+
+    <!-- PERSONAJE 2 -->
+    <div class="char-sheet" data-kanji="霊">
+      <div class="media-frame">
+        <div class="media-caption">Retrato del personaje</div>
+        <div class="media-slot portrait-slot">
+          <img src="../tejido-de-yomi/images/characters/shizuku.png" alt="Shizuku"
+               onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `&lt;div class=&quot;media-placeholder&quot;&gt;&lt;strong&gt;Imagen pendiente&lt;/strong&gt;&lt;div&gt;Coloca aquí el retrato de Shizuku.&lt;/div&gt;&lt;div class=&quot;media-path&quot;&gt;../tejido-de-yomi/images/characters/shizuku.png&lt;/div&gt;&lt;/div&gt;`);">
+        </div>
+      </div>
+
+      <span class="char-role">Onmyouji · La Voz del Velo</span>
+
+      <div class="char-grid">
+        <div class="char-stat"><span>Trasfondo</span><strong>Investigadora</strong></div>
+        <div class="char-stat"><span>Orgullo</span><strong>Extraño · Comprender lo sobrenatural antes de destruirlo</strong></div>
+        <div class="char-stat"><span>Onmyouji</span><strong>Exorcizar</strong></div>
+        <div class="char-stat"><span>Edad</span><strong>28 años</strong></div>
+        <div class="char-stat"><span>Rasgo visible</span><strong>Pañuelo blanco atado en la muñeca izquierda</strong></div>
+        <div class="char-stat"><span>Posesión especial</span><strong>Tablillas de madera con escritura roja</strong></div>
+      </div>
+
+      <div class="locura-track">
+        <span>Maldición</span>
+        <div class="locura-pip filled" onclick="toggleLocura(this)">1</div>
+        <div class="locura-pip filled" onclick="toggleLocura(this)">2</div>
+        <div class="locura-pip" onclick="toggleLocura(this)">3</div>
+        <div class="locura-pip" onclick="toggleLocura(this)">4</div>
+        <div class="locura-pip" onclick="toggleLocura(this)">5</div>
+        <div class="locura-pip last" onclick="toggleLocura(this)">6</div>
+      </div>
+
+      <h3>¿Quién es?</h3>
+      <p>Shizuku fue aprendiz de un gran onmyouji hasta que comprendió que muchos horrores no pueden purificarse sin antes ser nombrados. Desde entonces viaja con una mezcla peligrosa de método, compasión y obsesión.</p>
+      <p>Escucha a espíritus, recuerda presagios y casi siempre parece estar atendiendo a algo que el resto todavía no ha notado.</p>
+
+      <h3>¿Qué puede hacer?</h3>
+      <p><strong>Trasfondo (Investigadora):</strong> interpretar signos, hilar pistas, registrar lugares, leer símbolos, interrogar con paciencia y detectar contradicciones.<br>
+      <strong>Onmyouji (Exorcizar):</strong> sellos, rezos, nombres protectores, expulsión ritual de presencias y ruptura de vínculos impuros.</p>
+
+      <h3>Secreto</h3>
+      <div class="box">
+        <p>La marca bajo su pañuelo responde a ciertos lugares de Yomi. Shizuku sospecha que, si el Tsuchigumo la reconoce, podría intentar usarla como nuevo ancla.</p>
+      </div>
+
+      <h3>Frases modelo</h3>
+      <div class="npc-quote">"No me interesa lo que parece. Me interesa lo que insiste en estar aquí."</div>
+      <div class="npc-quote">"Si Okiya sigue respondiendo a su nombre, aún no está perdida."</div>
+
+      <h3>Vínculo con Isamu y con el grupo</h3>
+      <p>Fue la última persona que habló con Isamu antes de la misión que lo mató. Ryū le da una seguridad silenciosa que aprecia. Mitsuru le resulta una presencia serena, casi un contrapunto necesario a su impulso de saber demasiado.</p>
+    </div>
+
+    <!-- PERSONAJE 3 -->
+    <div class="char-sheet" data-kanji="山">
+      <div class="media-frame">
+        <div class="media-caption">Retrato del personaje</div>
+        <div class="media-slot portrait-slot">
+          <img src="../tejido-de-yomi/images/characters/fujiwara-mitsuru.png" alt="Fujiwara Mitsuru"
+               onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `&lt;div class=&quot;media-placeholder&quot;&gt;&lt;strong&gt;Imagen pendiente&lt;/strong&gt;&lt;div&gt;Coloca aquí el retrato de Fujiwara Mitsuru.&lt;/div&gt;&lt;div class=&quot;media-path&quot;&gt;../tejido-de-yomi/images/characters/fujiwara-mitsuru.png&lt;/div&gt;&lt;/div&gt;`);">
+        </div>
+      </div>
+
+      <span class="char-role">Yamabushi · El Monte que Camina</span>
+
+      <div class="char-grid">
+        <div class="char-stat"><span>Trasfondo</span><strong>Jornalero</strong></div>
+        <div class="char-stat"><span>Orgullo</span><strong>Fe · Mantener el equilibrio entre vivos, kami y muertos</strong></div>
+        <div class="char-stat"><span>Onmyouji</span><strong>Gishiki</strong></div>
+        <div class="char-stat"><span>Edad</span><strong>54 años</strong></div>
+        <div class="char-stat"><span>Rasgo visible</span><strong>Barba blanca y bastón de peregrino con campanillas</strong></div>
+        <div class="char-stat"><span>Posesión especial</span><strong>Un cuenco de bronce que vibra cerca de lo impuro</strong></div>
+      </div>
+
+      <div class="locura-track">
+        <span>Maldición</span>
+        <div class="locura-pip filled" onclick="toggleLocura(this)">1</div>
+        <div class="locura-pip filled" onclick="toggleLocura(this)">2</div>
+        <div class="locura-pip" onclick="toggleLocura(this)">3</div>
+        <div class="locura-pip" onclick="toggleLocura(this)">4</div>
+        <div class="locura-pip" onclick="toggleLocura(this)">5</div>
+        <div class="locura-pip last" onclick="toggleLocura(this)">6</div>
+      </div>
+
+      <h3>¿Quién es?</h3>
+      <p>Mitsuru lleva décadas subiendo montañas, cruzando santuarios olvidados y escuchando a los lugares antes de pisarlos. No presume de sabio: simplemente ha sobrevivido el tiempo suficiente como para reconocer cuándo la tierra deja de estar en paz.</p>
+      <p>Es pausado, devoto y difícil de alterar. Pero cuando algo le inquieta de verdad, sus campanillas enmudecen.</p>
+
+      <h3>¿Qué puede hacer?</h3>
+      <p><strong>Trasfondo (Jornalero):</strong> resistencia, viajes duros, esfuerzo físico, terreno, cuerda, cargas, plantas y trabajos manuales.<br>
+      <strong>Onmyouji (Gishiki):</strong> rituales, amuletos, purificaciones, sellos, ofrendas y pequeños actos sagrados que alteran el equilibrio espiritual.</p>
+
+      <h3>Secreto</h3>
+      <div class="box">
+        <p>Mitsuru visitó Shimokawa hace años y conoció a Okiya cuando todavía reía con facilidad. Reconocerla así, atrapada en el telar, puede quebrar incluso su calma.</p>
+      </div>
+
+      <h3>Frases modelo</h3>
+      <div class="npc-quote">"Los muertos no siempre quieren irse; a veces lo que quieren es ser escuchados."</div>
+      <div class="npc-quote">"Traer cenizas también es un ritual. No llegamos con las manos vacías."</div>
+
+      <h3>Vínculo con Isamu y con el grupo</h3>
+      <p>Fue quien aceptó en voz alta la promesa a Isamu cuando este agonizaba. Trata a Shizuku como a una discípula que nunca pidió y a Ryū como a un hombre que todavía puede perdonarse, aunque no lo crea.</p>
+    </div>
+  </div>
+<div id="aventura" class="section">
+    <span class="kicker">⛩ Aventura</span>
+    <h1>El Tejido de Yomi</h1>
+    <p class="lead">Versión rehecha: investigación abierta, red de pistas y resolución no lineal.</p>
+
+    <hr class="brush-line">
+
+    <div class="box gold">
+      <h3>Cómo dirigir esta versión</h3>
+      <p><strong>No empujes una escena concreta.</strong> Presenta la aldea, deja que el grupo elija adónde ir y usa el <strong>avance del tapiz</strong> para marcar el coste del tiempo, los errores y la indecisión.</p>
+      <p><strong>Las pistas importantes nunca desaparecen.</strong> Si fallan una tirada, la obtienen igualmente por otra vía, pero con una consecuencia.</p>
+      <p><strong>Desde el minuto uno el objetivo está claro:</strong> cumplir la promesa hecha a Isamu, localizar el foco, hallar el ancla del horror y romper el tejido antes del amanecer.</p>
+</div>
+<div class="box">
+<h3>La promesa a Isamu</h3>
+<p>El grupo llega con una <strong>urna funeraria</strong>. No es un detalle decorativo: es el corazón moral de la historia. Okiya no es una desconocida cualquiera, sino la madre del compañero muerto al que juraron traer de vuelta a casa. Puedes dejar que este elemento abra escenas de duelo, culpa, deber o incluso esperanza.</p>
+    </div>
+
+    <div class="box">
+      <h3>Sōsuke llegó antes</h3>
+      <p><strong>Tanaka Sōsuke</strong> no fue enviado después por una autoridad lejana: venía de otra zona y podía alcanzar Shimokawa antes que el resto. Su idea era sencilla: avisar a Okiya de vuestra llegada, preparar el terreno y esperaros en la aldea con comida caliente y una casa segura. En vez de eso encontró miedo, desapariciones y el sonido de un telar que no descansaba. Su cuervo es la última prueba de que llegó vivo. Después de eso, se esfumó como otros aldeanos antes que él.</p>
+    </div>
+
+    <h2>Red de pistas esencial</h2>
+    <table class="roll-table">
+      <tr>
+        <th>Revelación</th>
+        <th>Fuentes posibles</th>
+      </tr>
+      <tr>
+        <td><strong>La casa de Okiya es el foco</strong></td>
+        <td>La luz visible desde el pueblo · los hilos que convergen hacia ella · Jiro · el santuario invertido</td>
+      </tr>
+      <tr>
+        <td><strong>El huso negro ancla al Tsuchigumo</strong></td>
+        <td>Jiro recuerda que Okiya lo encontró · Okiya puede susurrarlo · visiones del santuario · registrar el telar</td>
+      </tr>
+      <tr>
+        <td><strong>La ruptura exige sal + fuego + acto ritual</strong></td>
+        <td>Santuario · recuerdos de Mitsuru · tablillas de Shizuku · conversación con el Tsuchigumo · símbolos del taller</td>
+      </tr>
+      <tr>
+        <td><strong>Kenji está siendo tejido al tapiz</strong></td>
+        <td>Su palma marcada · sus sueños · un hilo en su ropa · la reacción del cuenco de Mitsuru</td>
+      </tr>
+    </table>
+
+    <div class="rule-box">
+      <span class="rule-title">💡 Regla de oro</span>
+      <p>Cuando el grupo falle una investigación, responde con esta fórmula: <strong>sí, pero...</strong> Sí obtienen algo útil, pero el tapiz avanza, una puerta se cierra, un NPC entra en peligro o alguien deba hacer una tirada de Maldición o aceptar una consecuencia de impureza.</p>
+    </div>
+
+    <!-- PRÓLOGO -->
+    <div class="scene open" id="sc0">
+      <div class="scene-header" onclick="toggleScene('sc0')">
+        <div class="scene-num">P</div>
+        <div class="scene-header-text">
+          <span>Prólogo · 10 min</span>
+          <h3>La Misión en el Santuario del Camino</h3>
+        </div>
+        <span class="scene-arrow">▼</span>
+      </div>
+      <div class="scene-body">
+        <div class="media-frame">
+          <div class="media-caption">Escena sugerida</div>
+          <div class="media-slot">
+            <img src="../tejido-de-yomi/images/scenes/00-santuario-camino.png" alt="Santuario del camino" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `<div class=&quot;media-placeholder&quot;><strong>Imagen pendiente</strong><div>Santuario nevado, linterna roja, tres agentes ante el mensajero.</div><div class=&quot;media-path&quot;>../tejido-de-yomi/images/scenes/00-santuario-camino.png</div></div>`);">
+          </div>
+          <div class="asset-audio-wrap">
+            <div class="media-caption" style="border-bottom:none;background:none;padding:0 0 0.5rem;color:var(--red);">Música sugerida</div>
+            <audio controls preload="none"><source src="../tejido-de-yomi/audio/scenes/00-santuario-camino.mp3" type="audio/mpeg"></audio>
+            <div class="media-path">../tejido-de-yomi/audio/scenes/00-santuario-camino.mp3</div>
+          </div>
+        </div>
+
+        <div class="gm-voice">
+          La nieve silencia el bosque cuando un <strong>cuervo negro</strong> baja al torii del santuario y deja caer un pergamino atado con hilo azul. Es la señal de <strong>Tanaka Sōsuke</strong>, el aliado que venía de otra zona y debía llegar antes que vosotros a Shimokawa. El mensaje está escrito deprisa: <em>“He llegado antes. Okiya sigue viva, pero la casa respira y ya faltan vecinos. Jiro sabe más de lo que dice. Si no estoy esperándoos en la entrada, buscadme donde siga sonando el telar. No entreguéis la urna sin estar juntos.”</em> La misión deja de ser solo funeraria. Ahora sabéis que alguien os espera... o esperaba.</em>
+        </div>
+
+        <h3>Lo que ya saben antes de llegar</h3>
+        <ul style="margin-left:1.2rem;margin-bottom:1rem;">
+          <li>Okiya, la tejedora de Shimokawa, es <strong>la madre de Isamu</strong>. Entregarle la urna es una obligación moral del grupo.</li>
+          <li><strong>Tanaka Sōsuke</strong>, un aliado del mismo destacamento que venía de otra zona, se adelantó para esperaros en la aldea. Su cuervo demuestra que llegó y que detectó algo antinatural.</li>
+          <li>En Shimokawa no solo hay miedo: <strong>ya hay desaparecidos</strong>. Algunos vecinos se han esfumado después de acercarse demasiado a la casa de Okiya o al sendero del norte.</li>
+          <li>La misión no es matar a ciegas: es <strong>entender el mal, localizar su ancla, rescatar a quien se pueda y romper el puente</strong>.</li>
+          <li>El amanecer marca el límite. Si el tapiz se completa, Yomi tocará la aldea.</li>
+        </ul>
+
+        <div class="rule-box">
+          <span class="rule-title">💡 Roleo inicial útil</span>
+          <p>Pide a cada jugador que responda una sola pregunta: ¿qué señal le haría comprender que esta misión se parece demasiado a algo que ya vivió? Eso te da material para las futuras tentaciones del Tsuchigumo.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Acto I — Shimokawa como sandbox nocturno</h2>
+    <p>Puedes presentar todos estos lugares al mismo tiempo. La aldea es pequeña: nada impide ir de uno a otro. Tras cada visita importante, haz avanzar el tapiz +1 si se han demorado o si una tirada ha tenido coste.</p>
+
+    <div class="scene" id="sc1">
+      <div class="scene-header" onclick="toggleScene('sc1')">
+        <div class="scene-num">1</div>
+        <div class="scene-header-text">
+          <span>Nodo abierto</span>
+          <h3>Entrada a Shimokawa y lectura del terreno</h3>
+        </div>
+        <span class="scene-arrow">▼</span>
+      </div>
+      <div class="scene-body">
+        <div class="media-frame">
+          <div class="media-caption">Escena sugerida</div>
+          <div class="media-slot">
+            <img src="../tejido-de-yomi/images/scenes/01-shimokawa-llegada.png" alt="Llegada a Shimokawa" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `<div class=&quot;media-placeholder&quot;><strong>Imagen pendiente</strong><div>Aldea cerrada, nieve, casas en penumbra y una luz anómala al norte.</div><div class=&quot;media-path&quot;>../tejido-de-yomi/images/scenes/01-shimokawa-llegada.png</div></div>`);">
+          </div>
+          <div class="asset-audio-wrap">
+            <audio controls preload="none"><source src="../tejido-de-yomi/audio/scenes/01-shimokawa-llegada.mp3" type="audio/mpeg"></audio>
+            <div class="media-path">../tejido-de-yomi/audio/scenes/01-shimokawa-llegada.mp3</div>
+          </div>
+        </div>
+
+        <div class="gm-voice">
+          Shimokawa parece contener la respiración. Las puertas cerradas, el humo escaso, los tejados blancos y una única luz fija al norte. No es una invitación. Es una dirección.
+        </div>
+
+        <h3>Información que sale gratis</h3>
+        <ul style="margin-left:1.2rem;margin-bottom:1rem;">
+          <li>La casa de Okiya destaca físicamente por la luz antinatural.</li>
+          <li>Todas las huellas van hacia adentro o hacia el norte; casi ninguna se aleja de la casa de la tejedora.</li>
+          <li>El santuario local y la casa de Jiro son los únicos lugares que parecen “llamarlos” de forma evidente.</li>
+          <li>Un vecino susurra tras una puerta que <strong>un hombre de la lanza</strong> llegó antes al anochecer y no volvió. Describen a Sōsuke sin saber su nombre.</li>
+<li>Si alguien lleva la urna de Isamu a la vista, un par de vecinos reaccionan con un miedo reverencial inmediato: saben perfectamente a qué casa debía llegar.</li>
+        </ul>
+
+        <h3>Qué pueden intentar</h3>
+        <p><strong>Leer huellas:</strong> con 4+ saben que alguien arrastró peso desde el bosque hasta la casa de Okiya. Con 1–3 también lo descubren, pero oyen un telar a la espalda aunque no haya nadie.</p>
+        <p><strong>Hablar con vecinos tras la puerta:</strong> revelan que “la señora Okiya ya no canta al tejer” y que el sonido nunca cesa. Si fallan, nadie abre, pero un susurro desde dentro dice: “No miréis el telar.”</p>
+
+        <div class="clue-web">
+          <strong>Salidas desde aquí:</strong><br>
+          <span class="path-chip">Casa de Jiro</span>
+          <span class="path-chip">Santuario</span>
+          <span class="path-chip">Pozo y sendero norte</span>
+          <span class="path-chip">Casa de Okiya</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene" id="sc2">
+      <div class="scene-header" onclick="toggleScene('sc2')">
+        <div class="scene-num">2</div>
+        <div class="scene-header-text">
+          <span>Nodo social</span>
+          <h3>La casa de Jiro y el secreto de Kenji</h3>
+        </div>
+        <span class="scene-arrow">▼</span>
+      </div>
+      <div class="scene-body">
+        <div class="media-frame">
+          <div class="media-caption">Escena sugerida</div>
+          <div class="media-slot">
+            <img src="../tejido-de-yomi/images/scenes/02-jiro-y-kenji.png" alt="Jiro y Kenji" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `<div class=&quot;media-placeholder&quot;><strong>Imagen pendiente</strong><div>Interior pobre, anciano junto al brasero, niño desvelado con la palma marcada.</div><div class=&quot;media-path&quot;>../tejido-de-yomi/images/scenes/02-jiro-y-kenji.png</div></div>`);">
+          </div>
+          <div class="asset-audio-wrap">
+            <audio controls preload="none"><source src="../tejido-de-yomi/audio/scenes/02-jiro-y-kenji.mp3" type="audio/mpeg"></audio>
+            <div class="media-path">../tejido-de-yomi/audio/scenes/02-jiro-y-kenji.mp3</div>
+          </div>
+        </div>
+
+        <h3>Qué aporta Jiro</h3>
+        <ul style="margin-left:1.2rem;margin-bottom:1rem;">
+          <li>Okiya es la <strong>madre de Isamu</strong>. Jiro reconoce la urna en cuanto la ve y comprende quiénes sois antes de que terminéis la frase.</li>
+          <li><strong>Sōsuke</strong> llegó antes que vosotros, habló con Jiro, preguntó por Okiya y se fue hacia la casa cuando oyó el telar. No regresó.</li>
+          <li>No fue el primero en desaparecer: una lavandera, un carbonero y otro vecino se esfumaron del mismo modo en los últimos días. De uno de ellos solo apareció una manga enganchada en un seto, cosida con hilos negros.</li>
+          <li>Tras la muerte de su hijo, Okiya encontró en el bosque un <strong>huso negro antiguo</strong> y empezó a cambiar poco a poco.</li>
+          <li>El telar suena a deshoras y los hilos amanecen cada vez más lejos de su casa. Jiro guarda <strong>sal, una llave vieja</strong> y una culpa inmensa por no haber actuado antes.</li>
+        </ul>
+
+        <h3>Qué aporta Kenji</h3>
+        <p>Kenji vio manos con demasiados dedos, oyó al tapiz susurrar, vio entrar a <strong>Sōsuke</strong> por el lateral con la lanza envuelta y tiene una <strong>marca de araña</strong> en la palma. Si nadie le escucha con paciencia, lo cuenta de todos modos en sueños o sonámbulo.</p>
+
+        <div class="rule-box">
+          <span class="rule-title">⚠ Si fallan aquí</span>
+          <p>No ocultes la pista. Jiro duda, Kenji llora o alguien interrumpe, pero el grupo acaba sabiendo del <strong>huso</strong> y de la <strong>marca</strong>. El coste puede ser +1 al tapiz o que Kenji desaparezca más adelante.</p>
+        </div>
+
+        <h3>Recurso útil</h3>
+        <p>Jiro puede entregarles sal en abundancia, cuerda, una linterna y la llave lateral de la casa de Okiya. Tampoco necesita una tirada para confirmar lo más importante: si lleváis la urna de Isamu, os tratará como a la última esperanza real de la familia.</p>
+
+        <div class="clue-web">
+          <strong>Salidas desde aquí:</strong><br>
+          <span class="path-chip">Santuario</span>
+          <span class="path-chip">Casa de Okiya</span>
+          <span class="path-chip">Pozo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene" id="sc3">
+      <div class="scene-header" onclick="toggleScene('sc3')">
+        <div class="scene-num">3</div>
+        <div class="scene-header-text">
+          <span>Nodo espiritual</span>
+          <h3>El santuario invertido</h3>
+        </div>
+        <span class="scene-arrow">▼</span>
+      </div>
+      <div class="scene-body">
+        <div class="media-frame">
+          <div class="media-caption">Nodo visual</div>
+          <div class="media-slot">
+            <img src="../tejido-de-yomi/images/scenes/03-santuario-invertido.png" alt="Santuario invertido" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `<div class=&quot;media-placeholder&quot;><strong>Imagen pendiente</strong><div>Santuario corrompido, ofrendas invertidas, cuenco con tierra negra y filamentos.</div><div class=&quot;media-path&quot;>../tejido-de-yomi/images/scenes/03-santuario-invertido.png</div></div>`);">
+          </div>
+          <div class="asset-audio-wrap">
+            <audio controls preload="none"><source src="../tejido-de-yomi/audio/scenes/03-santuario-invertido.mp3" type="audio/mpeg"></audio>
+            <div class="media-path">../tejido-de-yomi/audio/scenes/03-santuario-invertido.mp3</div>
+          </div>
+        </div>
+        <h3>Qué se ve</h3>
+        <p>La imagen del kami está cubierta, las ofrendas miran hacia dentro y un cuenco de arroz contiene tierra negra mezclada con filamentos. El lugar no protege: <strong>absorbe</strong>.</p>
+
+        <h3>Lo que revela</h3>
+        <ul style="margin-left:1.2rem;margin-bottom:1rem;">
+          <li>Alguien ha convertido una plegaria en invocación.</li>
+          <li>La ruptura exige un acto inverso: <strong>sal, fuego y nombrar lo que no debe estar</strong>.</li>
+          <li>Con 6 o una gran idea, Shizuku o Mitsuru pueden recibir una visión breve: un objeto oscuro bajo el telar, latiendo como un corazón de madera.</li>
+        </ul>
+
+        <p>Con un fallo, la visión llega igualmente, pero el personaje toca Yomi durante un instante: <strong>marca 1 de Maldición</strong> o deja atrás una sombra que luego lo seguirá hasta la casa de Okiya. No niegues la pista: cobra el precio.</p>
+
+        <div class="clue-web">
+          <strong>Salidas desde aquí:</strong><br>
+          <span class="path-chip">Casa de Okiya</span>
+          <span class="path-chip">Pozo y sendero</span>
+          <span class="path-chip">Taller de teñido</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene" id="sc4">
+      <div class="scene-header" onclick="toggleScene('sc4')">
+        <div class="scene-num">4</div>
+        <div class="scene-header-text">
+          <span>Nodo físico</span>
+          <h3>Pozo, sendero norte y taller de teñido</h3>
+        </div>
+        <span class="scene-arrow">▼</span>
+      </div>
+      <div class="scene-body">
+        <p>Este nodo reúne dos espacios pequeños pero muy útiles para desatascar la partida.</p>
+
+        <div class="asset-audio-wrap" style="margin-bottom:1rem;">
+          <div class="media-caption" style="border-bottom:none;background:none;padding:0 0 0.5rem;color:var(--red);">Música asociada al nodo</div>
+          <audio controls preload="none"><source src="../tejido-de-yomi/audio/scenes/04-pozo-taller-nodo.mp3" type="audio/mpeg"></audio>
+          <div class="media-path">../tejido-de-yomi/audio/scenes/04-pozo-taller-nodo.mp3</div>
+        </div>
+
+        <div class="media-frame">
+          <div class="media-caption">Subnodo visual · Pozo y sendero</div>
+          <div class="media-slot">
+            <img src="../tejido-de-yomi/images/scenes/04-pozo-y-sendero.png" alt="Pozo y sendero norte" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `<div class=&quot;media-placeholder&quot;><strong>Imagen pendiente</strong><div>Pozo helado, sendero norte y rastro de hilos negros hacia el bosque.</div><div class=&quot;media-path&quot;>../tejido-de-yomi/images/scenes/04-pozo-y-sendero.png</div></div>`);">
+          </div>
+          <div class="asset-audio-wrap">
+            <audio controls preload="none"><source src="../tejido-de-yomi/audio/scenes/05-pozo-y-sendero.mp3" type="audio/mpeg"></audio>
+            <div class="media-path">../tejido-de-yomi/audio/scenes/05-pozo-y-sendero.mp3</div>
+          </div>
+        </div>
+
+        <h3>Pozo y sendero</h3>
+        <p>Hay hilos negros tensados hacia el bosque, un gato que atraviesa una empalizada y marcas de arrastre. Si siguen el rastro, encuentran el lugar donde Okiya halló el huso: un claro con tierra removida y restos de seda negra.</p>
+
+        <div class="media-frame">
+          <div class="media-caption">Subnodo visual · Taller de teñido</div>
+          <div class="media-slot">
+            <img src="../tejido-de-yomi/images/scenes/05-taller-tenido.png" alt="Taller de teñido abandonado" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `<div class=&quot;media-placeholder&quot;><strong>Imagen pendiente</strong><div>Tinas secas, sal para curtir tejidos, braseros apagados y símbolos protectores borrados.</div><div class=&quot;media-path&quot;>../tejido-de-yomi/images/scenes/05-taller-tenido.png</div></div>`);">
+          </div>
+          <div class="asset-audio-wrap">
+            <audio controls preload="none"><source src="../tejido-de-yomi/audio/scenes/06-taller-tenido.mp3" type="audio/mpeg"></audio>
+            <div class="media-path">../tejido-de-yomi/audio/scenes/06-taller-tenido.mp3</div>
+          </div>
+        </div>
+
+        <h3>Taller de teñido abandonado</h3>
+        <p>Quedan cenizas, sal para curtir tejidos y símbolos protectores a medio borrar. Aquí puede aparecer una nota o recuerdo útil: <em>“El hilo oscuro no se corta: se purifica y se devuelve.”</em></p>
+
+        <div class="rule-box">
+          <span class="rule-title">💡 Para grupos perdidos</span>
+          <p>Si ves que no conectan las piezas, usa este nodo para reunirlo todo: hilos que llevan a Okiya, recuerdo del huso y materiales físicos para actuar al final.</p>
+        </div>
+
+        <div class="clue-web">
+          <strong>Salidas desde aquí:</strong><br>
+          <span class="path-chip">Casa de Okiya</span>
+          <span class="path-chip">Regreso a Jiro</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>Acto II — La casa de Okiya por capas</h2>
+    <p>La casa no es una única escena. Es un pequeño espacio de exploración con varias entradas y revelaciones. Los personajes pueden llegar pronto o tarde, mejor preparados o casi a ciegas.</p>
+
+    <div class="scene" id="sc5">
+      <div class="scene-header" onclick="toggleScene('sc5')">
+        <div class="scene-num">5</div>
+        <div class="scene-header-text">
+          <span>Exploración</span>
+          <h3>El umbral, los hilos y el mensajero perdido</h3>
+        </div>
+        <span class="scene-arrow">▼</span>
+      </div>
+      <div class="scene-body">
+        <div class="media-frame">
+          <div class="media-caption">Escena sugerida</div>
+          <div class="media-slot">
+            <img src="../tejido-de-yomi/images/scenes/06-casa-okiya-umbral.png" alt="Casa de Okiya" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `<div class=&quot;media-placeholder&quot;><strong>Imagen pendiente</strong><div>Casa aislada al borde del bosque, luz inmóvil, hilos sobre los marcos y la sombra de alguien caído tras el shōji.</div><div class=&quot;media-path&quot;>../tejido-de-yomi/images/scenes/06-casa-okiya-umbral.png</div></div>`);">
+          </div>
+          <div class="asset-audio-wrap">
+            <audio controls preload="none"><source src="../tejido-de-yomi/audio/scenes/07-casa-okiya-umbral.mp3" type="audio/mpeg"></audio>
+            <div class="media-path">../tejido-de-yomi/audio/scenes/07-casa-okiya-umbral.mp3</div>
+          </div>
+        </div>
+
+        <h3>Entradas posibles</h3>
+        <ul style="margin-left:1.2rem;margin-bottom:1rem;">
+          <li><strong>Puerta principal:</strong> fuerza, respeto o una invitación imposible.</li>
+          <li><strong>Puerta lateral:</strong> con la llave de Jiro o con herramientas.</li>
+          <li><strong>Postigos:</strong> visión parcial del interior, muy útil para sembrar miedo.</li>
+        </ul>
+
+        <h3>Lo que siempre deben descubrir aquí</h3>
+        <ul style="margin-left:1.2rem;margin-bottom:1rem;">
+          <li><strong>Sōsuke</strong>, el aliado que se adelantó, sigue vivo, atrapado en un sueño de Yomi.</li>
+          <li>El tapiz representa Shimokawa y una puerta casi abierta.</li>
+          <li>La casa está conectada a toda la aldea por hilos vivos, y las desapariciones del pueblo han pasado por aquí de un modo u otro.</li>
+        </ul>
+
+        <p>Un fallo al entrar no bloquea nada: hace ruido, despierta algo, rompe un sello improvisado o provoca una tirada de Maldición o un avance inmediato del tapiz al ver el interior moverse como si respirara.</p>
+      </div>
+    </div>
+
+    <div class="scene" id="sc6">
+      <div class="scene-header" onclick="toggleScene('sc6')">
+        <div class="scene-num">6</div>
+        <div class="scene-header-text">
+          <span>Hallazgo clave</span>
+          <h3>El huso bajo el telar</h3>
+        </div>
+        <span class="scene-arrow">▼</span>
+      </div>
+      <div class="scene-body">
+        <div class="media-frame">
+          <div class="media-caption">Nodo visual</div>
+          <div class="media-slot">
+            <img src="../tejido-de-yomi/images/scenes/07-huso-bajo-telar.png" alt="El huso bajo el telar" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `<div class=&quot;media-placeholder&quot;><strong>Imagen pendiente</strong><div>Base del telar abierta, huso negro oculto entre hilo tensado y polvo antiguo.</div><div class=&quot;media-path&quot;>../tejido-de-yomi/images/scenes/07-huso-bajo-telar.png</div></div>`);">
+          </div>
+          <div class="asset-audio-wrap">
+            <audio controls preload="none"><source src="../tejido-de-yomi/audio/scenes/08-huso-bajo-telar.mp3" type="audio/mpeg"></audio>
+            <div class="media-path">../tejido-de-yomi/audio/scenes/08-huso-bajo-telar.mp3</div>
+          </div>
+        </div>
+        <p>El huso es el ancla. Puedes esconderlo <strong>bajo el telar</strong>, en un falso cajón o tejido dentro de la base, pero debe ser localizable por al menos tres vías:</p>
+        <ul style="margin-left:1.2rem;margin-bottom:1rem;">
+          <li>La visión del santuario.</li>
+          <li>Las palabras de Okiya si logran alcanzarla.</li>
+          <li>La lógica física de la escena: todo el hilo converge en ese punto.</li>
+        </ul>
+
+        <div class="rule-box">
+          <span class="rule-title">⚠ Muy importante</span>
+          <p>No pidas una tirada única del tipo “si fallas, no encuentras el huso”. Pide cómo lo buscan. Una buena idea lo revela. Una tirada sirve para medir el coste, no la existencia de la pista.</p>
+        </div>
+
+        <p>Cuando lo saquen o lo toquen, el Tsuchigumo reacciona al instante: los hilos se tensan, Okiya deja escapar un gemido humano y el tapiz avanza de golpe.</p>
+      </div>
+    </div>
+
+    <div class="scene" id="sc7">
+      <div class="scene-header" onclick="toggleScene('sc7')">
+        <div class="scene-num">7</div>
+        <div class="scene-header-text">
+          <span>Confrontación</span>
+          <h3>Okiya, el Tsuchigumo y la decisión moral</h3>
+        </div>
+        <span class="scene-arrow">▼</span>
+      </div>
+      <div class="scene-body">
+        <div class="media-frame">
+          <div class="media-caption">Escena sugerida</div>
+          <div class="media-slot">
+            <img src="../tejido-de-yomi/images/scenes/08-okiya-tsuchigumo.png" alt="Tapiz de Yomi" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `<div class=&quot;media-placeholder&quot;><strong>Imagen pendiente</strong><div>Okiya sometida por el Tsuchigumo, tapiz descomunal y el rostro de Isamu evocando una grieta en la posesión.</div><div class=&quot;media-path&quot;>../tejido-de-yomi/images/scenes/08-okiya-tsuchigumo.png</div></div>`);">
+          </div>
+          <div class="asset-audio-wrap">
+            <audio controls preload="none"><source src="../tejido-de-yomi/audio/scenes/09-okiya-tsuchigumo.mp3" type="audio/mpeg"></audio>
+            <div class="media-path">../tejido-de-yomi/audio/scenes/09-okiya-tsuchigumo.mp3</div>
+          </div>
+        </div>
+
+        <div class="gm-voice">
+          Okiya no se gira enseguida. El telar sigue solo, como si recordara el movimiento de unas manos que ya no son humanas. Cuando la voz llega, suena vieja, fría y paciente: “No habéis venido a detenerme. Habéis venido a elegir qué parte del pueblo estáis dispuestos a perder.”
+        </div>
+
+        <h3>Qué busca esta escena</h3>
+        <p>No es un monólogo del villano. Es el momento en que el grupo une las piezas y decide <strong>qué precio acepta pagar</strong>.</p>
+
+        <h3>Verdades que pueden arrancarle</h3>
+        <ul style="margin-left:1.2rem;margin-bottom:1rem;">
+          <li>El tapiz es un puente y el huso su clavo.</li>
+          <li>Okiya sigue dentro, pero cada minuto cuenta menos como humana y más como hilo.</li>
+          <li>Romper el puente puede salvar la aldea, pero no garantiza salvar a Okiya.</li>
+<li>Nombrar a <strong>Isamu</strong>, colocar sus cenizas ante el telar o recordar a Okiya la promesa de su hijo puede abrir una grieta emocional en la posesión y devolverle un instante de voluntad.</li>
+        </ul>
+
+        <p>Si el grupo se queda sin saber qué hacer, Okiya puede susurrar una sola ayuda: <em>“No mires la tela. Mira el madero.”</em></p>
+      </div>
+    </div>
+
+    <h2>Acto III — Resoluciones múltiples</h2>
+
+    <div class="scene" id="sc8">
+      <div class="scene-header" onclick="toggleScene('sc8')">
+        <div class="scene-num">8</div>
+        <div class="scene-header-text">
+          <span>Clímax</span>
+          <h3>Cuatro formas de cerrar la noche</h3>
+        </div>
+        <span class="scene-arrow">▼</span>
+      </div>
+      <div class="scene-body">
+        <div class="asset-audio-wrap" style="margin-bottom:1rem;">
+          <div class="media-caption" style="border-bottom:none;background:none;padding:0 0 0.5rem;color:var(--red);">Música sugerida para el clímax</div>
+          <audio controls preload="none"><source src="../tejido-de-yomi/audio/scenes/10-climax-general.mp3" type="audio/mpeg"></audio>
+          <div class="media-path">../tejido-de-yomi/audio/scenes/10-climax-general.mp3</div>
+        </div>
+
+        <div class="tool-map-grid" style="margin-bottom:1rem;">
+          <figure class="tool-map-figure">
+            <h3>Opción A · Exorcismo</h3>
+            <img src="../tejido-de-yomi/images/scenes/09-exorcismo-completo.png" alt="Exorcismo completo" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `&lt;div class=&quot;media-placeholder&quot;&gt;&lt;strong&gt;Imagen pendiente&lt;/strong&gt;&lt;div&gt;Ritual de sal, fuego y nombre verdadero frente al telar.&lt;/div&gt;&lt;div class=&quot;media-path&quot;&gt;../tejido-de-yomi/images/scenes/09-exorcismo-completo.png&lt;/div&gt;&lt;/div&gt;`);">
+            <div class="asset-audio-wrap" style="margin-top:0.7rem;">
+              <audio controls preload="none"><source src="../tejido-de-yomi/audio/scenes/11-exorcismo-completo.mp3" type="audio/mpeg"></audio>
+              <div class="media-path">../tejido-de-yomi/audio/scenes/11-exorcismo-completo.mp3</div>
+            </div>
+            <figcaption>La vía más limpia, si han reunido todas las piezas.</figcaption>
+          </figure>
+          <figure class="tool-map-figure">
+            <h3>Opción B · Purga brutal</h3>
+            <img src="../tejido-de-yomi/images/scenes/10-purga-brutal.png" alt="Purga brutal" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `&lt;div class=&quot;media-placeholder&quot;&gt;&lt;strong&gt;Imagen pendiente&lt;/strong&gt;&lt;div&gt;Fuego salado, hilos ardiendo y Okiya al borde de consumirse con el tapiz.&lt;/div&gt;&lt;div class=&quot;media-path&quot;&gt;../tejido-de-yomi/images/scenes/10-purga-brutal.png&lt;/div&gt;&lt;/div&gt;`);">
+            <div class="asset-audio-wrap" style="margin-top:0.7rem;">
+              <audio controls preload="none"><source src="../tejido-de-yomi/audio/scenes/12-purga-brutal.mp3" type="audio/mpeg"></audio>
+              <div class="media-path">../tejido-de-yomi/audio/scenes/12-purga-brutal.mp3</div>
+            </div>
+            <figcaption>Rápida, eficaz y casi siempre cruel.</figcaption>
+          </figure>
+          <figure class="tool-map-figure">
+            <h3>Opción C · Sacrificio</h3>
+            <img src="../tejido-de-yomi/images/scenes/11-sacrificio-vinculo.png" alt="Sacrificio de vínculo" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `&lt;div class=&quot;media-placeholder&quot;&gt;&lt;strong&gt;Imagen pendiente&lt;/strong&gt;&lt;div&gt;Un agente se ofrece como anzuelo ritual mientras el telar arranca hilos del alma.&lt;/div&gt;&lt;div class=&quot;media-path&quot;&gt;../tejido-de-yomi/images/scenes/11-sacrificio-vinculo.png&lt;/div&gt;&lt;/div&gt;`);">
+            <div class="asset-audio-wrap" style="margin-top:0.7rem;">
+              <audio controls preload="none"><source src="../tejido-de-yomi/audio/scenes/13-sacrificio-vinculo.mp3" type="audio/mpeg"></audio>
+              <div class="media-path">../tejido-de-yomi/audio/scenes/13-sacrificio-vinculo.mp3</div>
+            </div>
+            <figcaption>Cierra el puente, pero deja cicatriz.</figcaption>
+          </figure>
+          <figure class="tool-map-figure">
+            <h3>Opción D · Negociación</h3>
+            <img src="../tejido-de-yomi/images/scenes/12-negociacion-terrible.png" alt="Negociación terrible" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `&lt;div class=&quot;media-placeholder&quot;&gt;&lt;strong&gt;Imagen pendiente&lt;/strong&gt;&lt;div&gt;El Tsuchigumo pacta desde el telar y exige memoria, nombre o futuro.&lt;/div&gt;&lt;div class=&quot;media-path&quot;&gt;../tejido-de-yomi/images/scenes/12-negociacion-terrible.png&lt;/div&gt;&lt;/div&gt;`);">
+            <div class="asset-audio-wrap" style="margin-top:0.7rem;">
+              <audio controls preload="none"><source src="../tejido-de-yomi/audio/scenes/14-negociacion-terrible.mp3" type="audio/mpeg"></audio>
+              <div class="media-path">../tejido-de-yomi/audio/scenes/14-negociacion-terrible.mp3</div>
+            </div>
+            <figcaption>La victoria posible que siempre deja deuda.</figcaption>
+          </figure>
+        </div>
+
+        <h3>Opción A · Exorcismo completo</h3>
+        <p>Nombre verdadero + huso expuesto + sal + fuego. Si además incorporan la <strong>urna de Isamu</strong> al ritual o hacen que Okiya escuche el nombre de su hijo, esta es la vía con más probabilidades de salvarla.</p>
+
+        <h3>Opción B · Purga brutal</h3>
+        <p>Quemar tapiz y huso con sal, aunque el Tsuchigumo se manifieste físicamente. Salva la aldea casi seguro, pero Okiya puede morir o quedar vacía.</p>
+
+        <h3>Opción C · Sacrificio de vínculo</h3>
+        <p>Shizuku u otro personaje marcado se ofrece como anzuelo ritual. Cierra el puente, pero deja una cicatriz permanente o una deuda con Yomi. La urna de Isamu puede actuar como foco secundario para que el sacrificio no caiga por completo sobre una sola persona.</p>
+
+        <h3>Opción D · Negociación terrible</h3>
+        <p>El Tsuchigumo ofrece marcharse si le entregan algo: memoria, nombre, futuro, un moribundo, la propia Okiya. No es una opción justa, pero es una opción dramática.</p>
+
+        <div class="rule-box">
+          <span class="rule-title">💡 Resolución abierta</span>
+          <p>Si tus jugadores imaginan un método coherente con lo descubierto —cortar los hilos del pueblo mientras otro sella el santuario, hundir el huso en agua consagrada, usar el cuenco de Mitsuru como resonador—, déjalo existir. Esta versión no está hecha para castigar creatividad.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="scene" id="sc9">
+      <div class="scene-header" onclick="toggleScene('sc9')">
+        <div class="scene-num">9</div>
+        <div class="scene-header-text">
+          <span>Epílogo</span>
+          <h3>El amanecer y lo que queda</h3>
+        </div>
+        <span class="scene-arrow">▼</span>
+      </div>
+      <div class="scene-body">
+        <div class="media-frame">
+          <div class="media-caption">Escena sugerida</div>
+          <div class="media-slot">
+            <img src="../tejido-de-yomi/images/scenes/13-amanecer-shimokawa.png" alt="Amanecer en Shimokawa" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `<div class=&quot;media-placeholder&quot;><strong>Imagen pendiente</strong><div>Amanecer frío sobre la aldea, humo tenue, supervivientes y silencio posterior.</div><div class=&quot;media-path&quot;>../tejido-de-yomi/images/scenes/13-amanecer-shimokawa.png</div></div>`);">
+          </div>
+          <div class="asset-audio-wrap">
+            <audio controls preload="none"><source src="../tejido-de-yomi/audio/scenes/15-amanecer-shimokawa.mp3" type="audio/mpeg"></audio>
+            <div class="media-path">../tejido-de-yomi/audio/scenes/15-amanecer-shimokawa.mp3</div>
+          </div>
+        </div>
+
+        <p>Escoge o mezcla finales según el precio pagado:</p>
+        <ul style="margin-left:1.2rem;margin-bottom:1rem;">
+          <li><strong>Victoria amarga:</strong> la aldea vive, Okiya no.</li>
+          <li><strong>Victoria frágil:</strong> Okiya sobrevive, recibe las cenizas de Isamu y alguien del grupo queda tocado por Yomi.</li>
+          <li><strong>Victoria sucia:</strong> el pueblo se salva a cambio de una mentira o un pacto inconfesable.</li>
+          <li><strong>Fracaso parcial:</strong> el puente no se abrió del todo, pero algo pasó al otro lado con ellos dentro.</li>
+        </ul>
+
+        <div class="box gold">
+          <p><strong>Gancho final:</strong> entre las cenizas, en la memoria recuperada de Sōsuke o en las últimas palabras conscientes de Okiya aparece una frase: “El huso de Okiya no era único.” El horror no termina aquí.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════ BAKEMONOS ════ -->
+  <div id="enemigos" class="section">
+    <span class="kicker">⛩ Bakemonos</span>
+    <h1>Las Criaturas de Yomi</h1>
+    <p class="lead">En Ocho Lanzas no importan tanto las estadísticas como la forma en que una amenaza corrompe, tienta y obliga a pagar un precio.</p>
+
+    <hr class="brush-line"/>
+
+    <!-- TSUCHIGUMO -->
+    <div class="enemy-block">
+      <div class="enemy-header">
+        <h3>Tsuchigumo de Yomi · La Tejedora de Almas</h3>
+        <span class="enemy-tier">Bakemono Mayor · Antagonista principal</span>
+      </div>
+      <div class="enemy-body">
+        <div class="media-frame">
+          <div class="media-caption">Ilustración de bakemono</div>
+          <div class="media-slot portrait-slot">
+            <img src="../tejido-de-yomi/images/bakemonos/tsuchigumo-yomi.png" alt="Tsuchigumo de Yomi" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `&lt;div class=&quot;media-placeholder&quot;&gt;&lt;strong&gt;Imagen pendiente&lt;/strong&gt;&lt;div&gt;Tsuchigumo de Yomi emergiendo desde Okiya y el telar.&lt;/div&gt;&lt;div class=&quot;media-path&quot;&gt;../tejido-de-yomi/images/bakemonos/tsuchigumo-yomi.png&lt;/div&gt;&lt;/div&gt;`);">
+          </div>
+        </div>
+        <p>Un demonio araña nacido en Yomi. No posee un cuerpo estable en este mundo: necesita un ancla material y una víctima a la que someter. En Shimokawa, ese ancla es el <strong>huso negro</strong> y esa víctima es <strong>Okiya</strong>.</p>
+
+        <div class="enemy-traits">
+          <span class="trait">Poseedor</span>
+          <span class="trait">Tejedor de almas</span>
+          <span class="trait">Astuto</span>
+          <span class="trait">Paciencia inhumana</span>
+          <span class="trait">Anclado a objeto ritual</span>
+        </div>
+
+        <div class="enemy-actions">
+          <div class="enemy-action">
+            <strong>🕸 Tejer el hilo</strong>
+            <p>Puede atrapar a una persona en un sueño de Yomi. No lo resuelvas como una tirada enfrentada rígida: pide una <strong>tirada de Riesgo</strong>. Si el personaje se expone al tapiz o mira demasiado, añade <strong>dado Maldito</strong>. En caso de coste, queda atrapado, desorientado o separado del grupo.</p>
+          </div>
+          <div class="enemy-action">
+            <strong>🕷 Presencia que impone Maldición</strong>
+            <p>Cuando se manifiesta a través de Okiya, la escena se vuelve espiritualmente insoportable. Pide <strong>tiradas de Maldición</strong> a quienes contemplen de lleno la revelación o acepten mirar lo que hay detrás del telar.</p>
+          </div>
+          <div class="enemy-action">
+            <strong>🩸 Hilos de control</strong>
+            <p>Puede inmovilizar, cerrar puertas, mover objetos o separar al grupo. Liberarse suele requerir una <strong>tirada de Riesgo</strong> física o la ayuda directa de otro personaje.</p>
+          </div>
+        </div>
+
+        <h3 style="color:var(--gold-light);margin-top:1.2rem;">Cómo derrotarlo</h3>
+        <p style="color:rgba(245,234,216,0.8);">El Tsuchigumo no debería caer por daño convencional. Lo correcto en Ocho Lanzas es <strong>comprender la amenaza</strong>, <strong>identificar su ancla</strong> y <strong>romper el vínculo</strong> mediante fuego, sal, nombre verdadero, ritual o sacrificio.</p>
+        <ul style="margin-left:1.2rem;color:rgba(245,234,216,0.8);">
+          <li><strong>Exorcismo:</strong> nombre, huso expuesto y acto ritual.</li>
+          <li><strong>Purga:</strong> destruir huso y tapiz asumiendo el precio para Okiya o para el grupo.</li>
+          <li><strong>Ruptura emocional:</strong> usar el nombre de Isamu y las cenizas para devolverle a Okiya un instante de voluntad.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- KAIBYŌ -->
+    <div class="enemy-block">
+      <div class="enemy-header">
+        <h3>Kaibyō · Los Gatos-Sombra</h3>
+        <span class="enemy-tier">Bakemono Menor · Presencia</span>
+      </div>
+      <div class="enemy-body">
+        <div class="media-frame">
+          <div class="media-caption">Ilustración de bakemono</div>
+          <div class="media-slot portrait-slot">
+            <img src="../tejido-de-yomi/images/bakemonos/kaibyo-gatos-sombra.png" alt="Kaibyō · Gatos-sombra" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `&lt;div class=&quot;media-placeholder&quot;&gt;&lt;strong&gt;Imagen pendiente&lt;/strong&gt;&lt;div&gt;Gato espectral de ojos húmedos y silueta torcida entre tejados nevados.&lt;/div&gt;&lt;div class=&quot;media-path&quot;&gt;../tejido-de-yomi/images/bakemonos/kaibyo-gatos-sombra.png&lt;/div&gt;&lt;/div&gt;`);">
+          </div>
+        </div>
+        <p>Gatos muertos cerca de la casa y reanimados por la emanación del tapiz. No son grandes enemigos, pero sí ojos, presagios y recordatorios de que toda la aldea está siendo tocada por Yomi.</p>
+        <div class="enemy-traits">
+          <span class="trait">Espectral</span>
+          <span class="trait">Detectores</span>
+          <span class="trait">Inquietantes</span>
+        </div>
+        <div class="enemy-actions">
+          <div class="enemy-action">
+            <strong>👁 Ojos del tapiz</strong>
+            <p>Si el grupo los ignora, el Tsuchigumo sabe antes lo que pretenden hacer.</p>
+          </div>
+          <div class="enemy-action">
+            <strong>🐱 Presencia inquietante</strong>
+            <p>Úsalos para pedir <strong>tiradas de Maldición</strong>, sembrar sospecha o hacer visible que lo impuro ya no se limita a la casa de Okiya.</p>
+          </div>
+        </div>
+        <h3 style="color:var(--gold-light);margin-top:1.2rem;">Cómo ahuyentarlos</h3>
+        <p style="color:rgba(245,234,216,0.8);">Sal, fuego, campanillas rituales o la desaparición del tapiz. Son síntoma antes que núcleo del problema.</p>
+      </div>
+    </div>
+
+    <!-- EL TAPIZ -->
+    <div class="enemy-block">
+      <div class="enemy-header">
+        <h3>El Tapiz de Yomi · La Puerta Tejida</h3>
+        <span class="enemy-tier">Objeto Maldito · Objetivo central</span>
+      </div>
+      <div class="enemy-body">
+        <div class="media-frame">
+          <div class="media-caption">Ilustración de bakemono</div>
+          <div class="media-slot portrait-slot">
+            <img src="../tejido-de-yomi/images/bakemonos/tapiz-puerta-yomi.png" alt="El Tapiz de Yomi" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `&lt;div class=&quot;media-placeholder&quot;&gt;&lt;strong&gt;Imagen pendiente&lt;/strong&gt;&lt;div&gt;Tapiz maldito con la aldea tejida y la puerta de Yomi casi abierta.&lt;/div&gt;&lt;div class=&quot;media-path&quot;&gt;../tejido-de-yomi/images/bakemonos/tapiz-puerta-yomi.png&lt;/div&gt;&lt;/div&gt;`);">
+          </div>
+        </div>
+        <p>El tapiz no es un monstruo, pero sí una amenaza viva. Conecta a Shimokawa con Yomi, altera los sueños, vuelve porosos los límites de la casa y extiende hilos por toda la aldea.</p>
+        <div class="enemy-traits">
+          <span class="trait">Portal incompleto</span>
+          <span class="trait">Trampa mental</span>
+          <span class="trait">Crece solo</span>
+        </div>
+        <div class="enemy-actions">
+          <div class="enemy-action">
+            <strong>🧵 Mirada que atrapa</strong>
+            <p>Mirarlo sin preparación o demasiado tiempo exige una <strong>tirada de Maldición</strong> o un coste narrativo severo.</p>
+          </div>
+          <div class="enemy-action">
+            <strong>⏰ El alba se acerca</strong>
+            <p>Si amanece con el tapiz intacto, la grieta termina de abrirse y la historia entra en fracaso o en horror a gran escala.</p>
+          </div>
+        </div>
+        <h3 style="color:var(--gold-light);margin-top:1.2rem;">Destruirlo</h3>
+        <p style="color:rgba(245,234,216,0.8);">El fuego con sal, el ritual correcto o una ruptura del vínculo con el huso pueden cerrarlo. Hacerlo mal no debería “no funcionar”: debería <strong>funcionar con un precio</strong>.</p>
+      </div>
+    </div>
+  </div>
+<div id="npcs" class="section">
+    <span class="kicker">⛩ Personas de Shimokawa</span>
+    <h1>Los que Quedaron</h1>
+    <p class="lead">Los habitantes de la aldea. No son obstáculos: son personas con miedo, historia y dignidad.</p>
+
+    <hr class="brush-line">
+
+    <div class="npc-card">
+      <span class="npc-tag">Anciano del Pueblo</span>
+      
+      <div class="media-frame">
+        <div class="media-caption">Retrato / referencia</div>
+        <div class="media-slot portrait-slot">
+          <img src="../tejido-de-yomi/images/npcs/jiro.png" alt="Jiro · El Que Recuerda" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `<div class=&quot;media-placeholder&quot;><strong>Imagen pendiente</strong><div>Añade aquí el retrato o ilustración de Jiro · El Que Recuerda.</div><div class=&quot;media-path&quot;>../tejido-de-yomi/images/npcs/jiro.png</div></div>`);">
+        </div>
+      </div>
+      <p><strong>Descripción:</strong> Setenta y dos años. Encorvado, con una pipa que no fuma desde que empezó todo esto. Manos grandes de exlabrador. Ojos que han visto muchas guerras y ahora no saben si esto es peor.</p>
+      <div class="npc-quote">"Esperé a que alguien viniese porque no podía irme sin saber qué pasaba. Eso ya os dice más de mí que cualquier presentación."</div>
+      <p><strong>Personalidad:</strong> Directo. Pragmático. Tiene vergüenza de tener miedo pero lo tiene. Confía en los agentes de Las Ocho Lanzas aunque no del todo —no ha visto sus capacidades en acción.</p>
+      <p><strong>Lo que quiere:</strong> Que todo esto acabe. Que su pueblo vuelva a la normalidad. Que alguien le diga la verdad, sin protegerle de ella.</p>
+      <p><strong>Lo que puede dar:</strong> Toda la información del Acto I. Acceso a la única llave de repuesto de la casa de Okiya (la guardaba "por si acaso"). Sal de cocina en abundancia. El recuerdo preciso de cuándo llegó Sōsuke y por qué puerta se metió. Y, sobre todo, el reconocimiento inmediato de la <strong>urna de Isamu</strong>, que legitima al grupo ante el pueblo.</p>
+      <div class="npc-quote">"Conocí a Isamu antes de que supiera sostener una lanza. Si habéis venido con sus cenizas, no dejéis que su madre se pierda también."</div>
+    </div>
+
+    <div class="npc-card">
+      <span class="npc-tag">Niño · Testigo</span>
+      
+      <div class="media-frame">
+        <div class="media-caption">Retrato / referencia</div>
+        <div class="media-slot portrait-slot">
+          <img src="../tejido-de-yomi/images/npcs/kenji.png" alt="Kenji · Los Ojos que Vieron" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `<div class=&quot;media-placeholder&quot;><strong>Imagen pendiente</strong><div>Añade aquí el retrato o ilustración de Kenji · Los Ojos que Vieron.</div><div class=&quot;media-path&quot;>../tejido-de-yomi/images/npcs/kenji.png</div></div>`);">
+        </div>
+      </div>
+      <p><strong>Descripción:</strong> Nueve años. Rubio por inusual para la zona —herencia de un abuelo del norte—. Está en casa de Jiro porque la suya está "muy cerca de la luz rara". No duerme bien. Tiene ojeras.</p>
+      <div class="npc-quote">"Nadie me cree cuando digo que el tapiz se movió. ¿Vosotros me creéis?"</div>
+      <p><strong>Personalidad:</strong> Curioso por naturaleza, asustado por circunstancia. Pregunta mucho. Observa más. Los adultos le dicen que no vio lo que vio, así que a los personajes les revelará todo si sienten que lo escuchan de verdad.</p>
+      <p><strong>Lo que sabe:</strong> Vio el tapiz de cerca. La marca en su mano. Vio a Sōsuke entrar por el lateral y dejar de moverse como si se hubiera quedado dormido de pie. Sabe que hay un gato negro que no es un gato normal —lo vio pasar a través de una pared.</p>
+      <p><strong>Lo que quiere:</strong> Que alguien le confirme que lo que vio era real. Y que le prometan que la señora Okiya va a estar bien, porque para él sigue siendo la madre de Isamu y la mujer que iba a enseñarle a tejer.</p>
+      <div class="npc-quote">"Si la señora Okiya muere, ¿quién va a enseñarme a tejer? Me lo prometió."</div>
+    </div>
+
+    <div class="npc-card">
+      <span class="npc-tag">Víctima · Anfitriona del Bakemono</span>
+      
+      <div class="media-frame">
+        <div class="media-caption">Retrato / referencia</div>
+        <div class="media-slot portrait-slot">
+          <img src="../tejido-de-yomi/images/npcs/okiya.png" alt="Okiya · La Tejedora Atrapada" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `<div class=&quot;media-placeholder&quot;><strong>Imagen pendiente</strong><div>Añade aquí el retrato o ilustración de Okiya · La Tejedora Atrapada.</div><div class=&quot;media-path&quot;>../tejido-de-yomi/images/npcs/okiya.png</div></div>`);">
+        </div>
+      </div>
+      <p><strong>Descripción:</strong> Sesenta y ocho años. Pequeña, de manos extraordinariamente hábiles. Cuando el Tsuchigumo la controla, su postura cambia: más erguida, más quieta, con la cabeza ligeramente inclinada hacia un lado. Sus ojos normales son castaños; cuando el bakemono toma el control, son negros hasta el borde.</p>
+      <p><strong>Historia:</strong> Viuda desde hace veinte años y madre de <strong>Isamu</strong>, agente de Las Ocho Lanzas muerto en la última misión. Sus tejidos eran los mejores de la región. Después de recibir la noticia de la muerte de su hijo, encontró el huso en el bosque pensando que era un trozo de madera antigua con valor artesanal. Lo llevó a casa. Ese gesto abrió la herida.</p>
+      <p><strong>Está dentro:</strong> La consciencia de Okiya sigue ahí, atrapada en el hilo del tapiz. Si los personajes hablan con el Tsuchigumo, pueden intentar comunicarse directamente con Okiya. Si lo consiguen, Okiya puede proporcionar información crucial: dónde escondió el huso original, qué parte del tapiz es más débil y cómo reaccionar si oye el nombre de su hijo.</p>
+      <div class="npc-quote" style="color:#888;font-style:italic;">[Okiya, si pueden contactarla] "Me tiene cogida por los dedos. Teje con mis manos, pero no puede apagar mis recuerdos. El huso. Busca el huso. Está bajo el telar. ¿Habéis traído a Isamu a casa?"</div>
+      <p><strong>Si es salvada:</strong> No recordará nada después del momento en que encontró el huso. Despertará confusa, pero la visión de la urna de Isamu puede devolverle de golpe la verdad de lo que ha perdido. Eso convierte el cierre en una escena de duelo, no solo de alivio.</p>
+    </div>
+
+    <div class="npc-card">
+      <span class="npc-tag">Aliado · Las Ocho Lanzas</span>
+      
+      <div class="media-frame">
+        <div class="media-caption">Retrato / referencia</div>
+        <div class="media-slot portrait-slot">
+          <img src="../tejido-de-yomi/images/npcs/tanaka-sosuke.png" alt="Tanaka Sōsuke · El Atrapado en el Sueño" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `<div class=&quot;media-placeholder&quot;><strong>Imagen pendiente</strong><div>Añade aquí el retrato o ilustración de Tanaka Sōsuke · El Atrapado en el Sueño.</div><div class=&quot;media-path&quot;>../tejido-de-yomi/images/npcs/tanaka-sosuke.png</div></div>`);">
+        </div>
+      </div>
+      <p><strong>Descripción:</strong> Cuarenta años. Agente de rango medio de Las Ocho Lanzas. Fornido, con un tatuaje de una lanza en el antebrazo. Se adelantó al grupo porque venía de otra zona y podía alcanzar antes la aldea. Debía esperaros con la casa de Jiro preparada, pero acabó en el suelo de la casa de Okiya, en estado de sueño profundo con los ojos abiertos.</p>
+      <p><strong>Estado:</strong> Atrapado en un sueño de Yomi desde hace tres días. Está reviviendo en bucle la desaparición de varios aldeanos y el instante en que intentó ayudar a Okiya y el telar lo atrapó. Se puede despertar destruyendo el tapiz o mediante un ritual de Shizuku.</p>
+      <p><strong>Cuando despierta:</strong> No sabe cuánto tiempo ha pasado. Cree que acaba de llegar. Puede confirmar que envió el cuervo desde el santuario del camino, que vio desaparecer a otros vecinos antes que él y que la casa de Okiya ya estaba conectada a toda la aldea. Si ve la urna de Isamu, comprende enseguida que la misión era personal además de sobrenatural. Es útil en el epílogo: tiene información sobre los otros siete husos. Y su gratitud es incondicional.</p>
+      <div class="npc-quote">"¿Cuánto tiempo he estado...? No. No importa. ¿Está la aldea a salvo?"</div>
+    </div>
+  </div>
+
+
+  <!-- ════ RECURSOS ════ -->
+  <div id="recursos" class="section">
+    <span class="kicker">⛩ Recursos Multimedia</span>
+    <h1>Imágenes, música y herramientas</h1>
+    <p class="lead">Esta aventura está preparada para funcionar con ilustraciones, audio local, mapas y utilidades rápidas de dirección.</p>
+
+    <hr class="brush-line"/>
+
+    <div class="box gold">
+      <h3>Cómo usarlo</h3>
+      <p>Guarda este HTML junto a una carpeta llamada <strong>../tejido-de-yomi</strong>. Dentro crea las subcarpetas <strong>images/scenes</strong>, <strong>images/characters</strong>, <strong>images/npcs</strong>, <strong>images/tools</strong> y <strong>audio/scenes</strong>. Si los archivos tienen los nombres exactos indicados abajo, el documento los mostrará y reproducirá automáticamente. En esta versión, <strong>cada escena, nodo y subnodo jugable</strong> tiene su pista asociada.</p>
+    </div>
+
+    <h2>Estructura exacta</h2>
+    <div class="media-frame">
+      <div class="media-slot">
+        <div class="media-placeholder">
+          <strong>Estructura recomendada</strong>
+          <div class="media-path">../tejido-de-yomi/</div>
+          <div class="media-path">../tejido-de-yomi/images/scenes/</div>
+          <div class="media-path">../tejido-de-yomi/images/characters/</div>
+          <div class="media-path">../tejido-de-yomi/images/npcs/</div>
+          <div class="media-path">../tejido-de-yomi/images/bakemonos/</div>
+          <div class="media-path">../tejido-de-yomi/images/tools/</div>
+          <div class="media-path">../tejido-de-yomi/audio/scenes/</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Escenas</h2>
+    <table class="roll-table">
+      <tr><th>Archivo</th><th>Uso</th></tr>
+      <tr><td><code>../tejido-de-yomi/images/scenes/00-santuario-camino.png</code></td><td>Prólogo en el santuario del camino</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/scenes/01-shimokawa-llegada.png</code></td><td>Llegada a la aldea</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/scenes/02-jiro-y-kenji.png</code></td><td>Nodo social de Jiro y Kenji</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/scenes/03-santuario-invertido.png</code></td><td>Nodo espiritual del santuario</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/scenes/04-pozo-y-sendero.png</code></td><td>Subnodo del pozo y el sendero norte</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/scenes/05-taller-tenido.png</code></td><td>Subnodo del taller de teñido</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/scenes/06-casa-okiya-umbral.png</code></td><td>Umbral de la casa de Okiya y hallazgo de Sōsuke</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/scenes/07-huso-bajo-telar.png</code></td><td>Hallazgo del huso ancla</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/scenes/08-okiya-tsuchigumo.png</code></td><td>Confrontación con Okiya y el Tsuchigumo</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/scenes/09-exorcismo-completo.png</code></td><td>Final A · Exorcismo completo</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/scenes/10-purga-brutal.png</code></td><td>Final B · Purga brutal</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/scenes/11-sacrificio-vinculo.png</code></td><td>Final C · Sacrificio de vínculo</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/scenes/12-negociacion-terrible.png</code></td><td>Final D · Negociación terrible</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/scenes/13-amanecer-shimokawa.png</code></td><td>Epílogo y amanecer</td></tr>
+    </table>
+
+    <h2>Personajes, NPCs y Bakemonos</h2>
+    <table class="roll-table">
+      <tr><th>Archivo</th><th>Uso</th></tr>
+      <tr><td><code>../tejido-de-yomi/images/characters/kanemoto-ryu.png</code></td><td>Retrato de Ryū</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/characters/shizuku.png</code></td><td>Retrato de Shizuku</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/characters/fujiwara-mitsuru.png</code></td><td>Retrato de Mitsuru</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/npcs/jiro.png</code></td><td>Jiro</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/npcs/kenji.png</code></td><td>Kenji</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/npcs/okiya.png</code></td><td>Okiya</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/npcs/tanaka-sosuke.png</code></td><td>Tanaka Sōsuke</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/bakemonos/tsuchigumo-yomi.png</code></td><td>Tsuchigumo de Yomi</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/bakemonos/kaibyo-gatos-sombra.png</code></td><td>Kaibyō</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/bakemonos/tapiz-puerta-yomi.png</code></td><td>El Tapiz de Yomi</td></tr>
+    </table>
+
+    <h2>Herramientas visuales</h2>
+    <table class="roll-table">
+      <tr><th>Archivo</th><th>Uso</th></tr>
+      <tr><td><code>../tejido-de-yomi/images/tools/mapa-shimokawa-croquis.png</code></td><td>Mapa maestro con visión general y focos de interés</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/tools/mapa-shimokawa-general.png</code></td><td>Mapa general de la aldea</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/tools/mapa-casa-jiro-kenji.png</code></td><td>Plano interior de la casa de Jiro y Kenji</td></tr>
+      <tr><td><code>../tejido-de-yomi/images/tools/mapa-casa-okiya.png</code></td><td>Plano interior de la casa de Okiya</td></tr>
+    </table>
+
+    <h2>Música</h2>
+    <table class="roll-table">
+      <tr><th>Archivo</th><th>Escena</th></tr>
+      <tr><td><code>../tejido-de-yomi/audio/scenes/00-santuario-camino.mp3</code></td><td>Prólogo</td></tr>
+      <tr><td><code>../tejido-de-yomi/audio/scenes/01-shimokawa-llegada.mp3</code></td><td>Llegada a Shimokawa</td></tr>
+      <tr><td><code>../tejido-de-yomi/audio/scenes/02-jiro-y-kenji.mp3</code></td><td>Casa de Jiro y Kenji</td></tr>
+      <tr><td><code>../tejido-de-yomi/audio/scenes/07-casa-okiya-umbral.mp3</code></td><td>Exterior de la casa de Okiya</td></tr>
+      <tr><td><code>../tejido-de-yomi/audio/scenes/09-okiya-tsuchigumo.mp3</code></td><td>Confrontación con Okiya y el tapiz</td></tr>
+      <tr><td><code>../tejido-de-yomi/audio/scenes/10-climax-general.mp3</code></td><td>Clímax</td></tr>
+      <tr><td><code>../tejido-de-yomi/audio/scenes/15-amanecer-shimokawa.mp3</code></td><td>Epílogo</td></tr>
+    </table>
+
+    <h2>Mapas ampliados de Shimokawa</h2>
+    <div class="tool-map-panel">
+      <p>Usa primero el plano general y revela luego los interiores. Los mapas están pensados para jugar la aventura como un pequeño sandbox nocturno con movimiento entre nodos, entradas laterales y persecuciones por espacios interiores.</p>
+
+      <div class="tool-map-grid">
+        <figure class="tool-map-figure">
+          <h3>Mapa maestro · visión conjunta</h3>
+          <img src="../tejido-de-yomi/images/tools/mapa-shimokawa-croquis.png" alt="Mapa maestro de Shimokawa"
+               onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `&lt;div class=&quot;media-placeholder&quot;&gt;&lt;strong&gt;Mapa pendiente&lt;/strong&gt;&lt;div&gt;Coloca aquí el mapa maestro de Shimokawa.&lt;/div&gt;&lt;div class=&quot;media-path&quot;&gt;../tejido-de-yomi/images/tools/mapa-shimokawa-croquis.png&lt;/div&gt;&lt;/div&gt;`);">
+          <figcaption>Resumen conjunto: pueblo, rutas, focos y relación entre los mapas interiores.</figcaption>
+        </figure>
+
+        <figure class="tool-map-figure">
+          <h3>Mapa general de la aldea</h3>
+          <img src="../tejido-de-yomi/images/tools/mapa-shimokawa-general.png" alt="Mapa general de Shimokawa"
+               onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `&lt;div class=&quot;media-placeholder&quot;&gt;&lt;strong&gt;Mapa pendiente&lt;/strong&gt;&lt;div&gt;Coloca aquí el mapa general de la aldea.&lt;/div&gt;&lt;div class=&quot;media-path&quot;&gt;../tejido-de-yomi/images/tools/mapa-shimokawa-general.png&lt;/div&gt;&lt;/div&gt;`);">
+          <figcaption>Lectura rápida de la zona: plaza, pozo, santuario, casa de Jiro y casa de Okiya.</figcaption>
+        </figure>
+
+        <figure class="tool-map-figure">
+          <h3>Casa de Jiro y Kenji</h3>
+          <img src="../tejido-de-yomi/images/tools/mapa-casa-jiro-kenji.png" alt="Plano de la casa de Jiro y Kenji"
+               onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `&lt;div class=&quot;media-placeholder&quot;&gt;&lt;strong&gt;Mapa pendiente&lt;/strong&gt;&lt;div&gt;Coloca aquí el plano de Jiro y Kenji.&lt;/div&gt;&lt;div class=&quot;media-path&quot;&gt;../tejido-de-yomi/images/tools/mapa-casa-jiro-kenji.png&lt;/div&gt;&lt;/div&gt;`);">
+          <figcaption>Interior seguro, brasero, zona de descanso y punto de conversación clave.</figcaption>
+        </figure>
+
+        <figure class="tool-map-figure">
+          <h3>Casa de Okiya</h3>
+          <img src="../tejido-de-yomi/images/tools/mapa-casa-okiya.png" alt="Plano de la casa de Okiya"
+               onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', `&lt;div class=&quot;media-placeholder&quot;&gt;&lt;strong&gt;Mapa pendiente&lt;/strong&gt;&lt;div&gt;Coloca aquí el plano de la casa de Okiya.&lt;/div&gt;&lt;div class=&quot;media-path&quot;&gt;../tejido-de-yomi/images/tools/mapa-casa-okiya.png&lt;/div&gt;&lt;/div&gt;`);">
+          <figcaption>Taller, almacenes, prisionero, espacio del telar y lugar del huso negro como ancla ritual.</figcaption>
+        </figure>
+      </div>
+
+      <div class="tool-map-grid" style="margin-top:1rem;">
+        <div class="tool-note">
+          <h3>Uso recomendado</h3>
+          <ul style="margin-left:1.2rem;">
+            <li>Muestra el plano general al entrar en Shimokawa.</li>
+            <li>Reserva los interiores para cuando el grupo entre físicamente en cada casa.</li>
+            <li>Usa las estancias para improvisar huidas, cierres, bloqueos, rutas laterales y escenas de persecución.</li>
+          </ul>
+        </div>
+        <div class="tool-note">
+          <h3>Puntos clave</h3>
+          <div class="tool-kv">
+            <div><strong>Casa de Okiya:</strong> foco del tapiz y clímax moral de la aventura.</div>
+            <div><strong>Jiro y Kenji:</strong> nodo de pistas, recursos y contexto emocional.</div>
+            <div><strong>Santuario:</strong> apoyo ritual y lectura espiritual del problema.</div>
+            <div><strong>Urna de Isamu:</strong> eje emocional que puede cambiar la resolución.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Rastreadores de Maldición</h2>
+    <div class="tracker-grid" id="locuraTrackers">
+      <div class="tracker-card">
+        <h4>Kanemoto Ryū <span style="font-weight:300;color:#777;">· Soldado</span></h4>
+        <div class="tracker-pips"><div class="t-pip on"></div><div class="t-pip"></div><div class="t-pip"></div><div class="t-pip"></div><div class="t-pip"></div><div class="t-pip last"></div></div>
+        <p style="font-size:0.8rem;color:var(--red);font-weight:600;">Maldición: 1</p>
+      </div>
+      <div class="tracker-card">
+        <h4>Shizuku <span style="font-weight:300;color:#777;">· Investigadora / Exorcizar</span></h4>
+        <div class="tracker-pips"><div class="t-pip on"></div><div class="t-pip on"></div><div class="t-pip"></div><div class="t-pip"></div><div class="t-pip"></div><div class="t-pip last"></div></div>
+        <p style="font-size:0.8rem;color:var(--red);font-weight:600;">Maldición: 2</p>
+      </div>
+      <div class="tracker-card">
+        <h4>Fujiwara Mitsuru <span style="font-weight:300;color:#777;">· Jornalero / Gishiki</span></h4>
+        <div class="tracker-pips"><div class="t-pip on"></div><div class="t-pip on"></div><div class="t-pip"></div><div class="t-pip"></div><div class="t-pip"></div><div class="t-pip last"></div></div>
+        <p style="font-size:0.8rem;color:var(--red);font-weight:600;">Maldición: 2</p>
+      </div>
+      <div class="tracker-card">
+        <h4>Personaje 4 <span style="font-weight:300;color:#777;">· Personalizado</span></h4>
+        <div class="tracker-pips"><div class="t-pip on"></div><div class="t-pip"></div><div class="t-pip"></div><div class="t-pip"></div><div class="t-pip"></div><div class="t-pip last"></div></div>
+        <p style="font-size:0.8rem;color:var(--red);font-weight:600;">Maldición: 1</p>
+      </div>
+    </div>
+
+    <h2>Reloj del Tapiz</h2>
+    <div class="tension-track">
+      <h4 style="font-family:'Noto Serif JP';font-size:0.65rem;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:0.8rem;">AVANCE DEL TAPIZ</h4>
+      <p style="font-size:0.9rem;color:#555;margin-bottom:0.5rem;">Súbelo cuando pase tiempo, fallen con coste o el Tsuchigumo gane terreno. A 10, el amanecer rompe la aldea.</p>
+      <div class="tension-bar"><div class="tension-fill" id="tensionFill" style="width:0%"></div></div>
+      <p id="tensionLabel" style="font-size:0.85rem;color:var(--red);text-align:center;margin:0.3rem 0;">Sin tensión</p>
+      <div class="tension-btns">
+        <button onclick="changeTension(-1)">▼ Retrocede</button>
+        <button onclick="changeTension(1)">▲ Avanza</button>
+        <button onclick="changeTension(2)" style="color:#c0392b;">▲▲ +2 Crisis</button>
+        <button onclick="resetTension()">Reiniciar</button>
+      </div>
+    </div>
+
+    <h2>Qué hacer si se atascan</h2>
+    <div class="box gold">
+      <p>Usa uno de estos empujones suaves. Todos revelan dirección sin resolverles la aventura:</p>
+      <ul style="margin-left:1.2rem;">
+        <li>Kenji habla dormido y repite: <em>“debajo del telar”</em>.</li>
+        <li>El cuenco de Mitsuru vibra cuando miran hacia la casa de Okiya.</li>
+        <li>Jiro recuerda por fin el <strong>huso negro</strong>.</li>
+        <li>Un hilo se tensa desde el pueblo hasta la puerta lateral de Okiya.</li>
+        <li>Okiya susurra desde dentro: <em>“No la tela. El madero.”</em></li>
+      </ul>
+    </div>
+
+    <h2>Checklist útil para esta versión</h2>
+    <ul class="checklist" id="checklistEl">
+      <li onclick="toggleCheck(this)"><span class="check-box"></span>Misión entendida: promesa + foco + ancla + ruptura</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span>La urna de Isamu ha entrado en juego</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span>La casa de Okiya ha quedado señalada como foco</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span>Jiro/Kenji han aportado información o recurso</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span>El santuario ha sugerido sal, fuego o nombre verdadero</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span>El huso ha sido encontrado o su ubicación es evidente</li>
+      <li onclick="toggleCheck(this)"><span class="check-box"></span>El grupo sabe qué precio está dispuesto a pagar</li>
+    </ul>
+
+    <h2>Complicaciones rápidas</h2>
+    <table class="roll-table">
+      <tr><th>D6</th><th>Complicación</th></tr>
+      <tr><td><span class="dice">1</span></td><td>Kenji desaparece momentáneamente. Sus huellas llevan hacia Okiya y obligan a moverse.</td></tr>
+      <tr><td><span class="dice">2</span></td><td>Jiro recuerda demasiado tarde el huso negro. La pista aparece, pero el tapiz avanza +1.</td></tr>
+      <tr><td><span class="dice">3</span></td><td>El agente dormido murmura una palabra clave: “madero”, “sal” o un fragmento del nombre verdadero.</td></tr>
+      <tr><td><span class="dice">4</span></td><td>Los hilos exteriores se tensan y señalan una ruta concreta hacia la casa de Okiya.</td></tr>
+      <tr><td><span class="dice">5</span></td><td>Una visión breve de Yomi muestra el huso bajo el telar. Todos los presentes hacen una tirada de Maldición.</td></tr>
+      <tr><td><span class="dice">6</span></td><td>El Tsuchigumo les habla por primera vez desde una pared tejida: ofrece información a cambio de tiempo.</td></tr>
+    </table>
+
+    <h2>Temporizador de escena</h2>
+    <div class="timer-widget">
+      <div class="timer-label">TIEMPO DE ESCENA</div>
+      <div class="timer-display" id="timerDisplay">00:00</div>
+      <div class="timer-btns">
+        <button onclick="startTimer()" id="timerStart">▶ Iniciar</button>
+        <button onclick="pauseTimer()">⏸ Pausa</button>
+        <button onclick="resetTimerFn()">↺ Reset</button>
+        <button class="preset" onclick="setTimer(600)">10 min</button>
+        <button class="preset" onclick="setTimer(1800)">30 min</button>
+        <button class="preset" onclick="setTimer(2700)">45 min</button>
+      </div>
+    </div>
+
+    <h2>Notas del Máster</h2>
+    <textarea class="gm-notes" placeholder="Anota aquí qué pistas han visto, qué han deducido y qué precio han pagado."></textarea>
+  </div>
+
+  <div class="footer">
+    ⛩ &nbsp; El Tejido de Yomi · Ocho Lanzas One-Shot &nbsp;·&nbsp; Basado en Cthulhu Dark · Shadowlands Ediciones &nbsp; ⛩
+  </div>
+
+<script>
+  // ── PORTADA ──
+
+  document.addEventListener('DOMContentLoaded', () => {
+    try {
+      initTrackers();
+      updateTensionLabel();
+    } catch (err) {
+      console.error('No se pudieron inicializar las herramientas del máster:', err);
+    }
+  });
+
+  function enterApp() {
+    document.getElementById('cover').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    initTrackers();
+    updateTensionLabel();
+  }
+
+  // ── NAVEGACIÓN ──
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const btns = document.querySelectorAll('.nav-btn');
+    btns.forEach(b => { if (b.textContent.toLowerCase().includes(sectionLabel(id))) b.classList.add('active'); });
+    window.scrollTo(0, 0);
+  }
+
+  function sectionLabel(id) {
+    const map = { intro:'intro', reglas:'regla', personajes:'person', aventura:'aven', enemigos:'bakemo', npcs:'npcs', recursos:'recurs', herramientas:'herram' };
+    return map[id] || '';
+  }
+
+  // Fix nav active on click
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // ── ESCENAS ──
+  function toggleScene(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('open');
+  }
+
+  // ── LOCURA PIPS (personajes) ──
+  function toggleLocura(pip) {
+    const track = pip.parentElement;
+    const pips = track.querySelectorAll('.locura-pip');
+    const idx = Array.from(pips).indexOf(pip);
+    pips.forEach((p, i) => {
+      if (i <= idx) p.classList.add('filled');
+      else p.classList.remove('filled');
+    });
+    if (idx === 5) {
+      pip.classList.add('last');
+      setTimeout(() => alert('¡La Maldición ha llegado a 6! Este personaje se convierte en bakemono. Describe cómo ocurre.'), 100);
+    }
+  }
+
+  // ── TRACKER DE LOCURA (herramientas) ──
+  const chars = [
+    { name: 'Kanemoto Ryū', role: 'Soldado', start: 1 },
+    { name: 'Shizuku', role: 'Investigadora / Exorcizar', start: 2 },
+    { name: 'Fujiwara Mitsuru', role: 'Jornalero / Gishiki', start: 2 },
+    { name: 'Personaje 4', role: 'Personalizado', start: 1 }
+  ];
+
+  function initTrackers() {
+    const container = document.getElementById('locuraTrackers');
+    if (!container) return;
+    container.innerHTML = '';
+    chars.forEach((c, ci) => {
+      const card = document.createElement('div');
+      card.className = 'tracker-card';
+      card.innerHTML = `<h4>${c.name} <span style="font-weight:300;color:#aaa;">· ${c.role}</span></h4>
+        <div class="tracker-pips" id="tp_${ci}"></div>
+        <p style="font-size:0.8rem;color:var(--red);font-weight:600;" id="tl_${ci}">Maldición: ${c.start}</p>`;
+      container.appendChild(card);
+      const pipsEl = document.getElementById(`tp_${ci}`);
+      for (let i = 1; i <= 6; i++) {
+        const pip = document.createElement('div');
+        pip.className = 't-pip' + (i <= c.start ? ' on' : '') + (i === 6 ? ' last' : '');
+        pip.dataset.val = i;
+        pip.dataset.char = ci;
+        pip.addEventListener('click', () => setCharLocura(ci, i));
+        pipsEl.appendChild(pip);
+      }
+    });
+  }
+
+  function setCharLocura(ci, val) {
+    const pips = document.querySelectorAll(`#tp_${ci} .t-pip`);
+    pips.forEach((p, i) => {
+      p.classList.toggle('on', i < val);
+    });
+    const label = document.getElementById(`tl_${ci}`);
+    label.textContent = `Maldición: ${val}`;
+    if (val >= 5) label.style.color = '#c0392b';
+    if (val === 6) {
+      label.textContent = '💀 ¡MALDICIÓN TOTAL!';
+      setTimeout(() => alert(`¡${chars[ci].name} ha alcanzado Maldición 6 y se convierte en bakemono!`), 100);
+    }
+  }
+
+  // ── TENSIÓN ──
+  let tension = 0;
+
+  function changeTension(n) {
+    tension = Math.max(0, Math.min(10, tension + n));
+    updateTensionLabel();
+  }
+
+  function resetTension() { tension = 0; updateTensionLabel(); }
+
+  function updateTensionLabel() {
+    const fill = document.getElementById('tensionFill');
+    const label = document.getElementById('tensionLabel');
+    if (!fill) return;
+    fill.style.width = (tension * 10) + '%';
+    const msgs = ['Calma inquietante','Algo se mueve en las sombras','El telar suena más fuerte','Los hilos vibran','La puerta se entreabre','Pánico en la aldea','El tapiz acelera','Las sombras cobran forma','El alba se acerca','¡EL AMANECER! ¡EL TAPIZ SE COMPLETA!',''];
+    label.textContent = tension > 0 ? `Nivel ${tension}/10 — ${msgs[tension-1] || ''}` : 'Sin tensión';
+    label.style.color = tension >= 8 ? '#8b1a1a' : tension >= 5 ? '#b8860b' : '#555';
+  }
+
+  // ── TEMPORIZADOR ──
+  let timerSeconds = 0;
+  let timerInterval = null;
+  let timerRunning = false;
+
+  function setTimer(s) { timerSeconds = s; timerRunning = false; clearInterval(timerInterval); updateTimerDisplay(); }
+
+  function startTimer() {
+    if (timerRunning) return;
+    timerRunning = true;
+    timerInterval = setInterval(() => {
+      timerSeconds++;
+      updateTimerDisplay();
+    }, 1000);
+  }
+
+  function pauseTimer() {
+    timerRunning = false;
+    clearInterval(timerInterval);
+  }
+
+  function resetTimerFn() {
+    timerRunning = false;
+    clearInterval(timerInterval);
+    timerSeconds = 0;
+    updateTimerDisplay();
+  }
+
+  function updateTimerDisplay() {
+    const m = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+    const s = String(timerSeconds % 60).padStart(2, '0');
+    const el = document.getElementById('timerDisplay');
+    if (el) el.textContent = m + ':' + s;
+  }
+
+  // ── CHECKLIST ──
+  function toggleCheck(li) {
+    li.classList.toggle('done');
+    const box = li.querySelector('.check-box');
+    box.textContent = li.classList.contains('done') ? '✓' : '';
+  }
+
+  // ── INIT ──
+  updateTimerDisplay();
+
+const FVTT_QUICK_LINKS = [
+  ['guide-index','Abrir índice del world'],
+  ['actor-ryu','Abrir Ryū'],
+  ['actor-shizuku','Abrir Shizuku'],
+  ['actor-mitsuru','Abrir Mitsuru'],
+  ['journal-shimokawa','Abrir Shimokawa'],
+  ['scene-prologo','Abrir Prólogo'],
+  ['table-complicaciones','Tabla de complicaciones'],
+  ['playlist-prologo','Playlist prólogo'],
+  ['scene-shimokawa','Abrir escena de Shimokawa']
+];
+const FVTT_LINK_TERMS = {
+  'Kanemoto Ryū':'actor-ryu',
+  'Ryū':'actor-ryu',
+  'Shizuku':'actor-shizuku',
+  'Fujiwara Mitsuru':'actor-mitsuru',
+  'Mitsuru':'actor-mitsuru',
+  'Jiro':'npc-jiro',
+  'Kenji':'npc-kenji',
+  'Okiya':'npc-okiya',
+  'Tanaka Sōsuke':'npc-sosuke',
+  'Sōsuke':'npc-sosuke',
+  'Shimokawa':'journal-shimokawa',
+  'Santuario del Camino':'journal-santuario-camino',
+  'Casa de Okiya':'journal-casa-okiya',
+  'Casa de Jiro':'journal-casa-jiro',
+  'bosque al norte':'journal-bosque-norte',
+  'Tsuchigumo':'bakemono-tsuchigumo',
+  'Kaibyō':'bakemono-kaibyo',
+  'Tapiz de Yomi':'journal-tapiz-yomi',
+  'tapiz':'journal-tapiz-yomi',
+  'huso negro':'item-huso-negro',
+  'fuego de sal':'item-fuego-sal',
+  'tabla de complicaciones':'table-complicaciones',
+  'nombres verdaderos':'table-nombres',
+  'playlist':'playlist-prologo',
+  'música':'playlist-prologo',
+  'Shimokawa (escena)':'scene-shimokawa'
+};
+function fvttApi() {
+  try { return window.parent?.game?.ochoLanzas ?? null; } catch (_err) { return null; }
+}
+function openFoundrySlug(slug) {
+  const api = fvttApi();
+  if (!api?.openTejidoLink) return false;
+  api.openTejidoLink(slug);
+  return true;
+}
+function enhanceFoundryLinks(root=document) {
+  const areas = root.querySelectorAll('.section p, .section li, .section td, .section h1, .section h2, .section h3, .section .lead, .section .npc-quote, .section strong');
+  const terms = Object.entries(FVTT_LINK_TERMS).sort((a,b) => b[0].length - a[0].length);
+  for (const node of areas) {
+    if (node.closest('.fvtt-hub') || node.querySelector('.fvtt-link')) continue;
+    let html = node.innerHTML;
+    for (const [term, slug] of terms) {
+      const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      html = html.replace(new RegExp(`(^|[>\s(“"'¿¡-])(${escaped})(?=[$<\s,.;:!?)”"'—-])`, 'gu'), `$1<a href="#" class="fvtt-link" data-slug="${slug}">$2</a>`);
+    }
+    node.innerHTML = html;
+  }
+}
+function insertFoundryHub() {
+  const intro = document.querySelector('#intro');
+  if (!intro || intro.querySelector('.fvtt-hub')) return;
+  const hub = document.createElement('div');
+  hub.className = 'fvtt-hub';
+  hub.innerHTML = `<h3>Enlaces Foundry</h3><p style="grid-column:1/-1;margin:0;color:rgba(26,18,9,0.75)">Abre directamente las fichas, escenas de dirección, tablas y localizaciones creadas dentro del world.</p>` + FVTT_QUICK_LINKS.map(([slug,label]) => `<a href="#" class="fvtt-chip" data-slug="${slug}">${label}</a>`).join('');
+  intro.insertBefore(hub, intro.children[3] || intro.firstChild);
+}
+function insertCharacterButtons() {
+  const mapping = { 'Kanemoto Ryū':'actor-ryu', 'Shizuku':'actor-shizuku', 'Fujiwara Mitsuru':'actor-mitsuru' };
+  document.querySelectorAll('.char-sheet').forEach(sheet => {
+    if (sheet.querySelector('.char-foundry-actions')) return;
+    const name = sheet.querySelector('.char-name')?.textContent?.trim();
+    const slug = mapping[name];
+    if (!slug) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'char-foundry-actions';
+    wrap.innerHTML = `<a href="#" class="fvtt-chip" data-slug="${slug}">Abrir ficha en Foundry</a>`;
+    const role = sheet.querySelector('.char-role');
+    role?.insertAdjacentElement('afterend', wrap);
+  });
+}
+function bindFoundryLinkClicks(root=document) {
+  root.addEventListener('click', ev => {
+    const link = ev.target.closest('[data-slug]');
+    if (!link) return;
+    ev.preventDefault();
+    ev.stopPropagation();
+    const ok = openFoundrySlug(link.dataset.slug);
+    if (!ok) window.parent?.ui?.notifications?.warn?.('No se ha encontrado el enlace de Foundry para este elemento.');
+  });
+}
+function toAbsoluteFoundryPath(path) {
+  if (!path || typeof path !== 'string') return '';
+  const trimmed = path.trim();
+  if (!trimmed) return '';
+  if (/^(?:https?:|data:|blob:|file:)/i.test(trimmed)) return trimmed;
+  if (trimmed.startsWith('/')) return trimmed;
+  if (/^(systems|worlds|modules|assets)\//i.test(trimmed)) return `/${trimmed}`;
+  return trimmed;
+}
+function normalizeMediaBase(path) {
+  if (!path || typeof path !== 'string') return '';
+  return toAbsoluteFoundryPath(path.trim().replace(/[?#].*$/, '').replace(/\/+$/, ''));
+}
+function getMediaBaseFromQuery() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    return normalizeMediaBase(params.get('mediaBase') || '');
+  } catch (_err) {
+    return '';
+  }
+}
+function deriveMediaBaseFromAssetPath(path) {
+  const clean = normalizeMediaBase(path);
+  if (!clean) return '';
+  const markers = [
+    '/images/scenes/',
+    '/images/characters/',
+    '/images/npcs/',
+    '/images/bakemonos/',
+    '/images/tools/',
+    '/audio/scenes/'
+  ];
+  for (const marker of markers) {
+    const idx = clean.indexOf(marker);
+    if (idx >= 0) return clean.slice(0, idx);
+  }
+  return '';
+}
+function getMediaBaseFromFoundry() {
+  try {
+    const game = window.parent?.game;
+    if (!game) return '';
+    const configured = game.settings?.get?.('ocho-lanzas', 'tejidoDeYomiMediaBase');
+    const configuredBase = normalizeMediaBase(configured || '');
+    if (configuredBase) return configuredBase;
+    const sceneCandidates = [
+      game.scenes?.find?.(s => s.getFlag?.('ocho-lanzas', 'tejidoSlug') === 'scene-prologo'),
+      game.scenes?.find?.(s => s.getFlag?.('ocho-lanzas', 'tejidoSlug') === 'scene-shimokawa'),
+      game.scenes?.find?.(s => s.getFlag?.('ocho-lanzas', 'tejidoSlug')?.startsWith?.('scene-'))
+    ].filter(Boolean);
+    for (const scene of sceneCandidates) {
+      const base = deriveMediaBaseFromAssetPath(scene?.background?.src || scene?.thumb || scene?.img);
+      if (base) return base;
+    }
+    const playlists = game.playlists?.filter?.(p => p.getFlag?.('ocho-lanzas', 'tejidoPlaylist')) ?? [];
+    for (const playlist of playlists) {
+      for (const sound of (playlist.sounds ?? [])) {
+        const base = deriveMediaBaseFromAssetPath(sound?.path);
+        if (base) return base;
+      }
+    }
+    const actors = game.actors?.filter?.(a => a.getFlag?.('ocho-lanzas', 'tejidoSlug')) ?? [];
+    for (const actor of actors) {
+      const base = deriveMediaBaseFromAssetPath(actor?.img || actor?.prototypeToken?.texture?.src);
+      if (base) return base;
+    }
+  } catch (_err) {}
+  return '';
+}
+function getResolvedMediaBase() {
+  return getMediaBaseFromQuery() || getMediaBaseFromFoundry() || '/systems/ocho-lanzas/el_tejido_de_yomi_pack_v10/assets';
+}
+function remapLegacyMediaPath(src, base) {
+  if (!src || typeof src !== 'string') return src;
+  const cleanBase = normalizeMediaBase(base);
+  if (!cleanBase) return toAbsoluteFoundryPath(src);
+  const mappings = [
+    ['../tejido-de-yomi/', '/'],
+    ['./tejido-de-yomi/', '/'],
+    ['tejido-de-yomi/', '/']
+  ];
+  for (const [prefix, replacement] of mappings) {
+    if (src.startsWith(prefix)) return `${cleanBase}${replacement}${src.slice(prefix.length)}`;
+  }
+  return toAbsoluteFoundryPath(src);
+}
+function rewriteMediaReferences(base) {
+  const cleanBase = normalizeMediaBase(base);
+  if (!cleanBase) return;
+  document.documentElement.dataset.mediaBase = cleanBase;
+  document.querySelectorAll('img[src], source[src]').forEach(el => {
+    if (!el.dataset.originalSrc) el.dataset.originalSrc = el.getAttribute('src') || '';
+    const next = remapLegacyMediaPath(el.dataset.originalSrc, cleanBase);
+    if (next && next !== el.getAttribute('src')) el.setAttribute('src', next);
+    if (el.parentElement?.tagName === 'AUDIO') el.parentElement.load?.();
+  });
+  document.querySelectorAll('.media-path, code').forEach(el => {
+    if (!el.dataset.originalText) el.dataset.originalText = el.textContent || '';
+    const nextText = el.dataset.originalText.replace(/\.\.\/tejido-de-yomi\//g, `${cleanBase}/`).replace(/(^|\s)tejido-de-yomi\//g, `$1${cleanBase}/`);
+    if (nextText !== el.textContent) el.textContent = nextText;
+  });
+}
+function retryFailedMedia(base) {
+  const cleanBase = normalizeMediaBase(base);
+  if (!cleanBase) return;
+  document.querySelectorAll('img[src]').forEach(img => {
+    const original = img.dataset.originalSrc || img.getAttribute('src') || '';
+    const next = remapLegacyMediaPath(original, cleanBase);
+    if (!next) return;
+    const placeholder = img.parentElement?.querySelector?.('.media-placeholder');
+    if (placeholder) placeholder.remove();
+    img.style.display = '';
+    img.removeAttribute('hidden');
+    img.removeAttribute('aria-hidden');
+    if (img.getAttribute('src') !== next || img.complete && img.naturalWidth === 0) {
+      img.setAttribute('src', '');
+      requestAnimationFrame(() => img.setAttribute('src', next));
+    }
+  });
+  document.querySelectorAll('audio').forEach(audio => {
+    const source = audio.querySelector('source[src]');
+    if (!source) return;
+    const original = source.dataset.originalSrc || source.getAttribute('src') || '';
+    const next = remapLegacyMediaPath(original, cleanBase);
+    if (!next) return;
+    if (source.getAttribute('src') !== next) source.setAttribute('src', next);
+    audio.load?.();
+  });
+}
+window.addEventListener('DOMContentLoaded', () => {
+  const mediaBase = getResolvedMediaBase();
+  rewriteMediaReferences(mediaBase);
+  insertFoundryHub();
+  insertCharacterButtons();
+  enhanceFoundryLinks(document);
+  bindFoundryLinkClicks(document);
+  requestAnimationFrame(() => retryFailedMedia(mediaBase));
+  window.setTimeout(() => retryFailedMedia(mediaBase), 120);
+  window.setTimeout(() => retryFailedMedia(mediaBase), 600);
+});
+</script>
+</body>
+</html>
