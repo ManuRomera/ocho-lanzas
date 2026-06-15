@@ -2,7 +2,7 @@
   "id": "ocho-lanzas",
   "title": "Ocho Lanzas (Unofficial)",
   "description": "Sistema NO oficial para Foundry VTT para dirigir Ocho Lanzas. Sin contenido del manual. Incluye fichas, items y tiradas tipo Cthulhu Dark.",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "manifest": "https://raw.githubusercontent.com/ManuRomera/ocho-lanzas/main/system.json",
   "download": "https://github.com/ManuRomera/ocho-lanzas/archive/refs/heads/main.zip",
   "compatibility": {
