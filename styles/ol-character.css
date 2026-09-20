@@ -1,5 +1,6 @@
 /* Ocho Lanzas 0.6 — Agente */
-.ocho-lanzas.sheet.actor.character .ol-sheet{padding:13px;display:flex;flex-direction:column;gap:11px;min-width:820px}
+.ocho-lanzas.sheet.actor.character .window-content>form{height:100%}
+.ocho-lanzas.sheet.actor.character .ol-sheet{height:100%;padding:13px;display:flex;flex-direction:column;gap:11px;min-width:820px}
 .ol-character-header{display:grid;grid-template-columns:145px minmax(260px,.9fr) minmax(360px,1.15fr);gap:13px;align-items:stretch;padding-bottom:11px;border-bottom:1px solid var(--ol-line)}
 .ol-character-header .ol-portrait{height:178px}
 .ol-character-identity{display:flex;flex-direction:column;gap:8px;min-width:0}
@@ -19,7 +20,7 @@
 .ol-trait-choice{display:flex;align-items:center;gap:7px;min-height:27px;padding:3px 5px;border-radius:2px;font-size:12px}
 .ol-trait-choice:hover{background:rgba(135,33,31,.06)}
 .ol-trait-warning{margin:0 0 7px;color:var(--ol-red);font-size:11px;line-height:1.35}
-.ol-character-main-grid{display:grid;grid-template-columns:minmax(0,1fr) 266px;gap:13px;align-items:stretch;min-height:0}
+.ol-character-main-grid{display:grid;grid-template-columns:minmax(0,1fr) 266px;gap:13px;align-items:stretch;min-height:0;flex:1 1 auto}
 .ol-character-leftcol,.ol-character-rightcol{min-width:0;display:flex;flex-direction:column;gap:11px}
 .ol-character-rightcol{height:100%}
 .ol-equipment{padding:9px 11px}
