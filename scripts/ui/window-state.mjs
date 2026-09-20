@@ -55,6 +55,9 @@ function clampGeometry(raw = {}, key = "") {
 
 export function readWindowGeometry(key) {
   const layout = parseLayout();
+  // 0.6 changes the fundamental sheet geometry; v1 positions would preserve
+  // the old tall/narrow layout. Ignore them once, without touching world data.
+  if (Number(layout?.version ?? 0) < 2) return {};
   if (layout?.windows?.[key]) return clampGeometry(layout.windows[key], key);
 
   // One-time backwards-compatible fallback for the old Yomi-only setting.
@@ -77,7 +80,7 @@ export function applySavedWindowOptions(key, options = {}) {
 
 async function writeWindowGeometry(key, geometry) {
   const layout = parseLayout();
-  layout.version = 1;
+  layout.version = 2;
   layout.windows ??= {};
   layout.windows[key] = clampGeometry(geometry, key);
   await game.settings.set(SYSTEM_ID, SETTING, JSON.stringify(layout));
