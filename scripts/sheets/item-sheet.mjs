@@ -6,7 +6,7 @@ export class OchoLanzasItemSheet extends ItemSheetV1 {
   constructor(item, options = {}) { super(item, applySavedWindowOptions("itemSheet", options)); }
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["ocho-lanzas", "sheet", "item"], width: 720, height: 620, resizable: true
+      classes: ["ocho-lanzas", "sheet", "item"], width: 700, height: 500, resizable: true
     });
   }
   get template() { return "systems/ocho-lanzas/templates/items/item.hbs"; }
