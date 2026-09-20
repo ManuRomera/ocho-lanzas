@@ -32,6 +32,7 @@ OCHO LANZAS
 styles/
   ol-core.css
   ol-character.css
+  ol-curse.css
   ol-npc.css
   ol-bakemono.css
   ol-items.css
