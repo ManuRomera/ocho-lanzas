@@ -139,6 +139,14 @@ export function bindContextInfo(html) {
     if (target && !persistent) hidePopover();
   });
 
+  root.addEventListener("click", (event) => {
+    const target = getTarget(event.target, root);
+    if (!target || target.dataset.olInfoClick !== "pin") return;
+    event.preventDefault();
+    event.stopPropagation();
+    showPopover(target, { pin: true });
+  });
+
   root.addEventListener("contextmenu", (event) => {
     const target = getTarget(event.target, root);
     if (!target) return;
