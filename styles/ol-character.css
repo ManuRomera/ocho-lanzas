@@ -38,10 +38,10 @@
 .ol-legacy-equipment{margin-top:6px;border-top:1px dashed var(--ol-line);padding-top:6px}
 .ol-legacy-equipment summary{font-size:10.5px;color:var(--ol-ink-soft);cursor:pointer}
 .ol-legacy-equipment textarea{margin-top:6px;min-height:70px}
-.ol-story-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ol-story-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto minmax(96px,1fr);gap:10px;flex:1 1 auto}
 .ol-story-grid .ol-box{padding:8px 10px}
 .ol-story-grid textarea{min-height:76px;max-height:160px}
-.ol-story-wide{grid-column:1/-1}
+.ol-story-wide{grid-column:1/-1;display:flex;flex-direction:column}.ol-story-wide textarea{flex:1 1 auto}
 .ol-character-rightcol .ol-notes{display:flex;flex:1 1 auto;min-height:128px;flex-direction:column;padding:9px 10px}
 .ol-character-rightcol .ol-notes textarea{flex:1 1 auto;min-height:108px;resize:vertical}
 @media(max-width:900px){
