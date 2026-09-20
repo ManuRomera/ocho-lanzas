@@ -16,6 +16,7 @@
   --ol-ui:"Segoe UI",system-ui,-apple-system,sans-serif;
 }
 .ocho-lanzas,.ocho-lanzas input,.ocho-lanzas textarea,.ocho-lanzas button,.ocho-lanzas select{font-family:var(--ol-ui);box-sizing:border-box}
+.ocho-lanzas *,.ocho-lanzas *::before,.ocho-lanzas *::after{box-sizing:border-box}
 .ocho-lanzas h1,.ocho-lanzas h2,.ocho-lanzas h3,.ocho-lanzas h4,.ocho-lanzas .ol-brush-label{font-family:var(--ol-serif)}
 .ocho-lanzas.sheet .window-content{padding:0;overflow:auto;background:
   linear-gradient(rgba(247,240,227,.94),rgba(239,228,209,.94)),
