@@ -1,0 +1,72 @@
+/* Ocho Lanzas 0.6 — visual source of truth: core */
+:root{
+  --ol-ink:#181511;
+  --ol-ink-soft:#4f493f;
+  --ol-paper:#f0e5d2;
+  --ol-paper-light:#faf5eb;
+  --ol-paper-wash:rgba(250,245,235,.78);
+  --ol-red:#87211f;
+  --ol-red-dark:#5f1716;
+  --ol-gold:#9d7a43;
+  --ol-jade:#5d7468;
+  --ol-line:rgba(24,21,17,.19);
+  --ol-line-strong:rgba(24,21,17,.34);
+  --ol-shadow:0 14px 38px rgba(24,17,11,.20);
+  --ol-serif:Georgia,"Yu Mincho","Hiragino Mincho ProN","Times New Roman",serif;
+  --ol-ui:"Segoe UI",system-ui,-apple-system,sans-serif;
+}
+.ocho-lanzas,.ocho-lanzas input,.ocho-lanzas textarea,.ocho-lanzas button,.ocho-lanzas select{font-family:var(--ol-ui);box-sizing:border-box}
+.ocho-lanzas h1,.ocho-lanzas h2,.ocho-lanzas h3,.ocho-lanzas h4,.ocho-lanzas .ol-brush-label{font-family:var(--ol-serif)}
+.ocho-lanzas.sheet .window-content{padding:0;overflow:auto;background:
+  linear-gradient(rgba(247,240,227,.94),rgba(239,228,209,.94)),
+  url("../assets/parchment-tile.png") repeat;background-size:auto,512px 512px}
+.ocho-lanzas.ol-root{width:100%;max-width:none;min-width:0;margin:0;color:var(--ol-ink);background:transparent;border:0;box-shadow:none;border-radius:0}
+.ocho-lanzas .ol-sheet{width:100%;max-width:none;min-width:0;margin:0;background:transparent}
+.ocho-lanzas input[type="text"],.ocho-lanzas input[type="number"],.ocho-lanzas textarea{
+  width:100%;border:1px solid transparent;border-bottom-color:var(--ol-line-strong);border-radius:2px;
+  padding:7px 8px;background:rgba(255,255,255,.34);color:var(--ol-ink);outline:none;font-size:13px;line-height:1.35
+}
+.ocho-lanzas textarea{resize:vertical}
+.ocho-lanzas input:focus-visible,.ocho-lanzas textarea:focus-visible,.ocho-lanzas button:focus-visible,.ol-info-target:focus-visible{
+  outline:2px solid var(--ol-red);outline-offset:2px
+}
+.ocho-lanzas button{color:var(--ol-ink)}
+.ocho-lanzas button:not(:disabled),.ol-info-target{cursor:pointer}
+.ocho-lanzas button:disabled{cursor:default;opacity:.46}
+.ol-kicker,.ol-smalllabel{display:block;color:var(--ol-red);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.11em}
+.ol-smalllabel{margin-bottom:4px}
+.ol-section-title{margin:0;color:var(--ol-red);font-size:14px;letter-spacing:.06em}
+.ol-box{min-width:0;padding:10px 12px;background:rgba(255,255,255,.18);border:0;border-top:1px solid var(--ol-line);position:relative}
+.ol-box-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ol-box-head h3,.ol-box>h3,.ol-notes>h3{margin:0 0 7px;color:var(--ol-red);font-size:14px;font-weight:700;letter-spacing:.04em}
+.ol-text-action,.ol-link-button{border:0;background:transparent;color:var(--ol-red);padding:4px 6px;font-size:11.5px;font-weight:700;box-shadow:none}
+.ol-text-action:hover,.ol-link-button:hover{text-decoration:underline;background:transparent}
+.ol-icon-action{width:28px;height:28px;padding:0;border:1px solid var(--ol-line);border-radius:3px;background:rgba(255,255,255,.24);box-shadow:none}
+.ol-brush{padding:8px 10px;background:rgba(24,21,17,.94);position:relative;overflow:hidden;border-radius:2px}
+.ol-brush:after{content:"";position:absolute;right:-10%;top:-40%;width:45%;height:180%;background:linear-gradient(115deg,transparent,rgba(255,255,255,.05),transparent);transform:rotate(12deg);pointer-events:none}
+.ol-brush-label{margin-bottom:3px;color:#f8f0e3;font-size:11px;font-weight:700;letter-spacing:.05em}
+.ol-brush input[type="text"]{border:0;border-bottom:1px solid rgba(255,255,255,.24);background:transparent;color:#fff;padding:4px 1px;font-weight:700}
+.ol-name input[type="text"]{font-size:21px}
+.ol-idea input[type="text"]{font-size:14px}
+.ol-rollbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:38px;padding:8px 13px;border:1px solid var(--ink,var(--ol-ink));border-radius:3px;background:var(--ol-ink);color:#fbf6ed;font-size:12.5px;font-weight:800;letter-spacing:.04em;box-shadow:0 2px 0 rgba(0,0,0,.26)}
+.ol-rollbtn:hover:not(:disabled){background:#28231d}
+.ol-rollbtn:active:not(:disabled){transform:translateY(1px);box-shadow:0 1px 0 rgba(0,0,0,.2)}
+.ol-portrait{position:relative;min-width:0}
+.ol-portrait:before{content:"";position:absolute;inset:8% -8% 12%;z-index:0;background:url("../assets/ui/curse/curse-seal-center.svg") center/82% no-repeat;opacity:.10;filter:grayscale(1)}
+.ol-portrait img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center 18%;border:1px solid var(--line,var(--ol-line-strong));border-radius:2px;background:var(--ol-paper-light);box-shadow:0 8px 20px rgba(24,17,11,.14)}
+.ol-freetext{min-height:78px;max-height:190px;overflow:auto;resize:vertical;font-size:13px;line-height:1.45}
+.ol-empty-state{margin:7px 0 1px;color:var(--ol-ink-soft);font-size:12px;font-style:italic}
+.ol-chip-list{display:flex;flex-wrap:wrap;gap:5px}
+.ol-trait-chip{border:1px solid var(--ol-line-strong);border-radius:999px;background:rgba(255,255,255,.32);padding:5px 9px;font-size:11.5px;line-height:1.1;box-shadow:none}
+.ol-trait-chip:hover{border-color:var(--ol-red);background:rgba(135,33,31,.06)}
+.ol-trait-chip.is-cursed{color:var(--ol-red-dark);border-color:rgba(135,33,31,.5)}
+.ol-context-popover{position:fixed;z-index:100000;width:min(360px,calc(100vw - 24px));max-height:min(440px,calc(100vh - 24px));overflow:auto;padding:13px 15px;color:var(--ol-ink);background:var(--ol-paper-light);border:1px solid rgba(95,23,22,.4);border-left:4px solid var(--ol-red);box-shadow:var(--ol-shadow);border-radius:3px;transform-origin:top left;animation:ol-pop-in .12s ease-out}
+.ol-context-popover[hidden]{display:none}.ol-context-popover.is-persistent{border-left-width:7px}
+.ol-context-popover-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border-bottom:1px solid var(--ol-line);padding-bottom:8px;margin-bottom:9px}
+.ol-context-popover-category{color:var(--ol-red);font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+.ol-context-popover-title{display:block;margin-top:2px;font:700 18px/1.15 var(--ol-serif)}
+.ol-context-popover-close{border:0;background:transparent;width:26px;height:26px;padding:0;font-size:21px}
+.ol-context-popover-body{font-size:13px;line-height:1.48;white-space:pre-wrap}
+@keyframes ol-pop-in{from{opacity:0;transform:translateY(3px) scale(.985)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.ol-context-popover,.ocho-lanzas *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media(max-width:760px){.ocho-lanzas.sheet .window-content{overflow:auto}}
