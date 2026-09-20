@@ -3,7 +3,7 @@
 .ol-yomi-shell-inner{display:flex;flex-direction:column;height:100%;min-height:0;background:linear-gradient(180deg,#f4ebda,#ece0c8)}
 .ol-yomi-toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 13px;border-bottom:1px solid rgba(135,33,31,.2);background:rgba(247,239,224,.96)}
 .ol-yomi-titleblock h2{margin:0;color:var(--ol-red);font-size:19px}.ol-yomi-titleblock p{margin:2px 0 0;color:var(--ol-ink-soft);font-size:11px}
-.ol-yomi-badge{display:inline-block;margin-bottom:2px;color:var(--ol-red);font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+.ol-yomi-badge{display:inline-block;margin-bottom:2px;color:var(--ol-red);font-size:10.5px;text-transform:uppercase;letter-spacing:.08em}
 .ol-yomi-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:5px}.ol-yomi-actions button,.ol-yomi-tool{border:1px solid var(--ol-line);background:rgba(255,255,255,.42);color:var(--ol-ink);border-radius:3px;padding:6px 9px;cursor:pointer;font-size:11px;font-weight:700}
 .ol-yomi-actions button:hover,.ol-yomi-tool:hover{border-color:rgba(135,33,31,.55);color:var(--ol-red)}
 .ol-yomi-frame-wrap{flex:1;min-height:0}.ol-yomi-frame{display:block;width:100%;height:100%;min-height:0;border:0;background:#1a1209}
