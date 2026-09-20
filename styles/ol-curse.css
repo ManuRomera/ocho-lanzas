@@ -13,7 +13,7 @@
 .ol-curse-admin{position:absolute;right:8px;top:34px;display:flex;flex-direction:column;gap:3px;opacity:.22;transition:opacity .12s}
 .ol-curse-panel:hover .ol-curse-admin,.ol-curse-panel:focus-within .ol-curse-admin{opacity:1}
 .ol-curse-admin button{width:24px;height:24px;padding:0;border:1px solid var(--ol-line);background:rgba(250,245,235,.72);border-radius:2px;font-size:11px}
-.ol-purify-button{width:100%;min-height:34px;margin:1px 0 7px;border:1px solid var(--ol-jade);background:rgba(93,116,104,.12);color:#34463e;font-weight:800}
-.ol-purify-button:hover:not(:disabled){background:rgba(93,116,104,.22)}
+.ocho-lanzas .ol-purify-button{width:100%;min-height:34px;margin:1px 0 7px;border:1px solid var(--ol-jade);background:rgba(93,116,104,.12);color:#34463e;font-weight:800}
+.ocho-lanzas .ol-purify-button:hover:not(:disabled){background:rgba(93,116,104,.22)}
 .ol-purify-reason{margin:0 0 7px;color:var(--ol-ink-soft);font-size:10.5px;line-height:1.35;text-align:center}
 .ol-curse-notes{min-height:64px;max-height:115px;resize:vertical;font-size:12px;line-height:1.4}
