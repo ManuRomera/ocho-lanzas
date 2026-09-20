@@ -69,7 +69,7 @@ for (const legacy of ["styles/ocho-lanzas.css", "styles/ocho-lanzas-v5.css", "st
 }
 
 const expectedStyles = [
-  "styles/ol-core.css", "styles/ol-character.css", "styles/ol-npc.css", "styles/ol-bakemono.css",
+  "styles/ol-core.css", "styles/ol-character.css", "styles/ol-curse.css", "styles/ol-npc.css", "styles/ol-bakemono.css",
   "styles/ol-items.css", "styles/ol-dialogs.css", "styles/ol-chat.css", "styles/ol-welcome.css", "styles/ol-yomi.css"
 ];
 for (const style of expectedStyles) if (!(manifest.styles ?? []).includes(style)) fail(`hoja visual no declarada: ${style}`);
