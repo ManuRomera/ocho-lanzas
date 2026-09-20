@@ -80,6 +80,9 @@ for (const file of files.filter((f) => path.extname(f) === ".css")) {
   for (const m of css.matchAll(/font-size:\s*([0-9.]+)px/g)) {
     if (Number(m[1]) < 10.5) fail(`microtexto funcional <10.5px en ${rel}: ${m[0]}`);
   }
+  for (const m of css.matchAll(/font:\s*[^;]*?([0-9.]+)px\//g)) {
+    if (Number(m[1]) < 10.5) fail(`microtexto funcional en shorthand <10.5px en ${rel}: ${m[0]}`);
+  }
 }
 
 if (manifest.version !== "0.6.0") fail(`versión inesperada en manifest: ${manifest.version}`);
