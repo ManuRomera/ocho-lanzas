@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Emblema original de Las Ocho Lanzas">
+  <rect x="9" y="9" width="78" height="78" rx="7" fill="none" stroke="#8a211f" stroke-width="4" transform="rotate(-2 48 48)"/>
+  <g stroke="#8a211f" stroke-width="4" stroke-linecap="round">
+    <path d="M48 20v56M20 48h56M28 28l40 40M68 28 28 68"/>
+    <path d="M35 18l13 30 13-30M35 78l13-30 13 30M18 35l30 13-30 13M78 35 48 48l30 13" opacity=".9"/>
+  </g>
+  <circle cx="48" cy="48" r="8" fill="#f3e8d6" stroke="#17130f" stroke-width="3"/>
+</svg>
