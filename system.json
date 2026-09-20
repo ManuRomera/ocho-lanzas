@@ -22,6 +22,7 @@
   "styles": [
     "styles/ol-core.css",
     "styles/ol-character.css",
+    "styles/ol-curse.css",
     "styles/ol-npc.css",
     "styles/ol-bakemono.css",
     "styles/ol-items.css",
