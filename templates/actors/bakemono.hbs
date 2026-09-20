@@ -26,7 +26,7 @@
         data-ol-info-body="{{localize 'OCHO.Curse.BakemonoInfo'}}">
         <div class="ol-curse-head"><h3>{{localize "OCHO.Sections.Curse"}}</h3><span class="ol-curse-min">{{curseCount}} / 6</span></div>
         <div class="ol-curse-ring {{#unless isGM}}is-readonly{{/unless}}">
-          {{#each cursePips as |p|}}<button type="button" class="ol-pip {{p.cls}}" style="--i: {{p.i}};" data-pip="{{p.n}}" aria-label="{{p.aria}}" {{#unless ../isGM}}disabled{{/unless}}></button>{{/each}}
+          {{#each cursePips as |p|}}<span class="ol-pip {{p.cls}}" style="--i: {{p.i}};" data-pip="{{p.n}}" role="img" aria-label="{{p.aria}}"></span>{{/each}}
           <div class="ol-curse-value">{{curseCount}}</div>
         </div>
         {{#if isGM}}<div class="ol-curse-admin"><button type="button" data-action="curseInc">+</button><button type="button" data-action="curseDec">−</button><button type="button" data-action="curseReset">↺</button></div>{{/if}}
