@@ -1,0 +1,22 @@
+/* Ocho Lanzas 0.6 — Bakemono */
+.ocho-lanzas.sheet.actor.bakemono .ol-sheet{position:relative;overflow:hidden;padding:13px;min-width:900px}
+.ocho-lanzas.sheet.actor.bakemono .ol-sheet:after{content:"";position:absolute;right:-28px;bottom:-30px;width:180px;height:180px;background:url("../assets/ui/bakemono/bakemono-mark.svg") center/contain no-repeat;opacity:.065;pointer-events:none}
+.ol-bakemono-header{display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;padding-bottom:11px;border-bottom:1px solid rgba(135,33,31,.28)}
+.ol-bakemono-header .ol-portrait{height:170px}
+.ol-bakemono-identity{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;align-content:start;min-width:0}
+.ol-bakemono-identity .ol-kicker,.ol-bakemono-identity .ol-name{grid-column:1/-1}
+.ol-bakemono-identity label{display:flex;flex-direction:column;gap:4px}
+.ol-bakemono-identity label>span{color:var(--ol-red);font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+.ol-bakemono-identity .ol-rollbtn{grid-column:2;justify-self:end;width:180px}
+.ol-bakemono-main{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:12px;margin-top:12px;align-items:stretch}
+.ol-bakemono-content{display:flex;flex-direction:column;gap:10px;min-width:0}
+.ol-bakemono-triad{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.ol-bakemono-triad label{display:flex;flex-direction:column;gap:5px;padding:9px 10px;background:rgba(255,255,255,.16);border-top:1px solid var(--ol-line)}
+.ol-bakemono-triad label>span{color:var(--ol-red);font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.07em}
+.ol-bakemono-triad textarea{min-height:112px;max-height:175px;overflow:auto;resize:vertical;font-size:12.5px}
+.ol-bakemono-notes{display:flex;flex:1 1 auto;flex-direction:column;min-height:190px}
+.ol-bakemono-notes textarea{flex:1;min-height:166px;max-height:310px;overflow:auto;resize:vertical;font-size:13px;line-height:1.48}
+.ol-bakemono-curse{align-self:stretch;background:linear-gradient(180deg,rgba(135,33,31,.035),rgba(24,21,17,.025));border-top-color:rgba(135,33,31,.38)}
+.ol-bakemono-curse:before{content:"";display:block;width:44px;height:44px;margin:0 auto -12px;background:url("../assets/ui/bakemono/bakemono-mark.svg") center/contain no-repeat;opacity:.42}
+.ol-bakemono-curse .ol-curse-ring{width:182px;height:182px}
+.ol-bakemono-curse .ol-curse-ring .ol-pip{transform:translate(-50%,-50%) rotate(calc(var(--i) * 60deg)) translateY(-71px) rotate(calc(var(--i) * -60deg))}
