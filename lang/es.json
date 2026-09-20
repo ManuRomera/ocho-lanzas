@@ -140,7 +140,12 @@
       "ErrorTooLow": "Solo puedes purificarte con Maldición 4 o más.",
       "ErrorOncePerScene": "Solo puedes purificarte una vez por escena.",
       "ErrorConsequenceRequired": "Debes escribir una consecuencia para purificarte.",
-      "PriceQuestion": "¿Qué precio pagas?"
+      "PriceQuestion": "¿Qué precio pagas?",
+      "Info": "La Purificación reduce la Maldición en 1 a cambio de una consecuencia narrativa y solo puede realizarse una vez por escena.",
+      "DisabledTooLow": "Necesitas Maldición 4 o superior.",
+      "DisabledAtMinimum": "Tu Maldición no puede reducirse por debajo de tu mínimo.",
+      "DisabledScene": "Ya te has purificado en esta escena.",
+      "ErrorAtMinimum": "Tu Maldición ya está en su mínimo y no puede reducirse más."
     },
     "Placeholder": {
       "FreeText": "Escribe aquí…",
@@ -276,6 +281,21 @@
       "Adventures": "Aventuras",
       "YomiBody": "Aventura opcional. El sistema base no presupone que vayas a jugarla.",
       "Open": "Abrir Ocho Lanzas"
+    },
+    "Curse": {
+      "StateLabel": "Estado ritual",
+      "Info": "La Maldición avanza de 1 a 6. Las marcas atravesadas indican el mínimo permanente y el sexto nivel señala la transformación en Bakemono.",
+      "BakemonoInfo": "La Maldición de un Bakemono utiliza el mismo lenguaje ritual. El sexto nivel se representa con una marca quebrada y contaminada.",
+      "Admin": "Controles administrativos de Maldición",
+      "Increase": "Aumentar Maldición",
+      "Decrease": "Reducir Maldición",
+      "PipAria": "Nivel {level}: {state}",
+      "State": {
+        "empty": "no alcanzado",
+        "active": "activo",
+        "permanent": "permanente",
+        "bakemono": "Bakemono"
+      }
     }
   },
   "TYPES": {
