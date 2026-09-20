@@ -49,9 +49,9 @@
 .ol-brush input[type="text"]{border:0;border-bottom:1px solid rgba(255,255,255,.24);background:transparent;color:#fff;padding:4px 1px;font-weight:700}
 .ol-name input[type="text"]{font-size:21px}
 .ol-idea input[type="text"]{font-size:14px}
-.ol-rollbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:38px;padding:8px 13px;border:1px solid var(--ink,var(--ol-ink));border-radius:3px;background:var(--ol-ink);color:#fbf6ed;font-size:12.5px;font-weight:800;letter-spacing:.04em;box-shadow:0 2px 0 rgba(0,0,0,.26)}
-.ol-rollbtn:hover:not(:disabled){background:#28231d}
-.ol-rollbtn:active:not(:disabled){transform:translateY(1px);box-shadow:0 1px 0 rgba(0,0,0,.2)}
+.ocho-lanzas .ol-rollbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:38px;padding:8px 13px;border:1px solid var(--ink,var(--ol-ink));border-radius:3px;background:var(--ol-ink);color:#fbf6ed;font-size:12.5px;font-weight:800;letter-spacing:.04em;box-shadow:0 2px 0 rgba(0,0,0,.26)}
+.ocho-lanzas .ol-rollbtn:hover:not(:disabled){background:#28231d}
+.ocho-lanzas .ol-rollbtn:active:not(:disabled){transform:translateY(1px);box-shadow:0 1px 0 rgba(0,0,0,.2)}
 .ol-portrait{position:relative;min-width:0}
 .ol-portrait:before{content:"";position:absolute;inset:8% -8% 12%;z-index:0;background:url("../assets/ui/curse/curse-seal-center.svg") center/82% no-repeat;opacity:.10;filter:grayscale(1)}
 .ol-portrait img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;object-position:center 18%;border:1px solid var(--line,var(--ol-line-strong));border-radius:2px;background:var(--ol-paper-light);box-shadow:0 8px 20px rgba(24,17,11,.14)}
