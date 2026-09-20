@@ -1,0 +1,13 @@
+/* Ocho Lanzas 0.6 — PNJ */
+.ocho-lanzas.sheet.actor.npc .ol-sheet{padding:13px;min-width:850px}
+.ol-npc-header{display:grid;grid-template-columns:138px minmax(0,1fr);gap:14px;padding-bottom:11px;border-bottom:1px solid var(--ol-line)}
+.ol-npc-header .ol-portrait{height:158px}
+.ol-npc-identity{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:8px 12px;align-content:start}
+.ol-npc-identity .ol-name{grid-column:1/-1}
+.ol-npc-identity .ol-rollbtn{grid-column:2;justify-self:end;width:180px}
+.ol-npc-body{display:grid;grid-template-columns:minmax(0,1fr) 258px;gap:13px;margin-top:12px;min-height:0}
+.ol-npc-notes{display:flex;flex-direction:column;min-height:360px}
+.ol-npc-notes textarea{flex:1;min-height:330px;max-height:520px;overflow:auto;resize:none;font-size:13.5px;line-height:1.5}
+.ol-npc-curse .ol-curse-ring{width:176px;height:176px}
+.ol-npc-curse .ol-curse-ring .ol-pip{transform:translate(-50%,-50%) rotate(calc(var(--i) * 60deg)) translateY(-69px) rotate(calc(var(--i) * -60deg))}
+.ol-npc-curse .ol-curse-notes{min-height:84px;max-height:135px}
