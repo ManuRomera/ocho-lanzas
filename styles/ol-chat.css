@@ -13,3 +13,12 @@
 .ol-roll-action-bar{margin-top:6px}.ol-roll-action-bar .ol-chat-action{width:100%;min-height:31px;border:1px solid var(--ol-red);background:rgba(135,33,31,.08);color:var(--ol-red-dark);font-weight:800}
 .ol-curse-card,.ol-purify-card{padding:9px 10px;border:1px solid var(--ol-line-strong);border-left:4px solid var(--ol-red);border-radius:4px;background:linear-gradient(rgba(250,245,235,.9),rgba(241,231,213,.9)),url("../assets/parchment-tile.png");color:var(--ol-ink)}
 .ol-purify-card{border-left-color:var(--ol-jade)}
+
+.ol-roll-header-banner h4{margin:0;font:700 14px var(--ol-serif)}
+.ol-curse-chat-line,.ol-purify-compact{display:flex;align-items:center;gap:9px;padding:9px 5px;font-size:11.5px}
+.ol-curse-chat-line strong,.ol-purify-compact strong{font:700 16px var(--ol-serif);white-space:nowrap}
+.ol-curse-chat-die{display:grid;place-items:center;width:32px;height:32px;border:2px solid var(--ol-red);background:rgba(135,33,31,.08);font-weight:900;color:var(--ol-red-dark)}
+.ol-bakemono-warning{margin-top:4px;padding:5px 7px;border-left:3px solid var(--ol-red);background:rgba(135,33,31,.07);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+.ol-purify-mark{width:30px;height:30px;flex:0 0 30px;background:var(--ol-jade);mask:url("../assets/ui/curse/curse-seal-center.svg") center/contain no-repeat;-webkit-mask:url("../assets/ui/curse/curse-seal-center.svg") center/contain no-repeat}
+.ol-purify-consequence-box{display:flex;gap:6px;align-items:baseline;padding:6px 5px;border-top:1px solid var(--ol-line);font-size:11.5px}
+.ol-purify-consequence-box strong{color:var(--ol-jade);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em}
