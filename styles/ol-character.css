@@ -1,5 +1,5 @@
 /* Ocho Lanzas 0.6 — Agente */
-.ocho-lanzas.sheet.actor.character .ol-sheet{padding:13px;display:flex;flex-direction:column;gap:11px;min-width:850px}
+.ocho-lanzas.sheet.actor.character .ol-sheet{padding:13px;display:flex;flex-direction:column;gap:11px;min-width:820px}
 .ol-character-header{display:grid;grid-template-columns:145px minmax(260px,.9fr) minmax(360px,1.15fr);gap:13px;align-items:stretch;padding-bottom:11px;border-bottom:1px solid var(--ol-line)}
 .ol-character-header .ol-portrait{height:178px}
 .ol-character-identity{display:flex;flex-direction:column;gap:8px;min-width:0}
@@ -45,5 +45,5 @@
 .ol-character-rightcol .ol-notes{display:flex;flex:1 1 auto;min-height:128px;flex-direction:column;padding:9px 10px}
 .ol-character-rightcol .ol-notes textarea{flex:1 1 auto;min-height:108px;resize:vertical}
 @media(max-width:900px){
-  .ocho-lanzas.sheet.actor.character .ol-sheet{min-width:850px}
+  .ocho-lanzas.sheet.actor.character .ol-sheet{min-width:820px}
 }
