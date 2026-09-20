@@ -102,10 +102,6 @@ class OchoLanzasActorSheetBase extends ActorSheetV1 {
       html.find("[data-action='curseInc']").on("click", () => this._adjustCurse(1));
       html.find("[data-action='curseDec']").on("click", () => this._adjustCurse(-1));
       html.find("[data-action='curseReset']").on("click", () => this._resetCurse());
-      html.find(".ol-curse-ring .ol-pip").on("click", (ev) => {
-        const n = Number(ev.currentTarget?.dataset?.pip ?? 0);
-        if (Number.isFinite(n)) this._setCurse(n);
-      });
     }
   }
 
