@@ -2,6 +2,14 @@ const SYSTEM_ID = "ocho-lanzas";
 const SETTING = "windowLayout";
 const SAVE_DELAY = 220;
 const timers = new WeakMap();
+const MIN_GEOMETRY = {
+  characterSheet: { width: 850, height: 620 },
+  npcSheet: { width: 850, height: 580 },
+  bakemonoSheet: { width: 900, height: 620 },
+  itemSheet: { width: 540, height: 420 },
+  welcome: { width: 630, height: 500 },
+  yomiDirector: { width: 900, height: 640 }
+};
 
 function parseLayout() {
   try {
@@ -18,16 +26,21 @@ function safeNumber(value) {
   return Number.isFinite(n) ? n : undefined;
 }
 
-function clampGeometry(raw = {}) {
+function clampGeometry(raw = {}, key = "") {
   const width = safeNumber(raw.width);
   const height = safeNumber(raw.height);
+  const minimum = MIN_GEOMETRY[key] ?? { width: 520, height: 360 };
   let left = safeNumber(raw.left);
   let top = safeNumber(raw.top);
 
   const viewportWidth = Math.max(800, window.innerWidth || 0);
   const viewportHeight = Math.max(600, window.innerHeight || 0);
-  const safeWidth = width ? Math.min(Math.max(width, 360), Math.max(360, viewportWidth - 40)) : undefined;
-  const safeHeight = height ? Math.min(Math.max(height, 260), Math.max(260, viewportHeight - 40)) : undefined;
+  const maxWidth = Math.max(360, viewportWidth - 40);
+  const maxHeight = Math.max(300, viewportHeight - 40);
+  const minWidth = Math.min(minimum.width, maxWidth);
+  const minHeight = Math.min(minimum.height, maxHeight);
+  const safeWidth = width ? Math.min(Math.max(width, minWidth), maxWidth) : undefined;
+  const safeHeight = height ? Math.min(Math.max(height, minHeight), maxHeight) : undefined;
 
   if (left !== undefined) left = Math.min(Math.max(left, 20), Math.max(20, viewportWidth - Math.min(safeWidth ?? 400, viewportWidth) - 20));
   if (top !== undefined) top = Math.min(Math.max(top, 20), Math.max(20, viewportHeight - 90));
@@ -42,7 +55,7 @@ function clampGeometry(raw = {}) {
 
 export function readWindowGeometry(key) {
   const layout = parseLayout();
-  if (layout?.windows?.[key]) return clampGeometry(layout.windows[key]);
+  if (layout?.windows?.[key]) return clampGeometry(layout.windows[key], key);
 
   // One-time backwards-compatible fallback for the old Yomi-only setting.
   if (key === "yomiDirector") {
@@ -50,7 +63,7 @@ export function readWindowGeometry(key) {
       const raw = game.settings.get(SYSTEM_ID, "tejidoDeYomiWindow");
       if (raw) {
         const legacy = JSON.parse(raw);
-        if (legacy && typeof legacy === "object") return clampGeometry(legacy);
+        if (legacy && typeof legacy === "object") return clampGeometry(legacy, key);
       }
     } catch (_err) {}
   }
@@ -66,7 +79,7 @@ async function writeWindowGeometry(key, geometry) {
   const layout = parseLayout();
   layout.version = 1;
   layout.windows ??= {};
-  layout.windows[key] = clampGeometry(geometry);
+  layout.windows[key] = clampGeometry(geometry, key);
   await game.settings.set(SYSTEM_ID, SETTING, JSON.stringify(layout));
 }
 
