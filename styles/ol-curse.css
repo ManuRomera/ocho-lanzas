@@ -1,0 +1,19 @@
+/* Ocho Lanzas 0.6 — Maldición compartida */
+.ol-curse-panel{position:relative;padding:9px 10px 10px;background:rgba(255,255,255,.13);border-top:1px solid rgba(135,33,31,.34)}
+.ol-curse-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.ol-curse-head h3{margin:0;color:var(--ol-red);font-size:15px}
+.ol-curse-min{color:var(--ol-ink-soft);font-size:10.5px;font-weight:700}
+.ol-curse-ring{position:relative;width:190px;height:190px;margin:3px auto 0;background:url("../assets/ui/curse/curse-seal-center.svg") center/104px no-repeat}
+.ol-curse-ring .ol-pip{position:absolute;top:50%;left:50%;width:28px;height:28px;padding:0;border:0;background:url("../assets/ui/curse/curse-pip-empty.svg") center/contain no-repeat;box-shadow:none;transform:translate(-50%,-50%) rotate(calc(var(--i) * 60deg)) translateY(-76px) rotate(calc(var(--i) * -60deg))}
+.ol-curse-ring .ol-pip.filled{background-image:url("../assets/ui/curse/curse-pip-active.svg")}
+.ol-curse-ring .ol-pip.permanent{background-image:url("../assets/ui/curse/curse-pip-permanent.svg")}
+.ol-curse-ring .ol-pip.is-bakemono{background-image:url("../assets/ui/curse/curse-pip-bakemono.svg")}
+.ol-curse-ring .ol-pip:disabled{opacity:1}
+.ol-curse-value{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:rgba(250,245,235,.74);font:700 23px var(--ol-serif);color:var(--ol-red-dark);pointer-events:none}
+.ol-curse-admin{position:absolute;right:8px;top:34px;display:flex;flex-direction:column;gap:3px;opacity:.22;transition:opacity .12s}
+.ol-curse-panel:hover .ol-curse-admin,.ol-curse-panel:focus-within .ol-curse-admin{opacity:1}
+.ol-curse-admin button{width:24px;height:24px;padding:0;border:1px solid var(--ol-line);background:rgba(250,245,235,.72);border-radius:2px;font-size:11px}
+.ocho-lanzas .ol-purify-button{width:100%;min-height:34px;margin:1px 0 7px;border:1px solid var(--ol-jade);background:rgba(93,116,104,.12);color:#34463e;font-weight:800}
+.ocho-lanzas .ol-purify-button:hover:not(:disabled){background:rgba(93,116,104,.22)}
+.ol-purify-reason{margin:0 0 7px;color:var(--ol-ink-soft);font-size:10.5px;line-height:1.35;text-align:center}
+.ol-curse-notes{min-height:64px;max-height:115px;resize:vertical;font-size:12px;line-height:1.4}

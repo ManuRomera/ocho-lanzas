@@ -1,0 +1,33 @@
+/* Ocho Lanzas 0.6 — Dialogs */
+.application.ol-roll-dialog-shell .window-content,.application:has(.ol-purify-dialog-v5) .window-content{padding:0;background:var(--ol-paper-light);color:var(--ol-ink)}
+.ol-roll-dialog-v5,.ol-purify-dialog-v5{padding:16px;color:var(--ol-ink);background:linear-gradient(rgba(250,245,235,.96),rgba(240,229,210,.96)),url("../assets/parchment-tile.png")}
+.ol-dialog-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:1px solid var(--ol-line);padding-bottom:10px;margin-bottom:12px}
+.ol-dialog-header h2{margin:2px 0 0;font-size:22px}
+.ol-dialog-mode{display:flex;gap:5px}.ol-dialog-mode input{position:absolute;opacity:0}
+.ol-dialog-mode span{display:block;padding:6px 10px;border:1px solid var(--ol-line);border-radius:2px;font-size:12px;font-weight:800}
+.ol-dialog-mode input:checked+span{color:#fff;background:var(--ol-red);border-color:var(--ol-red)}
+.ol-dialog-intent{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.ol-dialog-intent>span{color:var(--ol-red);font-size:10.5px;font-weight:800;text-transform:uppercase}
+.ol-dialog-intent input{border:0;border-bottom:2px solid var(--ol-line);background:transparent;padding:6px 2px;font-size:13.5px}
+.ol-roll-source-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ol-source-group{min-width:0;border:1px solid var(--ol-line);padding:9px;background:rgba(255,255,255,.28)}
+.ol-source-group legend{font:700 14px var(--ol-serif);padding:0 4px}
+.ol-source-group>p{margin:0 0 7px;color:var(--ol-ink-soft);font-size:11px;line-height:1.35}
+.ol-source-group.is-cursed{border-color:rgba(135,33,31,.34)}
+.ol-source-option{display:block;position:relative;margin:2px 0}.ol-source-option input{position:absolute;opacity:0}
+.ol-source-option>span{display:flex;flex-direction:column;padding:6px 8px;border:1px solid transparent;border-radius:2px}
+.ol-source-option small{color:var(--ol-red);font-size:10.5px;text-transform:uppercase;letter-spacing:.07em}
+.ol-source-option strong{font-size:12px}
+.ol-source-option:hover>span{background:rgba(135,33,31,.05)}
+.ol-source-option input:checked+span{border-color:var(--ol-ink);background:var(--ol-ink);color:#fff}
+.ol-source-group.is-cursed .ol-source-option input:checked+span{border-color:var(--ol-red);background:var(--ol-red)}
+.ol-roll-preview{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin-top:12px;padding:10px 12px;border-left:4px solid var(--ol-ink);background:rgba(255,255,255,.42)}
+.ol-roll-preview .ol-kicker{flex-basis:100%}.ol-roll-preview strong{font-size:13.5px}.ol-roll-preview strong.is-cursed{color:var(--ol-red)}
+.ol-roll-preview [data-preview-sources]{flex-basis:100%;color:var(--ol-ink-soft);font-size:11px}
+.ol-curse-mode{display:none;padding:14px 10px;text-align:center}
+.ol-roll-dialog-v5[data-mode="curse"] .ol-risk-mode{display:none}.ol-roll-dialog-v5[data-mode="curse"] .ol-curse-mode{display:block}
+.ol-curse-mode-value{display:flex;justify-content:center;align-items:baseline;gap:10px;margin:8px 0}.ol-curse-mode-value strong{color:var(--ol-red);font:700 34px var(--ol-serif)}
+.ol-curse-mode p{max-width:460px;margin:0 auto;font-size:12.5px;line-height:1.5}
+.ol-purify-header{align-items:center}.ol-purify-change{display:flex;align-items:center;gap:8px}.ol-purify-change strong{font:700 29px var(--ol-serif);color:var(--ol-jade)}
+.ol-dialog-lead{font-size:12.5px;line-height:1.48}.ol-purify-consequence{display:flex;flex-direction:column;gap:6px;margin-top:10px}.ol-purify-consequence>span{color:var(--ol-jade);font:700 14px var(--ol-serif)}
+.ol-purify-consequence textarea{min-height:100px;padding:9px;font-size:13px}

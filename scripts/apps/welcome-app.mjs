@@ -1,7 +1,7 @@
 import { applySavedWindowOptions, persistWindowGeometry, flushWindowGeometry, resetWindowLayout } from "../ui/window-state.mjs";
 import { ApplicationV1, dialogV2 } from "../compat/foundry-compat.mjs";
 
-const WELCOME_VERSION = "0.5";
+const WELCOME_VERSION = "0.6";
 
 async function createActorOfType(type) {
   try {
@@ -33,8 +33,8 @@ export class OchoLanzasWelcomeApp extends ApplicationV1 {
       popOut: true,
       resizable: true,
       minimizable: true,
-      width: 820,
-      height: 720,
+      width: 760,
+      height: "auto",
       title: "Ocho Lanzas"
     });
   }

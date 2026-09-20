@@ -1,4 +1,4 @@
-# Arquitectura 0.5
+# Arquitectura 0.6
 
 ```text
 OCHO LANZAS
@@ -11,7 +11,7 @@ OCHO LANZAS
 │   ├── workflows/    # tiradas, chat y reglas automatizadas
 │   └── apps/         # bienvenida y aventura
 ├── templates/
-├── styles/
+├── styles/         # CSS modular sin capas históricas
 ├── assets/           # árbol canónico de recursos
 └── packs/            # compendios LevelDB
 ```
@@ -25,3 +25,21 @@ OCHO LANZAS
 5. El Tejido de Yomi es contenido opcional y el motor base no depende de que esté instalado en un world.
 6. `assets/` es la única ruta canónica de recursos de la aventura.
 7. Las migraciones usan una versión propia del sistema y no la versión de Foundry como sustituto.
+
+## Arquitectura visual 0.6
+
+```text
+styles/
+  ol-core.css
+  ol-character.css
+  ol-curse.css
+  ol-npc.css
+  ol-bakemono.css
+  ol-items.css
+  ol-dialogs.css
+  ol-chat.css
+  ol-welcome.css
+  ol-yomi.css
+```
+
+No existe una hoja legacy cargada por debajo. Cada selector pertenece a una responsabilidad clara y los tamaños iniciales viven en las clases de aplicación, no en una sucesión de overrides históricos.

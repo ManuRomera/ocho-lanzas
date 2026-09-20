@@ -1,0 +1,13 @@
+/* Ocho Lanzas 0.6 — Items */
+.application .ol-item-sheet{height:100%;padding:14px;color:var(--ol-ink);background:linear-gradient(rgba(250,245,235,.95),rgba(240,229,210,.95)),url("../assets/parchment-tile.png");display:flex;flex-direction:column}
+.ol-item-header{display:grid;grid-template-columns:88px minmax(0,1fr);gap:13px;align-items:center;padding-bottom:10px;border-bottom:1px solid var(--ol-line)}
+.ol-item-header img{width:88px;height:88px;object-fit:cover;border:1px solid var(--ol-line-strong);border-radius:2px}
+.ol-item-name-input{width:100%;height:auto!important;border:0!important;border-bottom:2px solid var(--ol-ink)!important;background:transparent!important;padding:3px 0!important;font:700 24px/1.2 var(--ol-serif)!important}
+.ol-item-body{display:flex;flex:1 1 auto;min-height:0;flex-direction:column;gap:11px;margin-top:11px}
+.ol-item-description{display:flex;flex:1 1 auto;min-height:0;flex-direction:column;gap:5px}
+.ol-item-description>span,.ol-item-meta-grid label>span{color:var(--ol-red);font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.07em}
+.ol-item-description textarea{flex:1 1 auto;min-height:130px;max-height:none;overflow:auto;resize:vertical;font-size:13px;line-height:1.45}
+.ol-item-meta-grid{display:grid;grid-template-columns:minmax(0,2fr) 90px 90px;gap:10px;align-items:end}
+.ol-item-meta-grid label{display:flex;flex-direction:column;gap:4px}
+.ol-checkbox-field input{width:18px!important;height:18px;align-self:flex-start}
+.ol-item-weapon-row{grid-column:1/-1}

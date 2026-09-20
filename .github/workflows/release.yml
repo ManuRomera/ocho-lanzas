@@ -21,6 +21,21 @@ jobs:
         run: node tools/validate-release.mjs
       - name: Syntax check modules
         run: find scripts tools -name '*.mjs' -print0 | xargs -0 -n1 node --check
+      - name: Build UI review artifact
+        if: github.event_name == 'pull_request'
+        run: |
+          mkdir -p ui-review/assets
+          cp -r styles templates ui-review/
+          cp -r assets/ui ui-review/assets/
+          cp assets/parchment-tile.png ui-review/assets/parchment-tile.png
+          zip -r ui-review-source.zip ui-review
+      - name: Upload UI review artifact
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ocho-lanzas-ui-review
+          path: ui-review-source.zip
+          retention-days: 3
 
   release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'

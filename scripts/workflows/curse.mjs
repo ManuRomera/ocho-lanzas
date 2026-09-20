@@ -117,6 +117,10 @@ export async function purify(actor, { consequence } = {}) {
     ui.notifications?.warn?.(game.i18n.localize("OCHO.Purify.ErrorTooLow"));
     return null;
   }
+  if (before <= min) {
+    ui.notifications?.warn?.(game.i18n.localize("OCHO.Purify.ErrorAtMinimum"));
+    return null;
+  }
 
   const sceneId = getCurrentSceneId();
   const lastScene = actor.getFlag("ocho-lanzas", "purifySceneId") ?? null;

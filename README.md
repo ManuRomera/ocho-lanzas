@@ -6,23 +6,29 @@ Sistema **no oficial** para jugar *Ocho Lanzas* en Foundry VTT. El objetivo de e
 
 ## Compatibilidad
 
-La versión 0.5.0 mantiene **un único paquete** para Foundry VTT **13 y 14**. Las diferencias de API se encapsulan en `scripts/compat/foundry-compat.mjs`; no existen builds separados por versión.
+La versión 0.6.0 mantiene **un único paquete** para Foundry VTT **13 y 14**. Las diferencias de API se encapsulan en `scripts/compat/foundry-compat.mjs`; no existen builds separados por versión.
 
 > Importante: migrar un world desde Foundry 13 a Foundry 14 debe hacerse siguiendo el procedimiento y copia de seguridad normal de Foundry. La compatibilidad del sistema no convierte una migración de world de Foundry en reversible.
 
 ## Qué incluye
 
-- Ficha de Agente centrada en la Maldición y en lo que se necesita durante el juego.
+- Ficha de Agente horizontal, centrada en la Maldición y pensada para verse casi completa alrededor de 1060×780.
 - Fichas diferenciadas para PNJ y Bakemono.
 - Trasfondos, Orgullos y Onmyōji compactos durante el juego y editables cuando hace falta.
 - Tirada de Riesgo con resumen previo exacto de dados.
 - Tirada de Maldición y Purificación integradas en chat.
 - Items reales de Foundry para equipo, armas, rituales y estados.
-- Información contextual con **hover** y **botón derecho**.
+- Información contextual con **hover**, clic izquierdo en chips y **botón derecho** persistente.
 - Memoria por usuario de posición y tamaño de las ventanas propias.
 - Integración opcional de Dice So Nice para el dado Maldito.
 - Creación de macros estables al arrastrar Actores o Items a la hotbar.
 - Aventura integrada **El Tejido de Yomi**, desacoplada de los flujos normales del sistema.
+
+## Dirección visual 0.6
+
+La interfaz 0.6 utiliza una única arquitectura CSS modular. Se retiraron las capas históricas 0.2/0.3/0.5 que competían entre sí. La identidad se basa en **papel marfil, tinta, rojo hanko oscuro, oro apagado y marcas rituales originales**, con la Maldición como elemento gráfico de firma.
+
+Los nuevos recursos originales de interfaz están documentados en [docs/VISUAL.md](docs/VISUAL.md).
 
 ## Instalación
 
@@ -34,7 +40,7 @@ No se recomienda instalar directamente desde `main`.
 
 ## Uso básico
 
-Al abrir por primera vez la versión 0.5 aparece la bienvenida de Ocho Lanzas. Desde ella puedes crear un Agente, PNJ o Bakemono y, si diriges la partida, preparar El Tejido de Yomi.
+Al abrir por primera vez la versión 0.6 aparece la bienvenida de Ocho Lanzas. Desde ella puedes crear un Agente, PNJ o Bakemono y, si diriges la partida, preparar El Tejido de Yomi.
 
 En la ficha del Agente:
 

@@ -1,0 +1,14 @@
+/* Ocho Lanzas 0.6 — Welcome */
+.ol-welcome{padding:19px;color:var(--ol-ink);background:linear-gradient(115deg,rgba(250,245,235,.97),rgba(240,229,210,.95)),url("../assets/parchment-tile.png")}
+.ol-welcome-hero{display:grid;grid-template-columns:76px minmax(0,1fr);gap:15px;align-items:center;border-bottom:1px solid var(--ol-line);padding-bottom:13px}
+.ol-welcome-seal{width:68px;height:68px;background:url("../assets/ui/seals/seal-ocho-lanzas.svg") center/contain no-repeat;font-size:0}
+.ol-welcome-hero h1{margin:1px 0 3px;font-size:31px}.ol-welcome-hero p{margin:0;max-width:620px;color:var(--ol-ink-soft);font-size:12.5px}
+.ol-welcome-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:13px 0}
+.ol-welcome-actions button{min-height:50px;display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--ol-line);background:rgba(255,255,255,.28);font-weight:800}
+.ol-welcome-actions button:hover{border-color:var(--ol-red);color:var(--ol-red);background:rgba(135,33,31,.04)}
+.ol-welcome-rule{border-top:1px solid var(--ol-line);padding:12px 2px 0}.ol-welcome-rule h2{margin:2px 0 10px;font-size:18px}
+.ol-rule-dice{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.ol-rule-dice>div{display:flex;flex-direction:column;padding:8px;border-left:3px solid var(--ol-ink);background:rgba(255,255,255,.28)}.ol-rule-dice>div.is-cursed{border-color:var(--ol-red)}
+.ol-rule-dice strong{font-size:17px}.ol-rule-dice span{color:var(--ol-ink-soft);font-size:10.5px}.ol-welcome-rule>p{margin:8px 0 0;font-size:11.5px;line-height:1.4}
+.ol-welcome-adventure{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-top:12px;padding:11px 12px;border-left:3px solid var(--ol-red);background:rgba(135,33,31,.04)}
+.ol-welcome-adventure h2{margin:1px 0 3px;font-size:17px}.ol-welcome-adventure p{margin:0;color:var(--ol-ink-soft);font-size:11.5px}.ol-welcome-adventure-actions{display:flex;gap:6px;flex-shrink:0}.ol-welcome-adventure-actions button{padding:6px 9px}
+.ol-welcome-footer{display:flex;justify-content:space-between;align-items:center;margin-top:11px;color:var(--ol-ink-soft);font-size:10.5px}

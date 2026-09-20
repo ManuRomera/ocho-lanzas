@@ -1,0 +1,24 @@
+/* Ocho Lanzas 0.6 — Chat */
+.chat-message .message-content .ol-roll-card{position:relative;overflow:hidden;padding:9px 10px;border:1px solid rgba(24,21,17,.24);border-left:4px solid var(--ol-ink);border-radius:4px;background:linear-gradient(rgba(250,245,235,.90),rgba(241,231,213,.90)),url("../assets/parchment-tile.png");color:var(--ol-ink)}
+.ol-roll-card .ol-roll-header-banner{padding:6px 8px;background:transparent;border-bottom:1px solid var(--ol-line)}
+.ol-roll-card .ol-roll-header-banner h4{margin:0;font:700 14px var(--ol-serif)}.ol-roll-card .ol-roll-subtitle{display:block;margin-top:2px;color:var(--ol-ink-soft);font-size:11.5px;font-style:italic}
+.ol-roll-result-display{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 5px}.ol-roll-result-info{display:flex;flex-direction:column}.ol-result-label{font-size:10.5px;font-weight:800;text-transform:uppercase;color:var(--ol-ink-soft)}
+.ol-result-text{font:700 15px var(--ol-serif)}.ol-roll-result-number{display:grid;place-items:center;width:34px;height:34px;border:2px solid currentColor;border-radius:50%;font-weight:900}
+.ol-roll-card.is-great{border-left-color:#46644d}.ol-roll-card.is-mixed{border-left-color:#927039}.ol-roll-card.is-bad,.ol-roll-card.is-awful{border-left-color:var(--ol-red)}
+.ol-roll-card.is-great .ol-roll-result-number:before{content:"✓";margin-right:2px}.ol-roll-card.is-mixed .ol-roll-result-number:before{content:"~";margin-right:2px}.ol-roll-card.is-bad .ol-roll-result-number:before,.ol-roll-card.is-awful .ol-roll-result-number:before{content:"×";margin-right:2px}
+.ol-sources-chip-panel{display:flex;gap:8px;flex-wrap:wrap;padding:4px 5px}.ol-sources-chip-group{display:flex;align-items:center;gap:5px}.ol-sources-chip-title{font-size:10.5px;font-weight:800;color:var(--ol-red)}.ol-sources-chip-list{display:flex;flex-wrap:wrap;gap:4px}.ol-chip{padding:2px 6px;border:1px solid var(--ol-line);border-radius:999px;font-size:10.5px}
+.ol-roll-dicegrid-visual{display:flex;gap:6px;flex-wrap:wrap;padding:6px 5px}.ol-die-visual{min-width:70px;padding:5px 7px;border:1px solid var(--ol-line);background:rgba(255,255,255,.32)}.ol-die-visual.ol-die-cursed{border-color:rgba(135,33,31,.5);background:rgba(135,33,31,.07)}
+.ol-die-visual-label{display:block;color:var(--ol-ink-soft);font-size:10.5px}.ol-die-visual-value{font-weight:900;font-size:17px}
+.ol-roll-meta-row{display:flex;gap:12px;align-items:center;padding:5px;border-top:1px solid var(--ol-line);font-size:11px}.ol-roll-meta-col{display:flex;gap:4px}.ol-roll-meta-col span{color:var(--ol-ink-soft)}.ol-roll-meta-col.is-cursed{color:var(--ol-red)}
+.ol-roll-action-bar{margin-top:6px}.ol-roll-action-bar .ol-chat-action{width:100%;min-height:31px;border:1px solid var(--ol-red);background:rgba(135,33,31,.08);color:var(--ol-red-dark);font-weight:800}
+.ol-curse-card,.ol-purify-card{padding:9px 10px;border:1px solid var(--ol-line-strong);border-left:4px solid var(--ol-red);border-radius:4px;background:linear-gradient(rgba(250,245,235,.9),rgba(241,231,213,.9)),url("../assets/parchment-tile.png");color:var(--ol-ink)}
+.ol-purify-card{border-left-color:var(--ol-jade)}
+
+.ol-roll-header-banner h4{margin:0;font:700 14px var(--ol-serif)}
+.ol-curse-chat-line,.ol-purify-compact{display:flex;align-items:center;gap:9px;padding:9px 5px;font-size:11.5px}
+.ol-curse-chat-line strong,.ol-purify-compact strong{font:700 16px var(--ol-serif);white-space:nowrap}
+.ol-curse-chat-die{display:grid;place-items:center;width:32px;height:32px;border:2px solid var(--ol-red);background:rgba(135,33,31,.08);font-weight:900;color:var(--ol-red-dark)}
+.ol-bakemono-warning{margin-top:4px;padding:5px 7px;border-left:3px solid var(--ol-red);background:rgba(135,33,31,.07);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+.ol-purify-mark{width:30px;height:30px;flex:0 0 30px;background:var(--ol-jade);mask:url("../assets/ui/curse/curse-seal-center.svg") center/contain no-repeat;-webkit-mask:url("../assets/ui/curse/curse-seal-center.svg") center/contain no-repeat}
+.ol-purify-consequence-box{display:flex;gap:6px;align-items:baseline;padding:6px 5px;border-top:1px solid var(--ol-line);font-size:11.5px}
+.ol-purify-consequence-box strong{color:var(--ol-jade);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em}

@@ -81,7 +81,13 @@ class OchoLanzasActorSheetBase extends ActorSheetV1 {
       const n = i + 1;
       const filled = cur >= n;
       const permanent = n <= curMin;
-      return { i, n, cls: [filled ? "filled" : "", permanent ? "permanent" : ""].filter(Boolean).join(" ") };
+      const bakemono = n === 6 && cur >= 6;
+      const state = bakemono ? "bakemono" : permanent ? "permanent" : filled ? "active" : "empty";
+      return {
+        i, n, state,
+        cls: [filled ? "filled" : "", permanent ? "permanent" : "", bakemono ? "is-bakemono" : ""].filter(Boolean).join(" "),
+        aria: game.i18n.format("OCHO.Curse.PipAria", { level: n, state: game.i18n.localize(`OCHO.Curse.State.${state}`) })
+      };
     });
     return data;
   }
@@ -96,16 +102,7 @@ class OchoLanzasActorSheetBase extends ActorSheetV1 {
       html.find("[data-action='curseInc']").on("click", () => this._adjustCurse(1));
       html.find("[data-action='curseDec']").on("click", () => this._adjustCurse(-1));
       html.find("[data-action='curseReset']").on("click", () => this._resetCurse());
-      html.find(".ol-curse-ring .ol-pip").on("click", (ev) => {
-        const n = Number(ev.currentTarget?.dataset?.pip ?? 0);
-        if (Number.isFinite(n)) this._setCurse(n);
-      });
     }
-  }
-
-  async _setCurse(value) {
-    const min = this.actor.system.curseMin ?? 1;
-    await this.actor.update({ "system.curseCount": Math.max(min, Math.min(6, value)) });
   }
 
   async _adjustCurse(delta) {
@@ -123,8 +120,11 @@ class OchoLanzasActorSheetBase extends ActorSheetV1 {
   _activateAutoGrow(html) {
     const grow = (el) => {
       if (!el) return;
+      const max = Math.max(96, Number(el.dataset.autogrowMax || 260));
       el.style.height = "auto";
-      el.style.height = `${Math.max(el.scrollHeight, 48)}px`;
+      const height = Math.min(Math.max(el.scrollHeight, 48), max);
+      el.style.height = `${height}px`;
+      el.style.overflowY = el.scrollHeight > max ? "auto" : "hidden";
     };
     html.find("textarea.ol-autogrow").each((_, el) => {
       grow(el);
@@ -139,8 +139,8 @@ export class OchoLanzasCharacterSheet extends OchoLanzasActorSheetBase {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["ocho-lanzas", "sheet", "actor", "character"],
-      width: 820,
-      height: 900,
+      width: 1060,
+      height: 780,
       resizable: true,
       submitOnClose: true,
       submitOnChange: true,
@@ -169,7 +169,14 @@ export class OchoLanzasCharacterSheet extends OchoLanzasActorSheetBase {
 
     const sceneId = canvas?.scene?.id ?? game.scenes?.current?.id ?? null;
     const purifySceneId = actor.getFlag("ocho-lanzas", "purifySceneId") ?? null;
-    data.canPurify = data.curseCount >= 4 && (!sceneId || purifySceneId !== sceneId);
+    const purifyUsed = Boolean(sceneId && purifySceneId === sceneId);
+    const atMinimum = data.curseCount <= data.curseMin;
+    data.canPurify = data.curseCount >= 4 && !purifyUsed && !atMinimum;
+    data.purifyInfo = game.i18n.localize("OCHO.Purify.Info");
+    if (data.curseCount < 4) data.purifyReason = game.i18n.localize("OCHO.Purify.DisabledTooLow");
+    else if (atMinimum) data.purifyReason = game.i18n.localize("OCHO.Purify.DisabledAtMinimum");
+    else if (purifyUsed) data.purifyReason = game.i18n.localize("OCHO.Purify.DisabledScene");
+    else data.purifyReason = "";
     data.equipmentItems = actor.items.map(itemView);
     data.hasEquipmentItems = data.equipmentItems.length > 0;
     data.legacyEquipmentText = String(system.equipmentText ?? "").trim();
@@ -262,7 +269,7 @@ export class OchoLanzasNPCSheet extends OchoLanzasActorSheetBase {
   static windowStateKey = "npcSheet";
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["ocho-lanzas", "sheet", "actor", "npc"], width: 1180, height: 720,
+      classes: ["ocho-lanzas", "sheet", "actor", "npc"], width: 1080, height: 700,
       resizable: true, submitOnClose: true, submitOnChange: true
     });
   }
@@ -274,7 +281,7 @@ export class OchoLanzasBakemonoSheet extends OchoLanzasActorSheetBase {
   static windowStateKey = "bakemonoSheet";
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["ocho-lanzas", "sheet", "actor", "bakemono"], width: 1120, height: 760,
+      classes: ["ocho-lanzas", "sheet", "actor", "bakemono"], width: 1100, height: 720,
       resizable: true, submitOnClose: true, submitOnChange: true
     });
   }

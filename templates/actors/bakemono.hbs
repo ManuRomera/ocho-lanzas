@@ -1,7 +1,7 @@
 <form class="{{cssClass}} ocho-lanzas ol-root" autocomplete="off">
-  <section class="ol-sheet ol-bakemono-sheet">
+  <section class="ol-sheet">
     <header class="ol-bakemono-header">
-      <div class="ol-portrait ol-bakemono-portrait"><img class="profile-img" src="{{document.img}}" alt="{{document.name}}" data-edit="img" /></div>
+      <div class="ol-portrait"><img class="profile-img" src="{{document.img}}" alt="{{document.name}}" data-edit="img" /></div>
       <div class="ol-bakemono-identity">
         <span class="ol-kicker">{{localize "TYPES.Actor.bakemono"}}</span>
         <div class="ol-brush ol-name"><div class="ol-brush-label">{{localize "OCHO.Fields.Name"}}</div><input type="text" name="name" value="{{document.name}}" /></div>
@@ -11,20 +11,27 @@
       </div>
     </header>
 
-    <section class="ol-bakemono-grid">
-      <label class="ol-box"><span>{{localize "OCHO.Bakemono.Purpose"}}</span><textarea class="ol-autogrow" name="system.purpose">{{system.purpose}}</textarea></label>
-      <label class="ol-box"><span>{{localize "OCHO.Bakemono.Threats"}}</span><textarea class="ol-autogrow" name="system.threats">{{system.threats}}</textarea></label>
-      <label class="ol-box"><span>{{localize "OCHO.Bakemono.Weaknesses"}}</span><textarea class="ol-autogrow" name="system.weaknesses">{{system.weaknesses}}</textarea></label>
-      <section class="ol-curse ol-bakemono-curse">
+    <section class="ol-bakemono-main">
+      <div class="ol-bakemono-content">
+        <div class="ol-bakemono-triad">
+          <label><span>{{localize "OCHO.Bakemono.Purpose"}}</span><textarea name="system.purpose">{{system.purpose}}</textarea></label>
+          <label><span>{{localize "OCHO.Bakemono.Threats"}}</span><textarea name="system.threats">{{system.threats}}</textarea></label>
+          <label><span>{{localize "OCHO.Bakemono.Weaknesses"}}</span><textarea name="system.weaknesses">{{system.weaknesses}}</textarea></label>
+        </div>
+        <label class="ol-box ol-bakemono-notes"><span class="ol-smalllabel">{{localize "OCHO.Sections.Notes"}}</span><textarea name="system.notes">{{system.notes}}</textarea></label>
+      </div>
+
+      <aside class="ol-curse-panel ol-bakemono-curse ol-info-target"
+        data-ol-info-title="{{localize 'OCHO.Sections.Curse'}}" data-ol-info-category="{{localize 'TYPES.Actor.bakemono'}}"
+        data-ol-info-body="{{localize 'OCHO.Curse.BakemonoInfo'}}">
         <div class="ol-curse-head"><h3>{{localize "OCHO.Sections.Curse"}}</h3><span class="ol-curse-min">{{curseCount}} / 6</span></div>
         <div class="ol-curse-ring {{#unless isGM}}is-readonly{{/unless}}">
-          {{#each cursePips as |p|}}<button type="button" class="ol-pip {{p.cls}}" data-pip="{{p.n}}" {{#unless ../isGM}}disabled{{/unless}}></button>{{/each}}
+          {{#each cursePips as |p|}}<span class="ol-pip {{p.cls}}" style="--i: {{p.i}};" data-pip="{{p.n}}" role="img" aria-label="{{p.aria}}"></span>{{/each}}
           <div class="ol-curse-value">{{curseCount}}</div>
         </div>
-        {{#if isGM}}<div class="ol-curse-controls"><button type="button" class="ol-mini" data-action="curseDec">−</button><button type="button" class="ol-mini" data-action="curseInc">+</button><button type="button" class="ol-mini" data-action="curseReset">↺</button></div>{{/if}}
-        <textarea class="ol-autogrow ol-curse-notes" name="system.curse">{{system.curse}}</textarea>
-      </section>
-      <label class="ol-box ol-bakemono-notes"><span>{{localize "OCHO.Sections.Notes"}}</span><textarea class="ol-autogrow" name="system.notes">{{system.notes}}</textarea></label>
+        {{#if isGM}}<div class="ol-curse-admin"><button type="button" data-action="curseInc">+</button><button type="button" data-action="curseDec">−</button><button type="button" data-action="curseReset">↺</button></div>{{/if}}
+        <textarea class="ol-curse-notes" name="system.curse">{{system.curse}}</textarea>
+      </aside>
     </section>
   </section>
 </form>

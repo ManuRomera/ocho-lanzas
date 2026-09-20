@@ -1,5 +1,5 @@
-<form class="{{cssClass}} ocho-lanzas ol-item-sheet-v5" autocomplete="off">
-  <header class="ol-item-sheet-header">
+<form class="{{cssClass}} ocho-lanzas ol-item-sheet" autocomplete="off">
+  <header class="ol-item-header">
     <img class="profile-img" src="{{document.img}}" alt="{{document.name}}" data-edit="img" />
     <div>
       <span class="ol-kicker">{{typeLabel}}</span>
@@ -7,17 +7,17 @@
     </div>
   </header>
 
-  <section class="ol-item-sheet-body">
-    <label class="ol-field ol-item-description">
+  <section class="ol-item-body">
+    <label class="ol-item-description">
       <span>{{localize "OCHO.Items.Description"}}</span>
       <textarea name="system.description">{{system.description}}</textarea>
     </label>
     <div class="ol-item-meta-grid">
-      <label class="ol-field"><span>{{localize "OCHO.Items.Tags"}}</span><input type="text" name="system.tagsText" value="{{system.tagsText}}" /></label>
-      <label class="ol-field"><span>{{localize "OCHO.Items.Quantity"}}</span><input type="number" name="system.quantity" value="{{system.quantity}}" min="0" /></label>
-      <label class="ol-field ol-checkbox-field"><span>{{localize "OCHO.Items.Equipped"}}</span><input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}} /></label>
+      <label><span>{{localize "OCHO.Items.Tags"}}</span><input type="text" name="system.tagsText" value="{{system.tagsText}}" /></label>
+      <label><span>{{localize "OCHO.Items.Quantity"}}</span><input type="number" name="system.quantity" value="{{system.quantity}}" min="0" /></label>
+      <label class="ol-checkbox-field"><span>{{localize "OCHO.Items.Equipped"}}</span><input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}} /></label>
       {{#if (eq document.type "weapon")}}
-      <label class="ol-field"><span>{{localize "OCHO.Items.DamageNote"}}</span><input type="text" name="system.damage" value="{{system.damage}}" /></label>
+      <label class="ol-item-weapon-row"><span>{{localize "OCHO.Items.DamageNote"}}</span><input type="text" name="system.damage" value="{{system.damage}}" /></label>
       {{/if}}
     </div>
   </section>

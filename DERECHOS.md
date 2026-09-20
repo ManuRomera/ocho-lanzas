@@ -8,6 +8,10 @@ El código original escrito específicamente para este repositorio se mantiene b
 
 No se concede mediante este documento ningún derecho sobre Foundry Virtual Tabletop ni sobre APIs, marcas o recursos propiedad de Foundry Gaming LLC.
 
+## Recursos originales de interfaz
+
+Los SVG incluidos en `assets/ui/` (sello de Maldición, estados del indicador, emblema de Las Ocho Lanzas, divisor de hilo y marca Bakemono) fueron creados específicamente para esta implementación bajo dirección de **Manu Romera**. No reproducen deliberadamente símbolos religiosos reales ni arte de terceros.
+
 ## Ocho Lanzas
 
 Este proyecto no reclama propiedad sobre el juego, marca, textos, ilustraciones, reglas protegibles u otros materiales de *Ocho Lanzas* que pertenezcan a sus respectivos titulares. La implementación es no oficial y no sustituye el manual original.
