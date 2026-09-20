@@ -163,8 +163,8 @@
           </div>
           <div class="ol-curse-ring {{#unless isGM}}is-readonly{{/unless}}">
             {{#each cursePips as |p|}}
-            <button type="button" class="ol-pip {{p.cls}}" style="--i: {{p.i}};" data-pip="{{p.n}}"
-              aria-label="{{p.aria}}" {{#unless ../isGM}}disabled{{/unless}}></button>
+            <span class="ol-pip {{p.cls}}" style="--i: {{p.i}};" data-pip="{{p.n}}" role="img"
+              aria-label="{{p.aria}}"></span>
             {{/each}}
             <div class="ol-curse-value">{{curseCount}}</div>
           </div>
