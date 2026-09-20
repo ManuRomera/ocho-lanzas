@@ -1,21 +1,15 @@
 <form class="{{cssClass}} ocho-lanzas ol-root ol-character-sheet" autocomplete="off">
-  <section class="ol-sheet ol-sheet-v5">
-    <header class="ol-header ol-header-v5">
-      <div class="ol-left">
-        <div class="ol-brush ol-name">
-          <div class="ol-brush-label">{{localize "OCHO.Fields.Name"}}</div>
-          <input type="text" name="name" value="{{document.name}}" />
-        </div>
-        <button type="button" class="ol-rollbtn" data-action="rollAction" title="{{localize 'OCHO.Actions.RollAction'}}">
-          <i class="fas fa-dice"></i><span>{{localize "OCHO.Actions.RollAction"}}</span>
-        </button>
-      </div>
-
+  <section class="ol-sheet">
+    <header class="ol-character-header">
       <div class="ol-portrait">
         <img class="profile-img" src="{{document.img}}" alt="{{document.name}}" data-edit="img" />
       </div>
 
-      <div class="ol-topright">
+      <div class="ol-character-identity">
+        <div class="ol-brush ol-name">
+          <div class="ol-brush-label">{{localize "OCHO.Fields.Name"}}</div>
+          <input type="text" name="name" value="{{document.name}}" />
+        </div>
         <div class="ol-brush ol-idea">
           <div class="ol-brush-label">{{localize "OCHO.Fields.Concept"}}</div>
           <input type="text" name="system.concept" value="{{system.concept}}" />
@@ -25,88 +19,99 @@
           <input type="text" name="system.occupation" value="{{system.occupation}}" />
         </div>
       </div>
-    </header>
 
-    <section class="ol-character-main-grid">
-      <div class="ol-character-leftcol">
-        <section class="ol-box ol-traits-summary">
-          <div class="ol-box-head">
-            <h3>{{localize "OCHO.Sections.Traits"}}</h3>
-            {{#if canEditDocument}}
-            <button type="button" class="ol-text-action" data-action="toggleTraits">
-              {{#if editingTraits}}{{localize "OCHO.Actions.FinishEditing"}}{{else}}{{localize "OCHO.Actions.EditTraits"}}{{/if}}
-            </button>
-            {{/if}}
-          </div>
+      <section class="ol-character-traits-action">
+        <div class="ol-box-head">
+          <h3>{{localize "OCHO.Sections.Traits"}}</h3>
+          {{#if canEditDocument}}
+          <button type="button" class="ol-text-action" data-action="toggleTraits">
+            {{#if editingTraits}}{{localize "OCHO.Actions.FinishEditing"}}{{else}}{{localize "OCHO.Actions.EditTraits"}}{{/if}}
+          </button>
+          {{/if}}
+        </div>
 
-          {{#if editingTraits}}
-          <div class="ol-trait-edit-grid">
-            <div>
-              <h4>{{localize "OCHO.Sections.Background"}}</h4>
-              {{#each backgroundOptions as |opt|}}
-              <label class="ol-trait-choice ol-info-target" tabindex="0"
-                data-ol-info-title="{{opt.label}}" data-ol-info-category="{{localize 'OCHO.Sections.Background'}}" data-ol-info-body="{{opt.description}}">
-                <input type="checkbox" name="system.backgrounds" value="{{opt.value}}" {{olChecked ../system.backgrounds opt.value}} />
-                <span>{{opt.label}}</span>
-              </label>
-              {{/each}}
-            </div>
-            <div>
-              <h4>{{localize "OCHO.Sections.Pride"}}</h4>
-              {{#each prideOptions as |opt|}}
-              <label class="ol-trait-choice ol-info-target" tabindex="0"
-                data-ol-info-title="{{opt.label}}" data-ol-info-category="{{localize 'OCHO.Sections.Pride'}}" data-ol-info-body="{{opt.description}}">
-                <input type="checkbox" name="system.prides" value="{{opt.value}}" {{olChecked ../system.prides opt.value}} />
-                <span>{{opt.label}}</span>
-              </label>
-              {{/each}}
-            </div>
-            <div>
-              <h4>{{localize "OCHO.Sections.Onmyoujis"}}</h4>
-              <p class="ol-trait-warning">{{localize "OCHO.Traits.OnmyoujiCurseHint"}}</p>
-              {{#each onmyoujiOptions as |opt|}}
-              <label class="ol-trait-choice ol-info-target" tabindex="0"
-                data-ol-info-title="{{opt.label}}" data-ol-info-category="{{localize 'OCHO.Sections.Onmyoujis'}}" data-ol-info-body="{{opt.description}}">
-                <input type="checkbox" name="system.onmyoujis" value="{{opt.value}}" {{olChecked ../system.onmyoujis opt.value}} />
-                <span>{{opt.label}}</span>
-              </label>
+        <div class="ol-character-traits-inline">
+          <div class="ol-trait-line">
+            <span>{{localize "OCHO.Sections.Background"}}</span>
+            <div class="ol-chip-list">
+              {{#each selectedBackgrounds as |opt|}}
+              <button type="button" class="ol-trait-chip ol-info-target" data-ol-info-click="pin"
+                data-ol-info-title="{{opt.label}}" data-ol-info-category="{{localize 'OCHO.Sections.Background'}}"
+                data-ol-info-body="{{opt.description}}">{{opt.label}}</button>
               {{/each}}
             </div>
           </div>
-          {{else}}
-          <div class="ol-trait-summary-grid">
-            <div>
-              <h4>{{localize "OCHO.Sections.Background"}}</h4>
-              <div class="ol-chip-list">
-                {{#each selectedBackgrounds as |opt|}}
-                <button type="button" class="ol-trait-chip ol-info-target" data-ol-info-title="{{opt.label}}"
-                  data-ol-info-category="{{localize 'OCHO.Sections.Background'}}" data-ol-info-body="{{opt.description}}">{{opt.label}}</button>
-                {{/each}}
-              </div>
+          <div class="ol-trait-line">
+            <span>{{localize "OCHO.Sections.Pride"}}</span>
+            <div class="ol-chip-list">
+              {{#each selectedPrides as |opt|}}
+              <button type="button" class="ol-trait-chip ol-info-target" data-ol-info-click="pin"
+                data-ol-info-title="{{opt.label}}" data-ol-info-category="{{localize 'OCHO.Sections.Pride'}}"
+                data-ol-info-body="{{opt.description}}">{{opt.label}}</button>
+              {{/each}}
             </div>
-            <div>
-              <h4>{{localize "OCHO.Sections.Pride"}}</h4>
-              <div class="ol-chip-list">
-                {{#each selectedPrides as |opt|}}
-                <button type="button" class="ol-trait-chip ol-info-target" data-ol-info-title="{{opt.label}}"
-                  data-ol-info-category="{{localize 'OCHO.Sections.Pride'}}" data-ol-info-body="{{opt.description}}">{{opt.label}}</button>
-                {{/each}}
-              </div>
-            </div>
-            <div>
-              <h4>{{localize "OCHO.Sections.Onmyoujis"}}</h4>
-              <div class="ol-chip-list">
-                {{#each selectedOnmyoujis as |opt|}}
-                <button type="button" class="ol-trait-chip ol-info-target is-cursed" data-ol-info-title="{{opt.label}}"
-                  data-ol-info-category="{{localize 'OCHO.Sections.Onmyoujis'}}" data-ol-info-body="{{opt.description}}">{{opt.label}}</button>
-                {{/each}}
-              </div>
+          </div>
+          {{#if selectedOnmyoujis.length}}
+          <div class="ol-trait-line">
+            <span>{{localize "OCHO.Sections.Onmyoujis"}}</span>
+            <div class="ol-chip-list">
+              {{#each selectedOnmyoujis as |opt|}}
+              <button type="button" class="ol-trait-chip ol-info-target is-cursed" data-ol-info-click="pin"
+                data-ol-info-title="{{opt.label}}" data-ol-info-category="{{localize 'OCHO.Sections.Onmyoujis'}}"
+                data-ol-info-body="{{opt.description}}">{{opt.label}}</button>
+              {{/each}}
             </div>
           </div>
           {{/if}}
-        </section>
+        </div>
 
-        <section class="ol-box ol-equipment-v5">
+        <button type="button" class="ol-rollbtn" data-action="rollAction" title="{{localize 'OCHO.Actions.RollAction'}}">
+          <i class="fas fa-dice"></i><span>{{localize "OCHO.Actions.RollAction"}}</span>
+        </button>
+      </section>
+    </header>
+
+    {{#if editingTraits}}
+    <section class="ol-traits-editor">
+      <div class="ol-trait-edit-grid">
+        <div>
+          <h4>{{localize "OCHO.Sections.Background"}}</h4>
+          {{#each backgroundOptions as |opt|}}
+          <label class="ol-trait-choice ol-info-target" tabindex="0"
+            data-ol-info-title="{{opt.label}}" data-ol-info-category="{{localize 'OCHO.Sections.Background'}}" data-ol-info-body="{{opt.description}}">
+            <input type="checkbox" name="system.backgrounds" value="{{opt.value}}" {{olChecked ../system.backgrounds opt.value}} />
+            <span>{{opt.label}}</span>
+          </label>
+          {{/each}}
+        </div>
+        <div>
+          <h4>{{localize "OCHO.Sections.Pride"}}</h4>
+          {{#each prideOptions as |opt|}}
+          <label class="ol-trait-choice ol-info-target" tabindex="0"
+            data-ol-info-title="{{opt.label}}" data-ol-info-category="{{localize 'OCHO.Sections.Pride'}}" data-ol-info-body="{{opt.description}}">
+            <input type="checkbox" name="system.prides" value="{{opt.value}}" {{olChecked ../system.prides opt.value}} />
+            <span>{{opt.label}}</span>
+          </label>
+          {{/each}}
+        </div>
+        <div>
+          <h4>{{localize "OCHO.Sections.Onmyoujis"}}</h4>
+          <p class="ol-trait-warning">{{localize "OCHO.Traits.OnmyoujiCurseHint"}}</p>
+          {{#each onmyoujiOptions as |opt|}}
+          <label class="ol-trait-choice ol-info-target" tabindex="0"
+            data-ol-info-title="{{opt.label}}" data-ol-info-category="{{localize 'OCHO.Sections.Onmyoujis'}}" data-ol-info-body="{{opt.description}}">
+            <input type="checkbox" name="system.onmyoujis" value="{{opt.value}}" {{olChecked ../system.onmyoujis opt.value}} />
+            <span>{{opt.label}}</span>
+          </label>
+          {{/each}}
+        </div>
+      </div>
+    </section>
+    {{/if}}
+
+    <section class="ol-character-main-grid">
+      <div class="ol-character-leftcol">
+        <section class="ol-box ol-equipment">
           <div class="ol-box-head">
             <h3>{{localize "OCHO.Sections.Equipment"}}</h3>
             {{#if canEditDocument}}
@@ -119,10 +124,7 @@
             <article class="ol-item-row ol-info-target" data-item-id="{{item.id}}" draggable="true" tabindex="0"
               data-ol-info-title="{{item.name}}" data-ol-info-category="{{item.typeLabel}}" data-ol-info-body="{{item.descriptionText}}">
               <img src="{{item.img}}" alt="" />
-              <div class="ol-item-main" data-action="itemOpen">
-                <strong>{{item.name}}</strong>
-                <span>{{item.typeLabel}}{{#if item.tagsText}} · {{item.tagsText}}{{/if}}</span>
-              </div>
+              <div class="ol-item-main"><strong>{{item.name}}</strong><span>{{item.typeLabel}}{{#if item.tagsText}} · {{item.tagsText}}{{/if}}</span></div>
               {{#if item.quantity}}<span class="ol-item-qty">×{{item.quantity}}</span>{{/if}}
               {{#if ../canEditDocument}}
               <div class="ol-item-actions">
@@ -152,29 +154,35 @@
       </div>
 
       <aside class="ol-character-rightcol">
-        <section class="ol-curse ol-curse-v5" aria-label="{{localize 'OCHO.Sections.Curse'}}">
+        <section class="ol-curse-panel ol-info-target" aria-label="{{localize 'OCHO.Sections.Curse'}}"
+          data-ol-info-title="{{localize 'OCHO.Sections.Curse'}}" data-ol-info-category="{{localize 'OCHO.Curse.State'}}"
+          data-ol-info-body="{{localize 'OCHO.Curse.Info'}}">
           <div class="ol-curse-head">
             <h3>{{localize "OCHO.Sections.Curse"}}</h3>
             <span class="ol-curse-min">{{localize "OCHO.Fields.CurseMin"}}: {{curseMin}}</span>
           </div>
           <div class="ol-curse-ring {{#unless isGM}}is-readonly{{/unless}}">
             {{#each cursePips as |p|}}
-            <button type="button" class="ol-pip {{p.cls}}" data-pip="{{p.n}}" aria-label="{{p.n}}" {{#unless ../isGM}}disabled{{/unless}}></button>
+            <button type="button" class="ol-pip {{p.cls}}" style="--i: {{p.i}};" data-pip="{{p.n}}"
+              aria-label="{{p.aria}}" {{#unless ../isGM}}disabled{{/unless}}></button>
             {{/each}}
             <div class="ol-curse-value">{{curseCount}}</div>
           </div>
           {{#if isGM}}
-          <div class="ol-curse-controls">
-            <button type="button" class="ol-mini" data-action="curseDec" title="-1">−</button>
-            <button type="button" class="ol-mini" data-action="curseInc" title="+1">+</button>
-            <button type="button" class="ol-mini" data-action="curseReset" title="{{localize 'OCHO.Actions.CurseReset'}}">↺</button>
+          <div class="ol-curse-admin" aria-label="{{localize 'OCHO.Curse.Admin'}}">
+            <button type="button" data-action="curseInc" title="{{localize 'OCHO.Curse.Increase'}}">+</button>
+            <button type="button" data-action="curseDec" title="{{localize 'OCHO.Curse.Decrease'}}">−</button>
+            <button type="button" data-action="curseReset" title="{{localize 'OCHO.Actions.CurseReset'}}">↺</button>
           </div>
           {{/if}}
-          <button type="button" class="ol-purify-button" data-action="purify" {{#unless canPurify}}disabled{{/unless}}>{{localize "OCHO.Actions.Purify"}}</button>
+          <button type="button" class="ol-purify-button ol-info-target" data-action="purify"
+            data-ol-info-title="{{localize 'OCHO.Actions.Purify'}}" data-ol-info-category="{{localize 'OCHO.Sections.Curse'}}"
+            data-ol-info-body="{{purifyInfo}}" {{#unless canPurify}}disabled{{/unless}}>{{localize "OCHO.Actions.Purify"}}</button>
+          {{#unless canPurify}}<p class="ol-purify-reason">{{purifyReason}}</p>{{/unless}}
           <textarea class="ol-curse-notes" name="system.curse" placeholder="{{localize 'OCHO.Placeholder.CurseNotes'}}">{{system.curse}}</textarea>
         </section>
 
-        <section class="ol-box ol-notes ol-notes-v5">
+        <section class="ol-box ol-notes">
           <h3>{{localize "OCHO.Sections.Notes"}}</h3>
           <textarea name="system.notes" placeholder="{{localize 'OCHO.Sections.Notes'}}">{{system.notes}}</textarea>
         </section>
