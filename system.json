@@ -1,18 +1,19 @@
 {
   "id": "ocho-lanzas",
   "title": "Ocho Lanzas (Unofficial)",
-  "description": "Sistema NO oficial para Foundry VTT para dirigir Ocho Lanzas. Sin contenido del manual. Incluye fichas, items y tiradas tipo Cthulhu Dark.",
-  "version": "0.4.2",
-  "manifest": "https://raw.githubusercontent.com/ManuRomera/ocho-lanzas/main/system.json",
-  "download": "https://github.com/ManuRomera/ocho-lanzas/archive/refs/heads/main.zip",
+  "description": "Sistema no oficial para Foundry VTT orientado a una experiencia de escritorio clara y atmosférica. Incluye fichas de Agente, PNJ y Bakemono, Maldición, Purificación, tiradas, Items y soporte opcional para El Tejido de Yomi.",
+  "version": "0.5.0",
+  "manifest": "https://github.com/ManuRomera/ocho-lanzas/releases/latest/download/system.json",
+  "download": "https://github.com/ManuRomera/ocho-lanzas/releases/latest/download/ocho-lanzas.zip",
   "compatibility": {
     "minimum": "13",
-    "verified": "13.351"
+    "verified": "14",
+    "maximum": "14"
   },
   "authors": [
     {
-      "name": "Manu (user) + Assistant (generated)",
-      "url": ""
+      "name": "Manu Romera",
+      "url": "https://github.com/ManuRomera"
     }
   ],
   "esmodules": [
@@ -20,6 +21,7 @@
   ],
   "styles": [
     "styles/ocho-lanzas.css",
+    "styles/ocho-lanzas-v5.css",
     "styles/tejido-de-yomi.css"
   ],
   "languages": [
@@ -52,7 +54,7 @@
       "name": "tejido-yomi-actors",
       "label": "El Tejido de Yomi · Actores",
       "type": "Actor",
-      "path": "packs/tejido-yomi-actors.db",
+      "path": "packs/tejido-yomi-actors",
       "system": "ocho-lanzas",
       "ownership": {
         "PLAYER": "OBSERVER",
@@ -63,7 +65,7 @@
       "name": "tejido-yomi-items",
       "label": "El Tejido de Yomi · Objetos",
       "type": "Item",
-      "path": "packs/tejido-yomi-items.db",
+      "path": "packs/tejido-yomi-items",
       "system": "ocho-lanzas",
       "ownership": {
         "PLAYER": "OBSERVER",
@@ -74,7 +76,7 @@
       "name": "tejido-yomi-journals",
       "label": "El Tejido de Yomi · Diario",
       "type": "JournalEntry",
-      "path": "packs/tejido-yomi-journals.db",
+      "path": "packs/tejido-yomi-journals",
       "system": "ocho-lanzas",
       "ownership": {
         "PLAYER": "OBSERVER",
@@ -85,7 +87,7 @@
       "name": "tejido-yomi-tables",
       "label": "El Tejido de Yomi · Tablas",
       "type": "RollTable",
-      "path": "packs/tejido-yomi-tables.db",
+      "path": "packs/tejido-yomi-tables",
       "system": "ocho-lanzas",
       "ownership": {
         "PLAYER": "OBSERVER",
@@ -96,7 +98,7 @@
       "name": "tejido-yomi-macros",
       "label": "El Tejido de Yomi · Macros",
       "type": "Macro",
-      "path": "packs/tejido-yomi-macros.db",
+      "path": "packs/tejido-yomi-macros",
       "system": "ocho-lanzas",
       "ownership": {
         "PLAYER": "NONE",

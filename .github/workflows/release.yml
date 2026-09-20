@@ -1,0 +1,70 @@
+name: Validate and Release
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate system
+        run: node tools/validate-release.mjs
+      - name: Syntax check modules
+        run: find scripts tools -name '*.mjs' -print0 | xargs -0 -n1 node --check
+
+  release:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Read version
+        id: version
+        shell: bash
+        run: |
+          VERSION="$(node -p "JSON.parse(require('fs').readFileSync('system.json','utf8')).version")"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if git ls-remote --exit-code --tags origin "refs/tags/v$VERSION" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Build release archive
+        if: steps.version.outputs.exists == 'false'
+        run: |
+          mkdir -p dist/package
+          rsync -a ./ dist/package/ \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude 'dist/' \
+            --exclude 'docs/' \
+            --exclude 'tools/' \
+            --exclude '*.md' \
+            --exclude 'packs/*.db'
+          cd dist/package
+          zip -r ../ocho-lanzas.zip .
+          cd ..
+          cp ../system.json ./system.json
+      - name: Publish GitHub release
+        if: steps.version.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          gh release create "v$VERSION" \
+            dist/ocho-lanzas.zip dist/system.json \
+            --target "$GITHUB_SHA" \
+            --title "Ocho Lanzas v$VERSION" \
+            --generate-notes

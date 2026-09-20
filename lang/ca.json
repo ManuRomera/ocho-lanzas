@@ -16,7 +16,8 @@
       "Background": "Rerefons",
       "Pride": "Orgull",
       "Onmyoujis": "Onmyoujis",
-      "Notes": "Notes"
+      "Notes": "Notes",
+      "Traits": "Trets"
     },
     "Actions": {
       "RollAction": "Tirada",
@@ -25,11 +26,13 @@
       "ReduceMadness": "Reduir la Follia",
       "CurseReset": "Inici d'història",
       "ConfigureLists": "Configurar llistes",
-      "Purify": "Purificar-se"
+      "Purify": "Purificar-se",
+      "EditTraits": "Editar trets",
+      "FinishEditing": "Acabar edició"
     },
     "Roll": {
       "Flavor": "Què intentes?",
-      "TypeLabel": "Tipus",
+      "TypeLabel": "Tipus de tirada",
       "Type": {
         "Action": "Acció",
         "Risk": "Risc",
@@ -62,7 +65,21 @@
       "BaseWhiteDie": "Blanc base",
       "BonusWhiteDie": "Blanc extra",
       "SourcesLabel": "Fonts de la tirada",
-      "ChatCurseHint": "Si el maleït domina, el mateix missatge de xat mostrarà el botó per tirar Maldició."
+      "ChatCurseHint": "Si el maleït domina, el mateix missatge de xat mostrarà el botó per tirar Maldició.",
+      "IntentQuestion": "Què estàs intentant?",
+      "WhatHelps": "Què t'ajuda?",
+      "WhiteSourcesHintSingle": "Una sola font rellevant concedeix el dau blanc addicional.",
+      "NoExtraSource": "Sense font addicional",
+      "CurseExposureQuestion": "T'exposes a la Maledicció?",
+      "CursedSourcesHintSingle": "Una font Maleïda és suficient per introduir el dau Maleït.",
+      "NoCursedSource": "Sense dau Maleït",
+      "YouWillRoll": "Llançaràs",
+      "PreviewOneWhite": "⚪ 1d6 blanc",
+      "PreviewTwoWhite": "⚪ 2d6 blancs — conserva el més alt",
+      "PreviewOneCursed": "🔴 1d6 Maleït",
+      "CurseRollTitle": "Tirada de Maledicció",
+      "CurrentCurse": "Maledicció actual",
+      "CurseModeRule": "Llança 1d6 Maleït. Si el resultat supera la teva Maledicció actual, augmenta en 1."
     },
     "Chat": {
       "Main": "Resultat",
@@ -73,7 +90,7 @@
       "CurseIncreases": "La Maledicció augmenta",
       "CurseNoIncrease": "La Maledicció no augmenta",
       "Bakemono": "Es converteix en bakemono",
-      "CurseReset": "Maledicció reiniciada",
+      "CurseReset": "Maledicció restablerta a {value}.",
       "RollCurseButton": "Tirar Maledicció (1d6 maleït)",
       "CurseAlreadyRolled": "Aquesta Maledicció ja s'ha tirat per aquest missatge.",
       "CurseDeferredHint": "El dau maleït ha dominat. Resol ara la tirada de Maldició des d'aquest botó.",
@@ -95,12 +112,23 @@
       "Equipment": "Equipo (una opción por línea)",
       "Haika": "Haika (una opción por línea)",
       "Save": "Guardar",
-      "Close": "Cerrar"
+      "Close": "Cerrar",
+      "WindowLayoutReset": "Restablir disposició de finestres",
+      "WindowLayoutResetConfirm": "Això només esborra mides i posicions desades en aquest navegador. No modifica el world ni els personatges.",
+      "WindowLayoutResetDone": "Disposició de finestres restablerta."
     },
     "Items": {
-      "Add": "Afegir",
+      "Add": "Afegir objecte",
       "Edit": "Editar",
-      "Delete": "Esborrar"
+      "Delete": "Eliminar",
+      "DeleteConfirm": "Vols eliminar «{name}» d'aquesta fitxa?",
+      "Empty": "Arrossega un objecte aquí o crea'n un de nou.",
+      "LegacyEquipment": "Equip heretat (text de versions anteriors)",
+      "Description": "Descripció",
+      "Tags": "Etiquetes (separades per comes)",
+      "Quantity": "Quantitat",
+      "Equipped": "Equipat",
+      "DamageNote": "Dany / nota"
     },
     "Purify": {
       "Title": "Purificarse",
@@ -111,10 +139,12 @@
       "Cancel": "Cancelar",
       "ErrorTooLow": "Solo puedes purificarte con Maldición 4 o más.",
       "ErrorOncePerScene": "Solo puedes purificarte una vez por escena.",
-      "ErrorConsequenceRequired": "Debes escribir una consecuencia para purificarte."
+      "ErrorConsequenceRequired": "Debes escribir una consecuencia para purificarte.",
+      "PriceQuestion": "Quin preu pagues?"
     },
     "Placeholder": {
-      "FreeText": "Escribe aquí…"
+      "FreeText": "Escribe aquí…",
+      "CurseNotes": "Notes de Maledicció"
     },
     "Option": {
       "Background": {
@@ -208,13 +238,51 @@
       "PromptBody": "Aquest world encara no té el contingut de l'aventura. El pots instal·lar amb un clic des dels compendis del sistema.",
       "PromptInstall": "Instal·lar ara",
       "PromptLater": "Més tard",
-      "PromptNever": "No tornar a mostrar"
+      "PromptNever": "No tornar a mostrar",
+      "AdventureLabel": "Aventura opcional",
+      "DirectorPanelHint": "Panell de direcció integrat. El progrés de joc viu al world, no en aquesta finestra.",
+      "Reload": "Recarregar",
+      "MissingElement": "No s'ha trobat l'element «{slug}» al world.",
+      "GMOnly": "El Teixit de Yomi és una eina de direcció i només està disponible per al GM."
+    },
+    "Sheet": {
+      "Bakemono": "Fitxa de Bakemono"
+    },
+    "Traits": {
+      "OnmyoujiCurseHint": "Cada Onmyōji augmenta en 1 la teva Maledicció mínima."
+    },
+    "Info": {
+      "NoDescription": "No hi ha cap descripció addicional."
+    },
+    "Bakemono": {
+      "Nature": "Naturalesa",
+      "Manifestation": "Manifestació",
+      "Purpose": "Desig / propòsit",
+      "Threats": "Amenaces",
+      "Weaknesses": "Febleses"
+    },
+    "Welcome": {
+      "Kicker": "Arxiu de les Vuit Llances",
+      "Lead": "El món visible és només una part del que existeix.",
+      "CreateCharacter": "Crear Agent",
+      "CreateNPC": "Crear PNJ",
+      "CreateBakemono": "Crear Bakemono",
+      "RuleTitle": "La tirada en deu segons",
+      "WhatAreYouTrying": "Descriu la intenció i mira què entra en joc.",
+      "WhiteBase": "dau blanc base",
+      "WhiteExtra": "si un Rerefons o Orgull ajuda",
+      "Cursed": "si entra la Maledicció",
+      "RuleBody": "El sistema et mostrarà exactament els daus abans de llançar-los. Si el Maleït domina, després resoldràs la teva Maledicció.",
+      "Adventures": "Aventures",
+      "YomiBody": "Aventura opcional. El sistema base no pressuposa que la jugaràs.",
+      "Open": "Obrir Ocho Lanzas"
     }
   },
   "TYPES": {
     "Actor": {
       "character": "Personatge",
-      "npc": "PNJ"
+      "npc": "PNJ",
+      "bakemono": "Bakemono"
     },
     "Item": {
       "gear": "Equipament",

@@ -1,3 +1,4 @@
+import { dialogV2, renderTemplate } from "../compat/foundry-compat.mjs";
 import { openRollDialog, sendRollToChat } from "../workflows/rolls.mjs";
 import { rollCurse, purify } from "../workflows/curse.mjs";
 import { OPTIONS_BACKGROUND, OPTIONS_PRIDE, OPTIONS_ONMYOUJI } from "../workflows/static-options.mjs";
@@ -128,6 +129,7 @@ export class OchoLanzasActor extends Actor {
       rollType: "risk",
       flavor: "",
       actorName: this.name,
+      curseCount: clampNumber(this.system?.curseCount, 1, 6, 1),
       bonusSources,
       cursedSources
     });
@@ -246,15 +248,14 @@ export class OchoLanzasActor extends Actor {
       return;
     }
 
-    const content = await foundry.applications.handlebars.renderTemplate(
+    const content = await renderTemplate(
       "systems/ocho-lanzas/templates/dialogs/purify-dialog.hbs",
-      {}
+      { before: cur, after: Math.max(curMin, cur - 1) }
     );
 
-    const DialogV2 = foundry.applications.api.DialogV2;
-    const result = await DialogV2.prompt({
+    const result = await dialogV2().prompt({
       window: { title: game.i18n.localize("OCHO.Purify.Title") },
-      classes: ["ocho-lanzas", "ol-purify-dialog-v60"],
+      classes: ["ocho-lanzas", "ol-purify-dialog-shell"],
       content,
       ok: {
         label: game.i18n.localize("OCHO.Purify.Confirm"),

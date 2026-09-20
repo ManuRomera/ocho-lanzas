@@ -1,0 +1,59 @@
+<section class="ol-welcome">
+  <header class="ol-welcome-hero">
+    <div class="ol-welcome-seal" aria-hidden="true">八</div>
+    <div>
+      <span class="ol-kicker">{{localize "OCHO.Welcome.Kicker"}}</span>
+      <h1>Ocho Lanzas</h1>
+      <p>{{localize "OCHO.Welcome.Lead"}}</p>
+    </div>
+  </header>
+
+  <section class="ol-welcome-actions">
+    <button type="button" data-action="create-character">
+      <i class="fa-solid fa-user-plus"></i>
+      <span>{{localize "OCHO.Welcome.CreateCharacter"}}</span>
+    </button>
+    <button type="button" data-action="create-npc">
+      <i class="fa-solid fa-user-pen"></i>
+      <span>{{localize "OCHO.Welcome.CreateNPC"}}</span>
+    </button>
+    {{#if isGM}}
+    <button type="button" data-action="create-bakemono">
+      <i class="fa-solid fa-mask"></i>
+      <span>{{localize "OCHO.Welcome.CreateBakemono"}}</span>
+    </button>
+    {{/if}}
+  </section>
+
+  <section class="ol-welcome-rule">
+    <span class="ol-kicker">{{localize "OCHO.Welcome.RuleTitle"}}</span>
+    <h2>{{localize "OCHO.Welcome.WhatAreYouTrying"}}</h2>
+    <div class="ol-rule-dice">
+      <div><strong>1d6</strong><span>{{localize "OCHO.Welcome.WhiteBase"}}</span></div>
+      <div><strong>+1d6</strong><span>{{localize "OCHO.Welcome.WhiteExtra"}}</span></div>
+      <div class="is-cursed"><strong>1d6</strong><span>{{localize "OCHO.Welcome.Cursed"}}</span></div>
+    </div>
+    <p>{{localize "OCHO.Welcome.RuleBody"}}</p>
+  </section>
+
+  {{#if isGM}}
+  <section class="ol-welcome-adventure">
+    <div>
+      <span class="ol-kicker">{{localize "OCHO.Welcome.Adventures"}}</span>
+      <h2>El Tejido de Yomi</h2>
+      <p>{{localize "OCHO.Welcome.YomiBody"}}</p>
+    </div>
+    <div class="ol-welcome-adventure-actions">
+      <button type="button" data-action="open-yomi">{{localize "OCHO.Yomi.Open"}}</button>
+      <button type="button" data-action="prepare-yomi">{{localize "OCHO.Yomi.Install"}}</button>
+    </div>
+  </section>
+  {{/if}}
+
+  <footer class="ol-welcome-footer">
+    <span>v{{version}}</span>
+    <button type="button" class="ol-link-button" data-action="reset-layout">
+      {{localize "OCHO.Config.WindowLayoutReset"}}
+    </button>
+  </footer>
+</section>
