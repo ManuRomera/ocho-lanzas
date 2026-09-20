@@ -34,7 +34,7 @@ export class OchoLanzasWelcomeApp extends ApplicationV1 {
       resizable: true,
       minimizable: true,
       width: 760,
-      height: 640,
+      height: "auto",
       title: "Ocho Lanzas"
     });
   }
