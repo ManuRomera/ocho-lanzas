@@ -1,5 +1,40 @@
 # Changelog
 
+## 0.6.0 — 2026-09-20
+
+### Layout y escritorio
+- Ficha de Agente rediseñada a una geometría horizontal de referencia 1060×780.
+- Rasgos seleccionados integrados en la cabecera; el catálogo completo solo aparece en modo edición.
+- Equipo vacío colapsa y las áreas narrativas parten de alturas útiles, sin reservas históricas.
+- PNJ ajustado a 1080×700 con Notas como superficie principal y scroll interno controlado.
+- Bakemono reorganizado en identidad + tríada narrativa + Notas + columna de Maldición.
+- Item reducido a 700×500 y Bienvenida con altura automática.
+- Mínimos de ventana específicos por tipo y recuperación segura al cambiar monitor/resolución.
+
+### Maldición
+- Nuevo indicador de firma con sello central y seis marcas rituales.
+- Estados vacío, activo, permanente y Bakemono diferenciados por forma, trazo y relleno.
+- Controles administrativos del GM relegados a una capa secundaria visible al hover/foco.
+- Purificación explica por qué está desactivada y evita resoluciones sin reducción posible.
+
+### Dirección artística
+- Sustituido el sol rojo genérico por un lenguaje propio de sello/tinta.
+- Añadidos ocho SVG originales para Maldición, Las Ocho Lanzas, divisores y Bakemono.
+- Bakemono recibe contaminación gráfica discreta sin sacrificar legibilidad.
+- Purificación adopta jade desaturado en lugar de un turquesa saturado.
+
+### CSS y mantenibilidad
+- Eliminadas por completo las capas `ocho-lanzas.css`, `ocho-lanzas-v5.css` y `tejido-de-yomi.css`.
+- Nueva arquitectura modular: core, Agente, PNJ, Bakemono, Items, diálogos, chat, bienvenida y Yomi.
+- Eliminados max-width, min-height y selectores de fases históricas que condicionaban el layout actual.
+- Validador ampliado para impedir el regreso de CSS legacy, microtexto funcional inferior a 10.5 px y assets de UI ausentes.
+
+### UX
+- Clic izquierdo sobre chips fija información contextual; hover y botón derecho se mantienen.
+- Textareas autogrow quedan limitados y pasan a scroll interno al superar su máximo.
+- Chat de Maldición y Purificación compactado.
+- Welcome adapta su grid automáticamente a dos o tres acciones.
+
 ## 0.5.0 — 2026-09-20
 
 ### Arquitectura
