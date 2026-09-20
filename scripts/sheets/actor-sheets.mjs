@@ -105,11 +105,6 @@ class OchoLanzasActorSheetBase extends ActorSheetV1 {
     }
   }
 
-  async _setCurse(value) {
-    const min = this.actor.system.curseMin ?? 1;
-    await this.actor.update({ "system.curseCount": Math.max(min, Math.min(6, value)) });
-  }
-
   async _adjustCurse(delta) {
     const min = this.actor.system.curseMin ?? 1;
     const cur = Math.max(min, this.actor.system.curseCount ?? min);
