@@ -540,7 +540,7 @@
 }
 
 .ocho-lanzas .ol-brush-label {
-  font-family: "Brush Script MT", "Segoe Script", "Comic Sans MS", cursive;
+  font-family: Georgia, "Yu Mincho", "Hiragino Mincho ProN", serif;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.2px;
@@ -2286,7 +2286,7 @@
 }
 
 .ocho-lanzas.ol-dialog-rollsheet .ol-source-choice-body small {
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .ocho-lanzas.ol-dialog-rollsheet .ol-source-choice-body strong {
@@ -2692,7 +2692,7 @@
 .ocho-lanzas.ol-dialog-rollsheet .ol-source-choice-body small {
   display: block;
   margin-bottom: 2px;
-  font-size: 9px;
+  font-size: 11px;
   line-height: 1.1;
 }
 
@@ -2992,7 +2992,7 @@
 }
 
 .ol-roll-card .ol-roll-result-info .ol-result-label {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
   color: var(--ol-ink-soft);
@@ -3153,7 +3153,7 @@
   font-weight: 800;
   color: var(--ol-ink-soft);
   text-transform: uppercase;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.3px;
 }
 
@@ -3231,7 +3231,7 @@
 }
 
 .ol-roll-card.ol-curse-card .ol-curse-arrow-label {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
   color: #6f1411;
@@ -3317,7 +3317,7 @@
 }
 
 .ol-roll-card.ol-purify-card .ol-purify-arrow-label {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
   color: #146f6f;
@@ -3344,7 +3344,7 @@
 }
 
 .ol-roll-card.ol-purify-card .ol-purify-consequence-title {
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
   color: #146f6f;

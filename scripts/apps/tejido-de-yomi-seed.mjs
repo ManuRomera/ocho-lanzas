@@ -1,4 +1,6 @@
-const DATA_VERSION = "2.0.0";
+import { dialogV2 } from "../compat/foundry-compat.mjs";
+
+const DATA_VERSION = "2.1.0";
 const STARTER_WORLD_IDS = ["ocho-lanzas-tejido-de-yomi"];
 
 const ICONS = {
@@ -10,7 +12,7 @@ const ICONS = {
   weapon: "icons/svg/sword.svg"
 };
 
-function p(path) { return `systems/ocho-lanzas/el_tejido_de_yomi_pack_v10/assets/${path}`; }
+function p(path) { return `systems/ocho-lanzas/assets/${path}`; }
 function flagData(slug) { return { "ocho-lanzas": { tejidoSlug: slug, tejidoDataVersion: DATA_VERSION } }; }
 function getTejidoDocIndexRaw() {
   try { return JSON.parse(game.settings.get("ocho-lanzas", "tejidoDeYomiDocIndex") || "{}"); }
@@ -19,58 +21,18 @@ function getTejidoDocIndexRaw() {
 export function getTejidoDocIndex() { return getTejidoDocIndexRaw(); }
 function setTejidoDocIndex(index) { return game.settings.set("ocho-lanzas", "tejidoDeYomiDocIndex", JSON.stringify(index)); }
 function currentSeedVersion() { return game.settings.get("ocho-lanzas", "tejidoDeYomiSeededVersion") || ""; }
-function installPromptDismissed() { return !!game.settings.get("ocho-lanzas", "tejidoDeYomiInstallPromptDismissed"); }
-function setInstallPromptDismissed(value) { return game.settings.set("ocho-lanzas", "tejidoDeYomiInstallPromptDismissed", !!value); }
 function isStarterWorld() { return STARTER_WORLD_IDS.includes(game.world.id); }
 
-export async function promptInstallTejidoDeYomiWorld({ force = true, dismiss = false } = {}) {
-  if (!game.user.isGM) return false;
+export async function promptInstallTejidoDeYomiWorld({ force = true } = {}) {
+  if (!game.user?.isGM) return false;
   const content = `<p>${game.i18n.localize("OCHO.Yomi.InstallBody")}</p><p><em>${game.i18n.localize("OCHO.Yomi.InstallHint")}</em></p>`;
-  const confirmed = await Dialog.confirm({
-    title: game.i18n.localize("OCHO.Yomi.InstallTitle"),
+  const confirmed = await dialogV2().confirm({
+    window: { title: game.i18n.localize("OCHO.Yomi.InstallTitle") },
     content,
-    yes: async () => true,
-    no: () => false,
-    defaultYes: true
+    rejectClose: false
   });
   if (!confirmed) return false;
-  await setInstallPromptDismissed(false).catch(() => {});
   return seedTejidoDeYomiWorld({ force, notify: true });
-}
-
-async function promptInstallForEmptyWorld() {
-  if (!game.user.isGM) return false;
-  return new Promise((resolve) => {
-    new Dialog({
-      title: game.i18n.localize("OCHO.Yomi.PromptTitle"),
-      content: `<p>${game.i18n.localize("OCHO.Yomi.PromptBody")}</p>`,
-      buttons: {
-        install: {
-          icon: '<i class="fa-solid fa-box-open"></i>',
-          label: game.i18n.localize("OCHO.Yomi.PromptInstall"),
-          callback: async () => {
-            await seedTejidoDeYomiWorld({ force: true, notify: true });
-            resolve(true);
-          }
-        },
-        later: {
-          icon: '<i class="fa-regular fa-clock"></i>',
-          label: game.i18n.localize("OCHO.Yomi.PromptLater"),
-          callback: () => resolve(false)
-        },
-        never: {
-          icon: '<i class="fa-regular fa-eye-slash"></i>',
-          label: game.i18n.localize("OCHO.Yomi.PromptNever"),
-          callback: async () => {
-            await setInstallPromptDismissed(true);
-            resolve(false);
-          }
-        }
-      },
-      default: "install",
-      close: () => resolve(false)
-    }).render(true);
-  });
 }
 
 async function ensureFolder({ name, type, parent = null, color = null, sorting = "a" }) {
@@ -80,9 +42,10 @@ async function ensureFolder({ name, type, parent = null, color = null, sorting =
   return folder;
 }
 async function ensureDoc({ collection, type, name, folder = null, slug, createData }) {
-  let doc = collection.find(d => d.name === name && ((d.folder?.id ?? null) === (folder?.id ?? null)));
+  let doc = slug ? collection.find(d => d.getFlag?.("ocho-lanzas", "tejidoSlug") === slug) : null;
+  doc ??= collection.find(d => d.name === name && ((d.folder?.id ?? null) === (folder?.id ?? null)));
   if (doc) {
-    if (slug && !doc.getFlag("ocho-lanzas", "tejidoSlug")) await doc.setFlag("ocho-lanzas", "tejidoSlug", slug).catch(() => {});
+    if (slug && doc.getFlag("ocho-lanzas", "tejidoSlug") !== slug) await doc.setFlag("ocho-lanzas", "tejidoSlug", slug).catch(() => {});
     return doc;
   }
   const data = foundry.utils.mergeObject({ name, folder: folder?.id ?? null, flags: flagData(slug) }, createData || {});
@@ -309,7 +272,7 @@ const HANDOUTS = [
 ];
 
 async function ensurePlaylist({ name, folder, slug, tracks }) {
-  let playlist = game.playlists.find(p => p.name === name && ((p.folder?.id ?? null) === (folder?.id ?? null)));
+  let playlist = game.playlists.find(p => slug && p.getFlag?.("ocho-lanzas", "tejidoSlug") === slug) ?? game.playlists.find(p => p.name === name && ((p.folder?.id ?? null) === (folder?.id ?? null)));
   const sounds = tracks.map((path, i) => ({ name: `${name} · ${i + 1}`, path, repeat: false, playing: false, pausedTime: null, volume: 0.5, sort: i * 10 }));
   if (!playlist) {
     playlist = await Playlist.create({ name, folder: folder?.id ?? null, mode: CONST.PLAYLIST_MODES.SEQUENTIAL, sorting: CONST.PLAYLIST_SORT_MODES.MANUAL, sounds, flags: { ...flagData(slug), "ocho-lanzas": { ...(flagData(slug)["ocho-lanzas"] || {}), tejidoPlaylist: true } } });
@@ -320,7 +283,7 @@ async function ensurePlaylist({ name, folder, slug, tracks }) {
 }
 
 async function ensureScene({ name, folder, slug, navName, img, journal, playlist, note }) {
-  let scene = game.scenes.find(s => s.name === name && ((s.folder?.id ?? null) === (folder?.id ?? null)));
+  let scene = game.scenes.find(s => slug && s.getFlag?.("ocho-lanzas", "tejidoSlug") === slug) ?? game.scenes.find(s => s.name === name && ((s.folder?.id ?? null) === (folder?.id ?? null)));
   const data = {
     name,
     navName,
@@ -371,7 +334,21 @@ export async function seedTejidoDeYomiWorld({ force = false, notify = false } = 
   }
 
   for (const actorData of ACTORS) {
-    const actor = await ensureDoc({ collection: game.actors, type: "Actor", name: actorData.name, folder: folders[actorData.folderKey], slug: actorData.slug, createData: { type: actorData.type, img: actorData.img, prototypeToken: actorToken(actorData.img), system: actorData.system } });
+    const actorSystem = actorData.type === "bakemono"
+      ? {
+          ...actorData.system,
+          nature: actorData.system?.nature || actorData.system?.concept || "",
+          purpose: actorData.system?.purpose || actorData.system?.occupation || ""
+        }
+      : actorData.system;
+    const actor = await ensureDoc({
+      collection: game.actors,
+      type: "Actor",
+      name: actorData.name,
+      folder: folders[actorData.folderKey],
+      slug: actorData.slug,
+      createData: { type: actorData.type, img: actorData.img, prototypeToken: actorToken(actorData.img), system: actorSystem }
+    });
     await embedItems(actor, actorData.items || []);
     index[actorData.slug] = { uuid: actor.uuid, name: actor.name, type: "Actor" };
   }
@@ -427,7 +404,5 @@ export async function maybeSeedTejidoDeYomiWorld() {
   game.ochoLanzas.promptInstallTejidoDeYomi = (opts = {}) => promptInstallTejidoDeYomiWorld(opts);
   if (!game.user.isGM) return false;
   if (isStarterWorld()) return seedTejidoDeYomiWorld({ force: false, notify: true });
-  if (currentSeedVersion()) return false;
-  if (installPromptDismissed()) return false;
-  return promptInstallForEmptyWorld();
+  return false;
 }

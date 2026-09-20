@@ -16,7 +16,8 @@
       "Background": "Trasfondo",
       "Pride": "Orgullo",
       "Onmyoujis": "Onmyoujis",
-      "Notes": "Notas"
+      "Notes": "Notas",
+      "Traits": "Rasgos"
     },
     "Actions": {
       "RollAction": "Tirada",
@@ -25,11 +26,13 @@
       "ReduceMadness": "Reducir Locura",
       "CurseReset": "Inicio de historia",
       "ConfigureLists": "Configurar listas",
-      "Purify": "Purificarse"
+      "Purify": "Purificarse",
+      "EditTraits": "Editar rasgos",
+      "FinishEditing": "Terminar edición"
     },
     "Roll": {
       "Flavor": "¿Qué intentas?",
-      "TypeLabel": "Tipo",
+      "TypeLabel": "Tipo de tirada",
       "Type": {
         "Action": "Acción",
         "Risk": "Riesgo",
@@ -62,7 +65,21 @@
       "BaseWhiteDie": "Blanco base",
       "BonusWhiteDie": "Blanco extra",
       "SourcesLabel": "Fuentes de la tirada",
-      "ChatCurseHint": "Si el maldito domina, el propio mensaje de chat mostrará el botón para tirar Maldición."
+      "ChatCurseHint": "Si el maldito domina, el propio mensaje de chat mostrará el botón para tirar Maldición.",
+      "IntentQuestion": "¿Qué estás intentando?",
+      "WhatHelps": "¿Qué te ayuda?",
+      "WhiteSourcesHintSingle": "Una sola fuente relevante concede el dado blanco adicional.",
+      "NoExtraSource": "Sin fuente adicional",
+      "CurseExposureQuestion": "¿Te expones a la Maldición?",
+      "CursedSourcesHintSingle": "Una fuente Maldita es suficiente para introducir el dado Maldito.",
+      "NoCursedSource": "Sin dado Maldito",
+      "YouWillRoll": "Vas a lanzar",
+      "PreviewOneWhite": "⚪ 1d6 blanco",
+      "PreviewTwoWhite": "⚪ 2d6 blancos — conserva el mayor",
+      "PreviewOneCursed": "🔴 1d6 Maldito",
+      "CurseRollTitle": "Tirada de Maldición",
+      "CurrentCurse": "Maldición actual",
+      "CurseModeRule": "Lanza 1d6 Maldito. Si el resultado supera tu Maldición actual, aumenta en 1."
     },
     "Chat": {
       "Main": "Resultado",
@@ -73,7 +90,7 @@
       "CurseIncreases": "Maldición aumenta",
       "CurseNoIncrease": "Maldición no aumenta",
       "Bakemono": "¡Bakemono! La Maldición ha llegado a 6.",
-      "CurseReset": "Maldición reiniciada a {value}.",
+      "CurseReset": "Maldición restablecida a {value}.",
       "RollCurseButton": "Tirar Maldición (1d6 Maldito)",
       "CurseAlreadyRolled": "Ya se ha tirado Maldición",
       "CurseDeferredHint": "El dado maldito ha dominado. Resuelve ahora la tirada de Maldición desde este botón.",
@@ -95,12 +112,23 @@
       "Equipment": "Equipo (una opción por línea)",
       "Haika": "Haika (una opción por línea)",
       "Save": "Guardar",
-      "Close": "Cerrar"
+      "Close": "Cerrar",
+      "WindowLayoutReset": "Restablecer disposición de ventanas",
+      "WindowLayoutResetConfirm": "Esto solo borra tamaños y posiciones guardados en este navegador. No modifica el world ni los personajes.",
+      "WindowLayoutResetDone": "Disposición de ventanas restablecida."
     },
     "Items": {
-      "Add": "Añadir",
+      "Add": "Añadir objeto",
       "Edit": "Editar",
-      "Delete": "Borrar"
+      "Delete": "Eliminar",
+      "DeleteConfirm": "¿Eliminar «{name}» de esta ficha?",
+      "Empty": "Arrastra un objeto aquí o crea uno nuevo.",
+      "LegacyEquipment": "Equipo heredado (texto de versiones anteriores)",
+      "Description": "Descripción",
+      "Tags": "Etiquetas (separadas por comas)",
+      "Quantity": "Cantidad",
+      "Equipped": "Equipado",
+      "DamageNote": "Daño / nota"
     },
     "Purify": {
       "Title": "Purificarse",
@@ -111,10 +139,12 @@
       "Cancel": "Cancelar",
       "ErrorTooLow": "Solo puedes purificarte con Maldición 4 o más.",
       "ErrorOncePerScene": "Solo puedes purificarte una vez por escena.",
-      "ErrorConsequenceRequired": "Debes escribir una consecuencia para purificarte."
+      "ErrorConsequenceRequired": "Debes escribir una consecuencia para purificarte.",
+      "PriceQuestion": "¿Qué precio pagas?"
     },
     "Placeholder": {
-      "FreeText": "Escribe aquí…"
+      "FreeText": "Escribe aquí…",
+      "CurseNotes": "Notas de Maldición"
     },
     "Option": {
       "Background": {
@@ -208,13 +238,51 @@
       "PromptBody": "Este world todavía no tiene el contenido de la aventura. Puedes instalarlo con un clic desde los compendios del sistema.",
       "PromptInstall": "Instalar ahora",
       "PromptLater": "Más tarde",
-      "PromptNever": "No volver a mostrar"
+      "PromptNever": "No volver a mostrar",
+      "AdventureLabel": "Aventura opcional",
+      "DirectorPanelHint": "Panel de dirección integrado. El progreso de juego vive en el world, no en esta ventana.",
+      "Reload": "Recargar",
+      "MissingElement": "No se ha encontrado el elemento «{slug}» en el world.",
+      "GMOnly": "El Tejido de Yomi es una herramienta de dirección y solo está disponible para GM."
+    },
+    "Sheet": {
+      "Bakemono": "Ficha de Bakemono"
+    },
+    "Traits": {
+      "OnmyoujiCurseHint": "Cada Onmyōji aumenta en 1 tu Maldición mínima."
+    },
+    "Info": {
+      "NoDescription": "No hay una descripción adicional."
+    },
+    "Bakemono": {
+      "Nature": "Naturaleza",
+      "Manifestation": "Manifestación",
+      "Purpose": "Deseo / propósito",
+      "Threats": "Amenazas",
+      "Weaknesses": "Debilidades"
+    },
+    "Welcome": {
+      "Kicker": "Archivo de las Ocho Lanzas",
+      "Lead": "El mundo visible es solamente una parte de lo que existe.",
+      "CreateCharacter": "Crear Agente",
+      "CreateNPC": "Crear PNJ",
+      "CreateBakemono": "Crear Bakemono",
+      "RuleTitle": "La tirada en diez segundos",
+      "WhatAreYouTrying": "Describe la intención y mira qué entra en juego.",
+      "WhiteBase": "dado blanco base",
+      "WhiteExtra": "si un Trasfondo u Orgullo ayuda",
+      "Cursed": "si entra la Maldición",
+      "RuleBody": "El sistema te mostrará exactamente los dados antes de lanzarlos. Si el Maldito domina, resolverás después tu Maldición.",
+      "Adventures": "Aventuras",
+      "YomiBody": "Aventura opcional. El sistema base no presupone que vayas a jugarla.",
+      "Open": "Abrir Ocho Lanzas"
     }
   },
   "TYPES": {
     "Actor": {
       "character": "Personaje",
-      "npc": "PNJ"
+      "npc": "PNJ",
+      "bakemono": "Bakemono"
     },
     "Item": {
       "gear": "Objeto",

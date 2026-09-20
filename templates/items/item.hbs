@@ -1,37 +1,24 @@
-<form class="{{cssClass}} ocho-lanzas" autocomplete="off">
-  <div class="ol-overlay" style="position:relative; inset:auto; padding: 10px;">
-    <section class="ol-top" style="grid-template-columns: 1fr 120px;">
-      <div>
-        <div class="ol-field">
-          <label>{{localize "OCHO.Fields.Name"}}</label>
-          <input type="text" name="name" value="{{document.name}}" />
-        </div>
-        <div class="ol-field" style="margin-top:8px;">
-          <label>Descripción</label>
-          <textarea name="system.description" rows="6">{{system.description}}</textarea>
-        </div>
-        <div class="ol-field" style="margin-top:8px;">
-          <label>Etiquetas (coma)</label>
-          <input type="text" name="system.tagsText" value="{{system.tagsText}}" />
-        </div>
-      </div>
-      <div class="ol-portrait">
-        <img class="profile-img" src="{{document.img}}" alt="{{document.name}}" data-edit="img" />
-        <div class="ol-field" style="margin-top:8px;">
-          <label>Cantidad</label>
-          <input type="number" name="system.quantity" value="{{system.quantity}}" min="0" />
-        </div>
-        <div class="ol-field" style="margin-top:8px;">
-          <label>Equipado</label>
-          <input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}} />
-        </div>
-        {{#if (eq document.type "weapon")}}
-        <div class="ol-field" style="margin-top:8px;">
-          <label>Daño/nota</label>
-          <input type="text" name="system.damage" value="{{system.damage}}" />
-        </div>
-        {{/if}}
-      </div>
-    </section>
-  </div>
+<form class="{{cssClass}} ocho-lanzas ol-item-sheet-v5" autocomplete="off">
+  <header class="ol-item-sheet-header">
+    <img class="profile-img" src="{{document.img}}" alt="{{document.name}}" data-edit="img" />
+    <div>
+      <span class="ol-kicker">{{typeLabel}}</span>
+      <input class="ol-item-name-input" type="text" name="name" value="{{document.name}}" />
+    </div>
+  </header>
+
+  <section class="ol-item-sheet-body">
+    <label class="ol-field ol-item-description">
+      <span>{{localize "OCHO.Items.Description"}}</span>
+      <textarea name="system.description">{{system.description}}</textarea>
+    </label>
+    <div class="ol-item-meta-grid">
+      <label class="ol-field"><span>{{localize "OCHO.Items.Tags"}}</span><input type="text" name="system.tagsText" value="{{system.tagsText}}" /></label>
+      <label class="ol-field"><span>{{localize "OCHO.Items.Quantity"}}</span><input type="number" name="system.quantity" value="{{system.quantity}}" min="0" /></label>
+      <label class="ol-field ol-checkbox-field"><span>{{localize "OCHO.Items.Equipped"}}</span><input type="checkbox" name="system.equipped" {{#if system.equipped}}checked{{/if}} /></label>
+      {{#if (eq document.type "weapon")}}
+      <label class="ol-field"><span>{{localize "OCHO.Items.DamageNote"}}</span><input type="text" name="system.damage" value="{{system.damage}}" /></label>
+      {{/if}}
+    </div>
+  </section>
 </form>
