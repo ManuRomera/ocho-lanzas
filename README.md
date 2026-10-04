@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/img/banner.png" alt="Ocho Lanzas · Sistema para Foundry VTT" width="100%">
+</p>
+
 # Ocho Lanzas para Foundry VTT
 
 <p align="center">
@@ -10,6 +14,16 @@
 Sistema **no oficial** para jugar *Ocho Lanzas* en Foundry VTT. El objetivo de esta implementación es que Foundry desaparezca lo máximo posible durante la partida: fichas legibles, información bajo demanda y automatización solo donde reduce trabajo real.
 
 > Menos software visible, más Ocho Lanzas.
+
+## Así se ve
+
+<p align="center">
+  <img src="docs/img/archivo.png" alt="Archivo de las Ocho Lanzas: crear agente, PNJ o bakemono y resumen de la tirada" width="49%">
+  <img src="docs/img/tirada.png" alt="Diálogo de tirada con el resumen exacto de dados antes de lanzar" width="49%">
+</p>
+<p align="center">
+  <img src="docs/img/ficha.png" alt="Ficha de agente horizontal centrada en la Maldición" width="100%">
+</p>
 
 ## Compatibilidad
 
