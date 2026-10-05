@@ -85,7 +85,7 @@ for (const file of files.filter((f) => path.extname(f) === ".css")) {
   }
 }
 
-if (manifest.version !== "0.6.0") fail(`versión inesperada en manifest: ${manifest.version}`);
+if (manifest.version !== "0.6.1") fail(`versión inesperada en manifest: ${manifest.version}`);
 if (!String(manifest.download ?? "").includes("releases/latest/download")) fail("download no apunta a releases");
 if (!String(manifest.manifest ?? "").includes("releases/latest/download")) fail("manifest no apunta a releases");
 
