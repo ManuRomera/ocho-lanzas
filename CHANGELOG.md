@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.1 — 2026-10-05
+
+- Añadido el botón «Créditos» en los ajustes del paquete (Manu Romera · Digital RPG Design). No cambia el juego.
+
 ## 0.6.0 — 2026-09-20
 
 ### Layout y escritorio

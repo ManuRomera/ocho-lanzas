@@ -2,7 +2,7 @@
   "id": "ocho-lanzas",
   "title": "Ocho Lanzas (Unofficial)",
   "description": "Sistema no oficial para Foundry VTT orientado a una experiencia de escritorio clara y atmosférica. Incluye fichas de Agente, PNJ y Bakemono, Maldición, Purificación, tiradas, Items y soporte opcional para El Tejido de Yomi.",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "manifest": "https://github.com/ManuRomera/ocho-lanzas/releases/latest/download/system.json",
   "download": "https://github.com/ManuRomera/ocho-lanzas/releases/latest/download/ocho-lanzas.zip",
   "compatibility": {
@@ -17,7 +17,8 @@
     }
   ],
   "esmodules": [
-    "scripts/ocho-lanzas.mjs"
+    "scripts/ocho-lanzas.mjs",
+    "scripts/mr-credits.mjs"
   ],
   "styles": [
     "styles/ol-core.css",
