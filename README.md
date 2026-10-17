@@ -7,7 +7,7 @@
 <p align="center">
   <a href="https://github.com/ManuRomera/ocho-lanzas/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/ManuRomera/ocho-lanzas?include_prereleases&style=for-the-badge&color=b23a48&label=release"></a>
   <a href="https://foundryvtt.com"><img alt="Foundry VTT V13 – V14" src="https://img.shields.io/badge/Foundry%20VTT-V13%20%E2%80%93%20V14-57d8c8?style=for-the-badge"></a>
-  <a href="https://github.com/ManuRomera/ocho-lanzas/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/ManuRomera/ocho-lanzas/total?style=for-the-badge&color=ff7a1f"></a>
+  <a href="https://github.com/ManuRomera/ocho-lanzas/releases"><img alt="Downloads" src="https://raw.githubusercontent.com/ManuRomera/ManuRomera/main/badges/descargas/ocho-lanzas.svg"></a>
   <img alt="Game system" src="https://img.shields.io/badge/type-game%20system-2b3245?style=for-the-badge">
 </p>
 
